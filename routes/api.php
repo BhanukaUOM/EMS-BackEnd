@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Http\Request;
+
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
@@ -13,4 +15,14 @@ Route::group([
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
+});
+
+Route::group([
+    'namespace' => 'Auth',
+    'middleware' => 'api',
+    'prefix' => 'password'
+], function () {
+    Route::post('create', 'PasswordResetController@create');
+    Route::get('find/{token}', 'PasswordResetController@find');
+    Route::post('reset', 'PasswordResetController@reset');
 });
