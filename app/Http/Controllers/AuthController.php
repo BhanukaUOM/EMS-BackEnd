@@ -103,16 +103,17 @@ class AuthController extends Controller
     }
 
     public function signupActivate($token)
-{
-    $user = User::where('activation_token', $token)->first();
-    if (!$user) {
-        return response()->json([
-            'message' => 'This activation token is invalid.'
-        ], 404);
+    {
+        $user = User::where('activation_token', $token)->first();
+        if (!$user) {
+            return response()->json([
+                'message' => 'This activation token is invalid.'
+            ], 404);
+        }
+        $user->active = true;
+        $user->activation_token = '';
+        $user->email_verified_at = Carbon::now()->toDateTimeString();
+        $user->save();
+        return $user;
     }
-    $user->active = true;
-    $user->activation_token = '';
-    $user->save();
-    return $user;
-}
 }
