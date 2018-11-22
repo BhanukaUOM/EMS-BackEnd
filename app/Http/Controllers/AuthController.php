@@ -55,6 +55,8 @@ class AuthController extends Controller
             'remember_me' => 'boolean'
         ]);
         $credentials = request(['email', 'password']);
+        $credentials['active'] = 1;
+        $credentials['deleted_at'] = null;
         if(!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized'
@@ -68,9 +70,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse(
-                $tokenResult->token->expires_at
-            )->toDateTimeString()
+            'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
         ]);
     }
 
@@ -96,4 +96,18 @@ class AuthController extends Controller
     {
         return response()->json($request->user());
     }
+
+    public function signupActivate($token)
+{
+    $user = User::where('activation_token', $token)->first();
+    if (!$user) {
+        return response()->json([
+            'message' => 'This activation token is invalid.'
+        ], 404);
+    }
+    $user->active = true;
+    $user->activation_token = '';
+    $user->save();
+    return $user;
+}
 }
