@@ -1,10 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\User;
+use App\Notifications\SignupActivate;
+use Avatar;
+use Storage;
 
 class UsersController extends Controller
 {
@@ -15,7 +18,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return json_encode(User::all());
+        return response()->json(['data' => User::all()], 200);
     }
 
     /**
@@ -25,7 +28,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return "disabled";
     }
 
     /**
@@ -36,7 +39,24 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|confirmed'
+        ]);
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'activation_token' => str_random(60)
+        ]);
+        $user->save();
+        $avatar = Avatar::create(strtoupper($user->name))->getImageObject()->encode('png');
+        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
+        $user->notify(new SignupActivate($user));
+        return response()->json([
+            'message' => 'Successfully Added New User!'
+        ], 201);
     }
 
     /**
@@ -47,7 +67,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        return json_encode(User::findOrFail($id));
     }
 
     /**
@@ -58,7 +78,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "disabled";
     }
 
     /**
@@ -70,7 +90,19 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $avatar = Avatar::create(strtoupper($user->name))->getImageObject()->encode('png');
+        Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
+        //$user->updated_at = Carbon::now()->toDateTimeString();
+        $user->save();
+        return response()->json(['data' => $user], 201);
     }
 
     /**
@@ -81,6 +113,25 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return response()->json(['data' => $user], 200);
+    }
+
+    public function pause(Request $request){
+        $rules = [
+            'id' => 'required'
+        ];
+
+        $this->validate($request, $rules);
+
+        $id = $request->id;
+        $user = User::findOrFail($id);
+        if($user->deleted_at!=null){
+            return response()->json(['message' => "User Already Deleted"], 202);
+        }
+        $user->active = !$user->active;
+        $user->save();
+        return response()->json(['data' => $user], 200);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -34,7 +35,7 @@ class AuthController extends Controller
             'activation_token' => str_random(60)
         ]);
         $user->save();
-        $avatar = Avatar::create($user->name)->getImageObject()->encode('png');
+        $avatar = Avatar::create(strtoupper($user->name))->getImageObject()->encode('png');
         Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
         $user->notify(new SignupActivate($user));
         return response()->json([

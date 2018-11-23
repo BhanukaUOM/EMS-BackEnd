@@ -26,3 +26,10 @@ Route::group([
     Route::get('find/{token}', 'PasswordResetController@find');
     Route::post('reset', 'PasswordResetController@reset');
 });
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('users', 'UsersController');
+    Route::post('users/pause', 'UsersController@pause');
+});
