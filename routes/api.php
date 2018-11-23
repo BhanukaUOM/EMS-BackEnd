@@ -30,6 +30,6 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
-    Route::resource('users', 'UsersController');
+    Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
     Route::post('users/pause', 'UsersController@pause');
 });

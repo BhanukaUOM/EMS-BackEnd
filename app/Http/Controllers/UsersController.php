@@ -16,19 +16,13 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(['data' => User::all()], 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return "disabled";
+        if($request->get('search'))
+            $user = User::where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->paginate(10);
+        else
+            $user = User::paginate(10);
+        return response()->json($user, 200);
     }
 
     /**
@@ -68,17 +62,6 @@ class UsersController extends Controller
     public function show($id)
     {
         return json_encode(User::findOrFail($id));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return "disabled";
     }
 
     /**
