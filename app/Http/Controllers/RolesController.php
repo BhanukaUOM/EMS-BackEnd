@@ -95,6 +95,6 @@ class RolesController extends Controller
     }
 
     public function allRoles(){
-        return response()->json(Role::with('permissions')->all(), 200);
+        return response()->json(Role::with('permissions')->get(), 200);
     }
 }

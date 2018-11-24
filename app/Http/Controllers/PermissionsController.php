@@ -87,6 +87,6 @@ class PermissionsController extends Controller
     }
 
     public function allPermissions(){
-        return response()->json(Permission::all(), 200);
+        return response()->json(Permission::get(), 200);
     }
 }
