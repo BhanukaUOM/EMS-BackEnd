@@ -18,7 +18,12 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->get('search'))
+        if($request->get('sort')!='null' && $request->get('search')){
+            $user = User::where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+        } else if($request->get('sort')!='null'){
+            $user = User::orderby($request->get('sort'), $request->get('order'))->paginate(10);
+        }
+        else if($request->get('search'))
             $user = User::where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->paginate(10);
         else
             $user = User::paginate(10);
@@ -34,9 +39,9 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|min:2',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed'
+            'password' => 'required|string|confirmed|min:6'
         ]);
         $user = new User([
             'name' => $request->name,
@@ -74,7 +79,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' => 'required'
+            'name' => 'required|min:2'
         ];
 
         $this->validate($request, $rules);
