@@ -33,3 +33,15 @@ Route::group([
     Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
     Route::post('users/pause', 'UsersController@pause');
 });
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('roles', 'RolesController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('permissions', 'PermissionsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
