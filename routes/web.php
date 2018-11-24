@@ -14,15 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('{any}', function () {
+Route::get('(:any)/(:all?)', function () {
     return view('welcome');
 });
-Route::get('{any}/{any}', function () {
-    return view('welcome');
-});
-Route::get('{any}/{any}/{any}', function () {
-    return view('welcome');
-});
+
 
 // Auth::routes();
 
