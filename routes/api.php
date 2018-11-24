@@ -47,3 +47,4 @@ Route::group([
     Route::resource('permissions', 'PermissionsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
     Route::get('permission', 'PermissionsController@allPermissions');
 });
+
