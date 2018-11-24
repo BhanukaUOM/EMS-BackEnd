@@ -15,7 +15,7 @@ class RolesController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->get('sort')!='null' && $request->get('search')){
+        if($request->get('sort')!='null' && $request->get('search')) {
             $role = Role::with('permissions')->where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         } else if($request->get('sort')!='null'){
             $role = Role::with('permissions')->orderby($request->get('sort'), $request->get('order'))->paginate(10);
