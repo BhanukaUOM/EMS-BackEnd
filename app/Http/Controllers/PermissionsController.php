@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 use Illuminate\Http\Request;
 
@@ -11,19 +13,18 @@ class PermissionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        if($request->get('sort')!='null' && $request->get('search')){
+            $permission = Permission::where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+        } else if($request->get('sort')!='null'){
+            $permission = Permission::orderby($request->get('sort'), $request->get('order'))->paginate(10);
+        }
+        else if($request->get('search'))
+            $permission = Permission::where("name", "LIKE", "%{$request->get('search')}%")->paginate(10);
+        else
+            $permission = Permission::paginate(10);
+        return response()->json($permission, 200);
     }
 
     /**
@@ -34,7 +35,10 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|min:2'
+        ]);
+        return json_encode(Permission::create(['name' => $request->name]));
     }
 
     /**
@@ -45,18 +49,7 @@ class PermissionsController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return json_encode(Permission::findOrFail($id));
     }
 
     /**
@@ -68,7 +61,16 @@ class PermissionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name' => 'required|min:2'
+        ];
+
+        $this->validate($request, $rules);
+
+        $permission = Permission::findOrFail($id);
+        $permission->name = $request->name;
+        $permission->save();
+        return response()->json(['data' => $permission], 201);
     }
 
     /**
@@ -79,6 +81,12 @@ class PermissionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permission = Permission::findOrFail($id);
+        $permission->delete();
+        return response()->json(['data' => $permission], 200);
+    }
+
+    public function allPermissions(){
+        return response()->json(Permission::all(), 200);
     }
 }

@@ -38,10 +38,12 @@ Route::group([
     'middleware' => 'auth:api'
 ], function () {
     Route::resource('roles', 'RolesController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+    Route::get('role', 'RolesController@allRoles');
 });
 
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
     Route::resource('permissions', 'PermissionsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+    Route::get('permission', 'PermissionsController@allPermissions');
 });

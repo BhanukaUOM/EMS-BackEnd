@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\Notifications\SignupActivate;
 use Avatar;
 use Storage;
@@ -16,17 +18,18 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
         if($request->get('sort')!='null' && $request->get('search')){
-            $user = User::where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+            $user = User::with('roles')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         } else if($request->get('sort')!='null'){
-            $user = User::orderby($request->get('sort'), $request->get('order'))->paginate(10);
+            $user = User::with('roles')->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         }
         else if($request->get('search'))
-            $user = User::where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->paginate(10);
+            $user = User::with('roles')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->paginate(10);
         else
-            $user = User::paginate(10);
+            $user = User::with('roles')->paginate(10);
         return response()->json($user, 200);
     }
 
@@ -49,6 +52,8 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
             'activation_token' => str_random(60)
         ]);
+        foreach($request->role as $role)
+            $user->assignRole($role);
         $user->save();
         $avatar = Avatar::create(strtoupper($user->name))->getImageObject()->encode('png');
         Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
@@ -66,7 +71,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return json_encode(User::findOrFail($id));
+        return json_encode(User::with('roles')->findOrFail($id));
     }
 
     /**
@@ -85,6 +90,13 @@ class UsersController extends Controller
         $this->validate($request, $rules);
 
         $user = User::findOrFail($id);
+
+        foreach($user->roles as $role)
+            $user->removeRole($role);
+        if($request->role)
+            foreach($request->role as $role)
+                $user->assignRole($role);
+
         $user->name = $request->name;
         $avatar = Avatar::create(strtoupper($user->name))->getImageObject()->encode('png');
         Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);

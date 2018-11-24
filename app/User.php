@@ -14,6 +14,7 @@ class User extends Authenticatable
 {
     use HasRoles;
     use HasApiTokens, Notifiable, SoftDeletes;
+    protected $guard_name = 'api';
 
     protected $dates = ['deleted_at'];
     protected $appends = ['avatar_url'];

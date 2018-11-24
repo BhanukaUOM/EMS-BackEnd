@@ -16,14 +16,14 @@ class RolesController extends Controller
     public function index(Request $request)
     {
         if($request->get('sort')!='null' && $request->get('search')){
-            $role = Role::where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+            $role = Role::with('permissions')->where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         } else if($request->get('sort')!='null'){
-            $role = Role::orderby($request->get('sort'), $request->get('order'))->paginate(10);
+            $role = Role::with('permissions')->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         }
         else if($request->get('search'))
-            $role = Role::where("name", "LIKE", "%{$request->get('search')}%")->paginate(10);
+            $role = Role::with('permissions')->where("name", "LIKE", "%{$request->get('search')}%")->paginate(10);
         else
-            $role = Role::paginate(10);
+            $role = Role::with('permissions')->paginate(10);
         return response()->json($role, 200);
     }
 
@@ -38,7 +38,10 @@ class RolesController extends Controller
         $request->validate([
             'name' => 'required|string|min:2'
         ]);
-        return json_encode(Role::create(['name' => $request->name]));
+        $role = Role::create(['name' => $request->name]);
+        foreach($request->permission as $permission)
+            $role->givePermissionTo($permission);
+        return json_encode($role);
     }
 
     /**
@@ -49,7 +52,7 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        return json_encode(Role::findOrFail($id));
+        return json_encode(Role::with('permissions')->findOrFail($id));
     }
 
     /**
@@ -68,6 +71,11 @@ class RolesController extends Controller
         $this->validate($request, $rules);
 
         $role = Role::findOrFail($id);
+        foreach($role->permissions as $permission)
+            $role->revokePermissionTo($permission);
+        if($request->permission)
+            foreach($request->permission as $permission)
+                $role->givePermissionTo($permission);
         $role->name = $request->name;
         $role->save();
         return response()->json(['data' => $role], 201);
@@ -84,5 +92,9 @@ class RolesController extends Controller
         $role = Role::findOrFail($id);
         $role->delete();
         return response()->json(['data' => $role], 200);
+    }
+
+    public function allRoles(){
+        return response()->json(Role::with('permissions')->all(), 200);
     }
 }
