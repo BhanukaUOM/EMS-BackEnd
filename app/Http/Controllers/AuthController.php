@@ -100,7 +100,8 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        $user = User::with('roles')->findOrFail($request->user()->id);
+        return response()->json($user);
     }
 
     public function signupActivate($token)
