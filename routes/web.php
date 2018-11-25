@@ -17,9 +17,10 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return json_encode(['error' => ['message' => "Invalid token"]]);
 });
-Route::get('{any}', function () {
+Route::get('{all}', function () {
     return view('welcome');
-});
+})->where('all', '.*');
+
 
 // Auth::routes();
 
