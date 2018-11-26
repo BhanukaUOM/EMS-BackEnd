@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class LocationController extends Controller
 {
@@ -11,6 +12,6 @@ class LocationController extends Controller
     }
 
     public function get(Request $request, $id){
-        return $id;
+        return User::find($id)->role;
     }
 }
