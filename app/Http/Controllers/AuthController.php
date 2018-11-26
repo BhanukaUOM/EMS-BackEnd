@@ -71,7 +71,7 @@ class AuthController extends Controller
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
         if ($request->remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(1);
+            $token->expires_at = Carbon::now()->addWeeks(13);
         $token->save();
         return response()->json([
             'access_token' => $tokenResult->accessToken,
@@ -100,7 +100,8 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        $user = User::with('roles')->findOrFail($request->user()->id);
+        return response()->json($user);
     }
 
     public function signupActivate($token)
