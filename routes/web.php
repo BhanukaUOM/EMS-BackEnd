@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+//Route::get('/', function () {
+//    return view('home');
+//});
 Route::get('auth/login', function () {
     return json_encode(['error' => ['message' => "Invalid token"]]);
 });
