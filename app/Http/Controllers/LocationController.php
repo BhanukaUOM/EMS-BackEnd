@@ -12,6 +12,6 @@ class LocationController extends Controller
     }
 
     public function get(Request $request, $id){
-        return User::find($id)->role;
+        return User::find($id)->role();
     }
 }
