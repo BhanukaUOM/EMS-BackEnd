@@ -51,6 +51,6 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
-    Route::get('location/{{id}}', 'LocationController@get');
+    Route::get('location/{id}', 'LocationController@get');
     Route::post('location', 'LocationController@add');
 });
