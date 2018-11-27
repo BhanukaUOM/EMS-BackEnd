@@ -8,12 +8,12 @@ class User_has_Notices extends Model
 {
     public function notice()
     {
-        return $this->hasOne(App\Notice::class);
+        return $this->hasOne(Notice::class);
     }
 
     public function user()
     {
-        return $this->hasOne(App\User::class);
+        return $this->hasOne(User::class);
     }
 
     public function role()

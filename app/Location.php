@@ -8,6 +8,6 @@ class Location extends Model
 {
     public function user()
     {
-        return $this->hasOne(App\User::class);
+        return $this->hasOne(User::class);
     }
 }

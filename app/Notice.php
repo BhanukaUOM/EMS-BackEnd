@@ -8,6 +8,6 @@ class Notice extends Model
 {
     public function user_has_notice()
     {
-        return $this->hasOne(App\User_has_Notices::class);
+        return $this->hasOne(User_has_Notices::class);
     }
 }
