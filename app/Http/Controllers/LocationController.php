@@ -43,10 +43,10 @@ class LocationController extends Controller
     }
 
     public function get($id){
-        return Location::where("user_id", $id);
+        return response()->json(Location::where("user_id", $id));
     }
 
     public function getCurrent(){
-        return Location::where("user_id", Auth::user()->id);
+        return response()->json(Location::where("user_id", Auth::user()->id));
     }
 }
