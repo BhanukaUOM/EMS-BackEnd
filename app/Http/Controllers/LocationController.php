@@ -11,8 +11,8 @@ class LocationController extends Controller
     public function add(Request $request){
         $request->validate([
             'timestamp' => 'required',
-            'latitude' => 'required|string',
-            'longitude' => 'required|string'
+            'latitude' => 'required',
+            'longitude' => 'required'
         ]);
 
         if(Location::where('id', $AuthAuth::user()->id)->exists())
