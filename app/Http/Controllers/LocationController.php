@@ -37,20 +37,14 @@ class LocationController extends Controller
             $location->speed = $request->speed;
         $location->save();
 
-        return response()->json(['data' => 'Successfully Added']);
-        $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->token;
-        if ($request->remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(13);
-        $token->save();
-        return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
-        ]);
+        return response()->json(['data' => $location]);
     }
 
-    public function get(Request $request, $id){
-        return User::find($id)->role();
+    public function get($id){
+        return Location::where("user_id", $id);
+    }
+
+    public function getCurrent(){
+        return Location::where("user_id", $AuthAuth::user()->id);
     }
 }
