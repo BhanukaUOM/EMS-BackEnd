@@ -8,16 +8,16 @@ class User_has_Notices extends Model
 {
     public function notice()
     {
-        return $this->hasOne('App\Notice', 'id', 'notice_id');
+        return $this->hasOne(App\Notice::class);
     }
 
     public function user()
     {
-        return $this->hasOne('App\User', 'id', 'user_id');
+        return $this->hasOne(App\User::class);
     }
 
     public function role()
     {
-        return $this->hasOne('Spatie\Permission\Models\Role', 'id', 'role_id');
+        return $this->hasOne(Spatie\Permission\Models\Role::Class);
     }
 }
