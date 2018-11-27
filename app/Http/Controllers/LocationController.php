@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Location;
 
@@ -15,11 +16,11 @@ class LocationController extends Controller
             'longitude' => 'required'
         ]);
 
-        if(Location::where('id', $Auth::user()->id)->exists())
-            $location = Location::find($Auth::user()->id);
+        if(Location::where('id', Auth::user()->id)->exists())
+            $location = Location::find(Auth::user()->id);
         else{
             $location = new Location;
-            $location->user_id = $Auth::user()->id;
+            $location->user_id = Auth::user()->id;
         }
 
         $location->timestamp = Carbon::parse($request->timestamp)->toDateTimeString();
@@ -45,6 +46,6 @@ class LocationController extends Controller
     }
 
     public function getCurrent(){
-        return Location::where("user_id", $Auth::user()->id);
+        return Location::where("user_id", Auth::user()->id);
     }
 }
