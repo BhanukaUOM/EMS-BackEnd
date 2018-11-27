@@ -30,4 +30,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'activation_token'
     ];
+
+    public function loaction()
+    {
+        return $this->hasOne('App\Location');
+    }
 }
