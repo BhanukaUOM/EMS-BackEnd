@@ -18,7 +18,7 @@ class LocationController extends Controller
         ]);
 
         if(Location::where('user_id', Auth::user()->id)->exists())
-            $location = Location::where('user_id', Auth::user()->id);
+            $location = Location::where('user_id', Auth::user()->id)->first();
         else{
             $location = new Location;
             $location->user_id = Auth::user()->id;
