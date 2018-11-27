@@ -17,7 +17,6 @@ class LocationController extends Controller
             'longitude' => 'required'
         ]);
 
-        return User::find(Auth::user()->id)->location()->first();
         if(Location::where('user_id', Auth::user()->id)->exists())
             $location = Location::where('user_id', Auth::user()->id)->first();
         else{
@@ -44,7 +43,7 @@ class LocationController extends Controller
     }
 
     public function get($id){
-        return response()->json(Location::where("user_id", strval($id))->first());
+        return response()->json(Location::where("user_id", $id)->first());
     }
 
     public function getCurrent(){

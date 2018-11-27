@@ -31,7 +31,7 @@ class User extends Authenticatable
         'password', 'remember_token', 'activation_token'
     ];
 
-    public function loaction()
+    public function location()
     {
         return $this->hasOne('App\Location');
     }
