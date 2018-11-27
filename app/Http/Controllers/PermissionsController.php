@@ -15,9 +15,9 @@ class PermissionsController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->get('sort')!='null' && $request->get('search')){
+        if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
             $permission = Permission::where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
-        } else if($request->get('sort')!='null'){
+        } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
             $permission = Permission::orderby($request->get('sort'), $request->get('order'))->paginate(10);
         }
         else if($request->get('search'))

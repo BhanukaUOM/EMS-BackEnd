@@ -52,6 +52,7 @@ Route::group([
     'middleware' => 'auth:api'
 ], function () {
     Route::get('location', 'LocationController@getCurrent');
+    Route::get('locations', 'LocationController@index');
     Route::get('location/{id}', 'LocationController@get');
     Route::post('location', 'LocationController@add');
 });

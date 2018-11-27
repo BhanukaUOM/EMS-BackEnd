@@ -49,4 +49,17 @@ class LocationController extends Controller
     public function getCurrent(){
         return response()->json(Location::where('user_id', Auth::user()->id)->first());
     }
+
+    public function index(Request $request){
+        if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
+            $location = Location::where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+        } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
+            $location = Location::orderby($request->get('sort'), $request->get('order'))->paginate(10);
+        }
+        else if($request->get('search'))
+            $location = Location::where("name", "LIKE", "%{$request->get('search')}%")->paginate(10);
+        else
+            $location = Location::paginate(10);
+        return response()->json($location, 200);
+    }
 }
