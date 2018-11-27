@@ -21,6 +21,7 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
+        return Auth::user()->role('Admin');
         if($request->get('role')=='null' || $request->get('role')==''){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
                 $user = User::with('roles')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
