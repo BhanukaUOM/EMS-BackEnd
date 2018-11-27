@@ -18,7 +18,7 @@ class LocationController extends Controller
         ]);
 
         if(Location::where('user_id', Auth::user()->id)->exists())
-            $location = Location::where('user_id', Auth::user()->id)->first();
+            $location = Location::where('user_id', Auth::user()->id)->first;
         else{
             $location = new Location;
             $location->user_id = Auth::user()->id;
@@ -43,10 +43,10 @@ class LocationController extends Controller
     }
 
     public function get($id){
-        return response()->json(Location::where("user_id", strval($id))->first());
+        return response()->json(Location::where("user_id", strval($id))->first);
     }
 
     public function getCurrent(){
-        return response()->json(Location::where('user_id', Auth::user()->id)->first());
+        return response()->json(Location::where('user_id', Auth::user()->id)->first);
     }
 }
