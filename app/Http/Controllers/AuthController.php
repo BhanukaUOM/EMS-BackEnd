@@ -67,8 +67,8 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
-        $user = $request->user()->with('roles');
-        return response()->json($user);
+        $user = $request->user();
+        $res = User::with('roles')->find($user->id);
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
         if ($request->remember_me)
@@ -77,7 +77,8 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $tokenResult->accessToken,
             'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString()
+            'expires_at' => Carbon::parse($tokenResult->token->expires_at)->toDateTimeString(),
+            'user' => response()->json($res)
         ]);
     }
 
