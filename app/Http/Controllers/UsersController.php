@@ -21,9 +21,9 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        if(($request->get('sort')!='null' || !$request->get('sort')) && $request->get('search')){
+        if(($request->get('sort')!='null' || $request->get('sort')!='') && $request->get('search')){
             $user = User::with('roles')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
-        } else if($request->get('sort')!='null' || !$request->get('sort')){
+        } else if($request->get('sort')!='null' || $request->get('sort')!=''){
             $user = User::with('roles')->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         }
         else if($request->get('search'))
