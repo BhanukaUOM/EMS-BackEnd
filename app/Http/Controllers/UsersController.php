@@ -32,7 +32,7 @@ class UsersController extends Controller
             else
                 $user = User::with('roles')->paginate(10);
         } else {
-            $role = request->get('role');
+            $role = $request->get('role');
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
                 $user = User::role($role)->with('roles')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
             } else if($request->get('sort')!='null' && $request->get('sort')!=''){
