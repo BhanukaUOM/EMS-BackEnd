@@ -52,7 +52,7 @@ class LocationController extends Controller
 
     public function index(Request $request){
         if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-            $location = Location::where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+            $location = Location::where("user_id", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
             $location = Location::orderby($request->get('sort'), $request->get('order'))->paginate(10);
         }
