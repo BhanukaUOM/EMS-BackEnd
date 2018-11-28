@@ -35,4 +35,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Location::class);
     }
+
+    public function notice()
+    {
+        return $this->hasMany(Notice::class);
+    }
 }

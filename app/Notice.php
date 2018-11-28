@@ -10,4 +10,9 @@ class Notice extends Model
     {
         return $this->hasOne(User_has_Notices::class);
     }
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

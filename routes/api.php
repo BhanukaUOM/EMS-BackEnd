@@ -56,3 +56,10 @@ Route::group([
     Route::get('location/{id}', 'LocationController@get');
     Route::post('location', 'LocationController@add');
 });
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('notices', 'NoticeController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+    Route::post('notices/pause', 'NoticeController@pause');
+});
