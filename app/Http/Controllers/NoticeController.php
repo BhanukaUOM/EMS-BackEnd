@@ -21,7 +21,7 @@ class NoticeController extends Controller
         $user_id = Auth::user()->id;
         $user_roles = Auth::user()->roles;
         $res = [];
-        for($i=0; $i<$user_roles.length(); $i++){
+        for($i=0; $i<count($user_roles); $i++){
             res.append(DB::select('
             SELECT n.id, n.content, n.created_at, n.updated_at
             FROM user_has__notices ns, notices n
