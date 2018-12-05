@@ -20,19 +20,19 @@ class NoticeController extends Controller
     {
         $user_id = Auth::user()->id;
         $user_roles = Auth::user()->roles;
-        $res = {};
+        $res = [];
         for($i=0; $i<count($user_roles); $i++){
             $res.append(DB::select('
             SELECT n.id, n.content, n.created_at, n.updated_at
             FROM user_has__notices ns, notices n
             WHERE ns.role = ?
-        ', [$user_roles[$i]]));
+        ', [$user_roles[$i]])->get());
         };
         $res.append(DB::select('
             SELECT n.id, n.content, n.created_at, n.updated_at
             FROM user_has__notices ns, notices n
             WHERE ns.user_id = ?
-        ', [$user_id]));
+        ', [$user_id])->get());
         //return $user_roles;
         return json_encode($res);
         //return response()->json(User::find($user)->notices(), 200);
