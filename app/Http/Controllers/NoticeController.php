@@ -26,7 +26,7 @@ class NoticeController extends Controller
             SELECT n.id, n.content, n.created_at, n.updated_at
             FROM user_has__notices ns, notices n
             WHERE ns.role_id = ?
-        ', [$user_roles[$i].id])->get());
+        ', [$user_roles[$i]->id])->get());
         };
         array_push($res, DB::select('
             SELECT n.id, n.content, n.created_at, n.updated_at
