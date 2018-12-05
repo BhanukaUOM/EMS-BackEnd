@@ -26,13 +26,13 @@ class NoticeController extends Controller
             SELECT n.id, n.content, n.created_at, n.updated_at
             FROM user_has__notices ns, notices n
             WHERE ns.role_id = ?
-        ', [$user_roles[$i]->id])->get());
+        ', [$user_roles[$i]->id]));
         };
         array_push($res, DB::select('
             SELECT n.id, n.content, n.created_at, n.updated_at
             FROM user_has__notices ns, notices n
             WHERE ns.user_id = ?
-        ', [$user_id])->get());
+        ', [$user_id]));
         //return $user_roles;
         return json_encode($res);
         //return response()->json(User::find($user)->notices(), 200);
