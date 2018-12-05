@@ -22,13 +22,13 @@ class NoticeController extends Controller
         $user_roles = Auth::user()->roles;
         $res = [];
         for($i=0; $i<count($user_roles); $i++){
-            array_push($res, DB::select('
+            array_merge($res, DB::select('
             SELECT n.id, n.content, n.created_at, n.updated_at
             FROM user_has__notices ns, notices n
             WHERE ns.role_id = ?
         ', [$user_roles[$i]->id]));
         };
-        array_push($res, DB::select('
+        array_merge($res, DB::select('
             SELECT n.id, n.content, n.created_at, n.updated_at
             FROM user_has__notices ns, notices n
             WHERE ns.user_id = ?
