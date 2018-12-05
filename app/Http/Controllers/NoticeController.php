@@ -20,7 +20,7 @@ class NoticeController extends Controller
     {
         $user_id = Auth::user()->id;
         $user_roles = Auth::user()->roles;
-        $res = [];
+        $res = {};
         for($i=0; $i<count($user_roles); $i++){
             $res.append(DB::select('
             SELECT n.id, n.content, n.created_at, n.updated_at
