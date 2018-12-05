@@ -19,7 +19,7 @@ class NoticeController extends Controller
     public function index()
     {
         $user_id = Auth::user()->id;
-        $user_roles = Auth::user()->roles;
+        $user_roles = Auth::user()->roles->get;
         $res = [];
         for($i=0; $i<$user_roles.length; $i++){
             res.append(DB::select('
