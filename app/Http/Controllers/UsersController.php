@@ -100,20 +100,32 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $rules = [
-            'name' => 'required|min:2'
+            'name' => 'required|min:2',
+            'email' =>'email'
         ];
 
         $this->validate($request, $rules);
 
         $user = User::findOrFail($id);
 
-        foreach($user->roles as $role)
-            $user->removeRole($role);
-        if($request->role)
+
+        if($request->role){
+            foreach($user->roles as $role)
+                $user->removeRole($role);
             foreach($request->role as $role)
                 $user->assignRole($role);
+        }
 
         $user->name = $request->name;
+        if($request->email != $user->email){
+            $user->email = $request->email;
+            $user->notify(new SignupActivate($user));
+        }
+        if($request->about){
+            $user->about = $request->about;
+        }
+        if($request->address)
+            $user->address = $request->address;
         $avatar = Avatar::create(strtoupper($user->name))->getImageObject()->encode('png');
         Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
         //$user->updated_at = Carbon::now()->toDateTimeString();
