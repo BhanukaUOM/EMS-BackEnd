@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+use App\User;
+use App\Notice;
 
 class NoticeController extends Controller
 {
@@ -13,7 +18,24 @@ class NoticeController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::user()->id;
+        $user_roles = Auth::user()->roles;
+        $res = DB::select('
+            SELECT n.id, n.title, n.content, n.created_at, n.updated_at
+            FROM user_has__notices ns, notices n
+            WHERE ns.user_id = ?
+        ', [$user_id]);
+
+        for($i=0; $i<count($user_roles); $i++){
+            array_merge($res, DB::select('
+            SELECT n.id, n.title, n.content, n.created_at, n.updated_at
+            FROM user_has__notices ns, notices n
+            WHERE ns.role_id = ?
+        ', [$user_roles[$i]->id]));
+        };
+        //return $user_roles;
+        return json_encode($res);
+        //return response()->json(User::find($user)->notices(), 200);
     }
 
     /**
