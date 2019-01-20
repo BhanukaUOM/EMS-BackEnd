@@ -10,6 +10,7 @@ use App\Location;
 
 class LocationController extends Controller
 {
+
     public function add(Request $request){
         if(Auth::user()->hasPermissionTo("Student")){
             $request->validate([
