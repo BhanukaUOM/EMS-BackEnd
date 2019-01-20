@@ -63,10 +63,7 @@ class UsersController extends Controller
         $request->validate([
             'name' => 'required|string|min:2',
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|confirmed|min:6',
-            'school_id' => 'required|integer',
-            'address' => 'required|string',
-            'about' => 'required|string'
+            'password' => 'required|string|confirmed|min:6'
         ]);
         $user = new User([
             'name' => $request->name,
