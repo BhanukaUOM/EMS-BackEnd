@@ -11,7 +11,7 @@ use App\Location;
 class LocationController extends Controller
 {
     public function add(Request $request){
-        if(Auth::user()->hasRole("Student")){
+        if(Auth::user()->hasPermissionTo("Student")){
             $request->validate([
                 'timestamp' => 'required',
                 'latitude' => 'required',
@@ -47,7 +47,7 @@ class LocationController extends Controller
     }
 
     public function get($id){
-        if(Auth::user()->hasRole("Parent")){
+        if(Auth::user()->hasPermissionTo("Parent")){
             return response()->json(Location::where("user_id", $id)->first());
         } else {
             return response()->json(["error" => ['message' => "You don't have permission"]], 401);
@@ -55,7 +55,7 @@ class LocationController extends Controller
     }
 
     public function getCurrent(){
-        if(Auth::user()->hasRole("Student")){
+        if(Auth::user()->hasPermissionTo("Student")){
             return response()->json(Location::where('user_id', Auth::user()->id)->first());
         } else {
             return response()->json(["error" => ['message' => "You don't have permission"]], 401);

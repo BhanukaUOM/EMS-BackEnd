@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserHasNoticesTable extends Migration
+class CreateNoticeReadStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateUserHasNoticesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_has__notices', function (Blueprint $table) {
-            $table->boolean('isRoleBased');
-            $table->unsignedInteger('user_id')->nullable();
-            $table->unsignedInteger('role_id')->nullable();
+        Schema::create('notice_read_statuses', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('notice_id');
+            $table->unsignedInteger('user_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('notice_id')->references('id')->on('notices');
-            $table->foreign('role_id')->references('id')->on('roles');
         });
     }
 
@@ -33,6 +31,6 @@ class CreateUserHasNoticesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_has__notices');
+        Schema::dropIfExists('notice_read_statuses');
     }
 }

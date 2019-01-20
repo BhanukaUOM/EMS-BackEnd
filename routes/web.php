@@ -14,6 +14,8 @@
 //Route::get('/', function () {
 //    return view('home');
 //});
+
+Route::post('signupp', 'AuthController@signup');
 Route::get('auth/login', function () {
     return json_encode(['error' => ['message' => "Invalid token"]]);
 });

@@ -10,4 +10,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function checkPermission($permission){
+        if(!Auth::user()->hasPermissionTo($permission)){
+            return response()->json("User do not have permission", 401);
+        }
+    }
 }
