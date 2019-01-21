@@ -169,7 +169,7 @@ class AttendanceController extends Controller
     public function allMobile(Request $request)
     {
         if(parent::checkPermission('View Attendance'))
-            return ;
+            return parent::checkPermission('View Attendance');
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
                 $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);

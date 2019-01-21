@@ -21,8 +21,8 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        if(!parent::checkPermission('View Users'))
-            return ;
+        if(parent::checkPermission('View Users'))
+            return response()->json("User do not have permission", 401);
         if($request->get('role')=='null' || $request->get('role')==''){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
                 $user = User::with('roles')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
@@ -56,8 +56,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        if(!parent::checkPermission('Add Users'))
-            return ;
+        if(parent::checkPermission('Add Users'))
+            return response()->json("User do not have permission", 401);
         $request->validate([
             'name' => 'required|string|min:2',
             'email' => 'required|string|email|unique:users',
@@ -101,8 +101,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        if(!parent::checkPermission('View Users'))
-            return ;
+        if(parent::checkPermission('View Users'))
+            return response()->json("User do not have permission", 401);
         return json_encode(User::with('roles')->findOrFail($id));
     }
 
@@ -115,8 +115,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(!parent::checkPermission('Edit Users'))
-            return ;
+        if(parent::checkPermission('Edit Users'))
+            return response()->json("User do not have permission", 401);
         $rules = [
             'name' => 'required|min:2',
             'email' =>'email'
@@ -159,8 +159,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        if(!parent::checkPermission('Delete Users'))
-            return ;
+        if(parent::checkPermission('Delete Users'))
+            return response()->json("User do not have permission", 401);
         $user = User::findOrFail($id);
         $user->delete();
         return response()->json(['data' => $user], 200);
@@ -168,8 +168,8 @@ class UsersController extends Controller
 
     public function pause(Request $request){
 
-        if(!parent::checkPermission('Edit Users'))
-            return ;
+        if(parent::checkPermission('Edit Users'))
+            return response()->json("User do not have permission", 401);
         $rules = [
             'id' => 'required'
         ];
