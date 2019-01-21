@@ -16,7 +16,8 @@ class PermissionsController extends Controller
      */
     public function index(Request $request)
     {
-        parent::checkPermission('View Permissions');
+        if(!parent::checkPermission('View Permissions'))
+            return ;
         if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
             $permission = Permission::where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
@@ -37,7 +38,8 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
-        parent::checkPermission('Add Permissions');
+        if(!parent::checkPermission('Add Permissions'))
+            return ;
         $request->validate([
             'name' => 'required|string|min:2'
         ]);
@@ -52,7 +54,8 @@ class PermissionsController extends Controller
      */
     public function show($id)
     {
-        parent::checkPermission('View Permissions');
+        if(!parent::checkPermission('View Permissions'))
+            return ;
         return json_encode(Permission::findOrFail($id));
     }
 
@@ -65,7 +68,8 @@ class PermissionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        parent::checkPermission('Edit Permissions');
+        if(!parent::checkPermission('Edit Permissions'))
+            return ;
         $rules = [
             'name' => 'required|min:2'
         ];
@@ -86,14 +90,16 @@ class PermissionsController extends Controller
      */
     public function destroy($id)
     {
-        parent::checkPermission('Delete Permissions');
+        if(!parent::checkPermission('Delete Permissions'))
+            return ;
         $permission = Permission::findOrFail($id);
         $permission->delete();
         return response()->json(['data' => $permission], 200);
     }
 
     public function allPermissions(){
-        parent::checkPermission('View Permissions');
+        if(!parent::checkPermission('View Permissions'))
+            return ;
         return response()->json(Permission::get(), 200);
     }
 }

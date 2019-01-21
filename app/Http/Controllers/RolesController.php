@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RolesController extends Controller
 {
-
-    public function __construct()
-    {
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +16,8 @@ class RolesController extends Controller
      */
     public function index(Request $request)
     {
-        parent::checkPermission('View Roles');
+        if(!parent::checkPermission('View Roles'))
+            return ;
         if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')) {
             $role = Role::with('permissions')->where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
@@ -42,7 +38,8 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        parent::checkPermission('Add Roles');
+        if(!parent::checkPermission('Add Roles'))
+            return ;
         $request->validate([
             'name' => 'required|string|min:2'
         ]);
@@ -61,7 +58,8 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        parent::checkPermission('View Roles');
+        if(!parent::checkPermission('View Roles'))
+            return ;
         return json_encode(Role::with('permissions')->findOrFail($id));
     }
 
@@ -74,7 +72,8 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        parent::checkPermission('Edit Roles');
+        if(!parent::checkPermission('Edit Roles'))
+            return ;
         $rules = [
             'name' => 'required|min:2'
         ];
@@ -100,14 +99,16 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        parent::checkPermission('Delete Roles');
+        if(!parent::checkPermission('Delete Roles'))
+            return ;
         $role = Role::findOrFail($id);
         $role->delete();
         return response()->json(['data' => $role], 200);
     }
 
     public function allRoles(){
-        parent::checkPermission('View Roles');
+        if(!parent::checkPermission('View Roles'))
+            return ;
         return response()->json(Role::with('permissions')->get(), 200);
     }
 }
