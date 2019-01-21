@@ -18,8 +18,8 @@ class NoticeController extends Controller
      */
     public function index()
     {
-        if(!parent::checkPermission('View Notice'))
-            return ;
+        if(parent::checkPermission('View Notice'))
+            return response()->json("User do not have permission", 401);
         $user_id = Auth::user()->id;
         $user_roles = Auth::user()->roles;
         $res = DB::select('

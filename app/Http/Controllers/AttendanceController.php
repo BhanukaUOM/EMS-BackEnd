@@ -15,8 +15,8 @@ class AttendanceController extends Controller
      */
     public function index(Request $request)
     {
-        if(!parent::checkPermission('View Attendance'))
-            return ;
+        if(parent::checkPermission('View Attendance'))
+            return response()->json("User do not have permission", 401);
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
                 $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
@@ -98,8 +98,8 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        if(!parent::checkPermission('Add Attendance'))
-            return ;
+        if(parent::checkPermission('Add Attendance'))
+            return response()->json("User do not have permission", 401);
         $request->validate([
             'student_id' => 'required|integer',
             'year' => 'required|integer',
@@ -129,8 +129,8 @@ class AttendanceController extends Controller
      */
     public function show($id)
     {
-        if(!parent::checkPermission('View Attendance'))
-            return ;
+        if(parent::checkPermission('View Attendance'))
+            return response()->json("User do not have permission", 401);
         return json_encode(Attendance::findOrFail($id));
     }
 
@@ -159,8 +159,8 @@ class AttendanceController extends Controller
      */
     public function destroy($id)
     {
-        if(!parent::checkPermission('Delete Attendance'))
-            return ;
+        if(parent::checkPermission('Delete Attendance'))
+            return response()->json("User do not have permission", 401);
         $attendance = Attendance::findOrFail($id);
         $attendance->delete();
         return response()->json(['data' => $attendance], 200);

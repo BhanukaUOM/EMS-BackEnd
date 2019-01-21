@@ -16,8 +16,8 @@ class RolesController extends Controller
      */
     public function index(Request $request)
     {
-        if(!parent::checkPermission('View Roles'))
-            return ;
+        if(parent::checkPermission('View Roles'))
+            return response()->json("User do not have permission", 401);
         if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')) {
             $role = Role::with('permissions')->where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
@@ -38,8 +38,8 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        if(!parent::checkPermission('Add Roles'))
-            return ;
+        if(parent::checkPermission('Add Roles'))
+            return response()->json("User do not have permission", 401);
         $request->validate([
             'name' => 'required|string|min:2'
         ]);
@@ -58,8 +58,8 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        if(!parent::checkPermission('View Roles'))
-            return ;
+        if(parent::checkPermission('View Roles'))
+            return response()->json("User do not have permission", 401);
         return json_encode(Role::with('permissions')->findOrFail($id));
     }
 
@@ -72,8 +72,8 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(!parent::checkPermission('Edit Roles'))
-            return ;
+        if(parent::checkPermission('Edit Roles'))
+            return response()->json("User do not have permission", 401);
         $rules = [
             'name' => 'required|min:2'
         ];
@@ -99,16 +99,16 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        if(!parent::checkPermission('Delete Roles'))
-            return ;
+        if(parent::checkPermission('Delete Roles'))
+            return response()->json("User do not have permission", 401);
         $role = Role::findOrFail($id);
         $role->delete();
         return response()->json(['data' => $role], 200);
     }
 
     public function allRoles(){
-        if(!parent::checkPermission('View Roles'))
-            return ;
+        if(parent::checkPermission('View Roles'))
+            return response()->json("User do not have permission", 401);
         return response()->json(Role::with('permissions')->get(), 200);
     }
 }
