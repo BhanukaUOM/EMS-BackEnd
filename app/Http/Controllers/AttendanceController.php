@@ -238,12 +238,12 @@ class AttendanceController extends Controller
         $res = [];
         for($i=0; $i<count($attendance); $i++){
             if($attendance[$i]->state==true){
-                array_push($res, json_decode('{"'.$attendance[$i]->year . '-' . $attendance[$i]->month . '-' . $attendance[$i]->day . '" : { "customStyles": { "container": { "backgroundColor": "green", }, "text": { "color": "black", "fontWeight": "bold" }, }, } }',true));
+                array_push($res, $attendance[$i]->year . '-' . $attendance[$i]->month . '-' . $attendance[$i]->day . ' : { customStyles: { container: { backgroundColor: "green", }, text: { color: "black", fontWeight: "bold" }, }, }');
             } else {
-                array_push($res, json_decode('{"'.$attendance[$i]->year . '-' . $attendance[$i]->month . '-' . $attendance[$i]->day . '" : { "customStyles": { "container": { "backgroundColor": "red", }, "text": { "color": "black", "fontWeight": "bold" }, }, } }',true));
+                array_push($res, $attendance[$i]->year . '-' . $attendance[$i]->month . '-' . $attendance[$i]->day . ' : { customStyles: { container: { backgroundColor: "red", }, text: { color: "black", fontWeight: "bold" }, }, }');
             }
         }
 
-        return response()->json(json_decode('["a":[1,2,3]'), 200);
+        return response()->json($res, 200);
     }
 }
