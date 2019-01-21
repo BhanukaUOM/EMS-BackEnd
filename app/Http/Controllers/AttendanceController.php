@@ -168,7 +168,7 @@ class AttendanceController extends Controller
 
     public function allMobile(Request $request)
     {
-        if(!parent::checkPermission('View Attendance'))
+        if(parent::checkPermission('View Attendance'))
             return ;
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
