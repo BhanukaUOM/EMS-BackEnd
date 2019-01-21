@@ -244,6 +244,6 @@ class AttendanceController extends Controller
             }
         }
 
-        return response()->json($res, 200);
+        return response()->json(json_decode('["a":[1,2,3]'), 200);
     }
 }
