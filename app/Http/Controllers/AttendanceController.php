@@ -143,8 +143,8 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(!parent::checkPermission('Edit Attendance'))
-            return;
+        if(parent::checkPermission('Edit Attendance'))
+            return parent::checkPermission('Edit Attendance');
 
         $attendance = Attendance::findOrFail($id);
         $attendance->fill($request->all())->save();
