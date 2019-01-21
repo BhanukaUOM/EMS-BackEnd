@@ -15,4 +15,8 @@ class Notice extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function readStatus(){
+        return $this->hasMany(NoticeReadStatus::class);
+    }
 }

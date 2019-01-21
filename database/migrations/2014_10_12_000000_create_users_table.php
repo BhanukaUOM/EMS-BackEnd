@@ -31,6 +31,19 @@ class CreateUsersTable extends Migration
 
             $table->foreign('school_id')->references('id')->on('schools');
         });
+
+        DB::table('users')->insert(
+            array(
+                'name' => 'admin',
+                'email' => 'admin@ems.com',
+                'address' => "address",
+                'about' => "about",
+                'school_id' => 1,
+                'password' => "$2y$10\$JU6X.pevuayI.wH2lmpsm.fzlb6TeU3lLwnzrajL697y31gyuVUYy",
+                'avatar' => "avatar.png",
+                'active' => true
+            )
+        );
     }
 
     /**

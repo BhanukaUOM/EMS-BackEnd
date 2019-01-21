@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class NoticeReadStatus extends Model
+class Guardian extends Model
 {
     public function user()
     {
         return $this->hasOne(User::class);
     }
 
-    public function notice()
+    public function student()
     {
-        return $this->hasOne(Notice::class);
+        return $this->hasMany(Student::class);
     }
 }
