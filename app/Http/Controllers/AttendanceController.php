@@ -143,6 +143,7 @@ class AttendanceController extends Controller
         if(!Auth::user()->hasPermissionTo('Edit Attendance')){
             return response()->json("User do not have permission", 401);
         }
+
         parent::checkPermission('Edit Attendance');
 
         $attendance = Attendance::findOrFail($id);
