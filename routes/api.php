@@ -63,3 +63,10 @@ Route::group([
     Route::resource('notices', 'NoticeController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
     Route::post('notices/pause', 'NoticeController@pause');
 });
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('attendance/mobile', 'AttendanceController@allMobile');
+    Route::resource('attendance', 'AttendanceController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
