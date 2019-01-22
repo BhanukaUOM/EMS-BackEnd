@@ -299,6 +299,6 @@ class AttendanceController extends Controller
             'status'=>'red'
         ]];
 
-        return response()->json(json_encode($res), 200);
+        return response()->json(($res), 200);
     }
 }
