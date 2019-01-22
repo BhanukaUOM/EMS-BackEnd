@@ -259,7 +259,7 @@ class AttendanceController extends Controller
         if(parent::checkPermission('View Attendance'))
             return parent::checkPermission('View Attendance');
 
-        $res = [
+        $res = "[
         [
             'date'=>'2018-12-01',
             'status'=>'green'
@@ -297,7 +297,7 @@ class AttendanceController extends Controller
         [
             'date'=>'2018-12-29',
             'status'=>'red'
-        ]];
+        ]]";
 
         return $res;
     }
