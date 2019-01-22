@@ -212,7 +212,7 @@ class AttendanceController extends Controller
             else if($request->get('search'))
                 $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%");
             else{
-                $query = Attendance::where("user_id", $request->get('user_id'));
+                $query = Attendance::where("user_id", Auth::user()->id);
                 if($request->get('user_id')){
                     $query = Attendance::where("user_id", $request->get('user_id'));
                 } if($request->get('year')){
