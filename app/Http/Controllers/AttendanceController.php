@@ -242,6 +242,10 @@ class AttendanceController extends Controller
 
         $res = [];
         for($i=0; $i<count($attendance); $i++){
+            if($attendance[$i]->month<=9)
+                $attendance[$i]->month = '0'.$attendance[$i]->month;
+            if($attendance[$i]->day<=9)
+                $attendance[$i]->day = '0'.$attendance[$i]->day;
             if($attendance[$i]->state==true){
                 array_push($res,
                 [
