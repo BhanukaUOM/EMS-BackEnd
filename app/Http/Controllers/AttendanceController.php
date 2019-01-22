@@ -256,7 +256,7 @@ class AttendanceController extends Controller
                 [
                     'date'=>$attendance[$i]->year . '-' . $attendance[$i]->month . '-' . $attendance[$i]->day,
                     'status'=>'red'
-                ]
+                ]);
                 //array_push($res, json_decode('{"'.$attendance[$i]->year . '-' . $attendance[$i]->month . '-' . $attendance[$i]->day . '" : { "customStyles": { "container": { "backgroundColor": "red"}, "text": { "color": "black", "fontWeight": "bold" } } } }'));
             }
         }
