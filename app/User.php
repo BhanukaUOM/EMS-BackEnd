@@ -36,9 +36,9 @@ class User extends Authenticatable
         return $this->hasOne(Location::class);
     }
 
-    public function notice()
+    public function notices()
     {
-        return $this->hasMany(Notice::class);
+        return $this->belongsToMany(Notice::class);
     }
 
     public function student()
