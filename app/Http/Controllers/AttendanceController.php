@@ -259,46 +259,46 @@ class AttendanceController extends Controller
         if(parent::checkPermission('View Attendance'))
             return parent::checkPermission('View Attendance');
 
-        $res = "
-        {
-            'date':'2018-12-01',
-            'status':'green'
-        },
-        {
-            'date':'2018-12-05',
-            'status':'green'
-        },
+        $res = [
+        [
+            'date'=>'2018-12-01',
+            'status'=>'green'
+        ],
+        [
+            'date'=>'2018-12-05',
+            'status'=>'green'
+        ],
 
-        {
-            'date':'2018-12-08',
-            'status':'green'
-        },
+        [
+            'date'=>'2018-12-08',
+            'status'=>'green'
+        ],
 
-        {
-            'date':'2018-12-07',
-            'status':'green'
-        },
+        [
+            'date'=>'2018-12-07',
+            'status'=>'green'
+        ],
 
-        {
-            'date':'2018-12-18',
-            'status':'red'
-        },
+        [
+            'date'=>'2018-12-18',
+            'status'=>'red'
+        ],
 
-        {
-            'date':'2018-12-17',
-            'status':'green'
-        },
+        [
+            'date'=>'2018-12-17',
+            'status'=>'green'
+        ],
 
-        {
-            'date':'2018-12-28',
-            'status':'red'
-        },
+        [
+            'date'=>'2018-12-28',
+            'status'=>'red'
+        ],
 
-        {
-            'date':'2018-12-29',
-            'status':'red'
-        }";
+        [
+            'date'=>'2018-12-29',
+            'status'=>'red'
+        ]];
 
-        return response()->json(json_decode($res), 200);
+        return response()->json(json_encode($res), 200);
     }
 }
