@@ -179,10 +179,8 @@ class AttendanceController extends Controller
             else if($request->get('search'))
                 $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->paginate(10);
             else{
-                $query = null;
-                if($request->get('user_id')){
-                    $query = Attendance::where("user_id", $request->get('user_id'));
-                } if($request->get('year')){
+                $query = Attendance::where("user_id", Auth::user()->id);
+                if($request->get('year')){
                     if($query==null)
                         $query = Attendance::where("year", $request->get('year'));
                     else
@@ -262,53 +260,5 @@ class AttendanceController extends Controller
         }
 
         return response()->json($res, 200);
-    }
-
-    public function allMobile2(Request $request)
-    {
-        if(parent::checkPermission('View Attendance'))
-            return parent::checkPermission('View Attendance');
-
-        $res = [
-        [
-            'date'=>'2018-12-01',
-            'status'=>'green'
-        ],
-        [
-            'date'=>'2018-12-05',
-            'status'=>'green'
-        ],
-
-        [
-            'date'=>'2018-12-08',
-            'status'=>'green'
-        ],
-
-        [
-            'date'=>'2018-12-07',
-            'status'=>'green'
-        ],
-
-        [
-            'date'=>'2018-12-18',
-            'status'=>'red'
-        ],
-
-        [
-            'date'=>'2018-12-17',
-            'status'=>'green'
-        ],
-
-        [
-            'date'=>'2018-12-28',
-            'status'=>'red'
-        ],
-
-        [
-            'date'=>'2018-12-29',
-            'status'=>'red'
-        ]];
-
-        return response()->json(($res), 200);
     }
 }
