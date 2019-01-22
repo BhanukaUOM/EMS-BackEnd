@@ -25,14 +25,14 @@ class NoticeController extends Controller
         $res = DB::select('
             SELECT n.id, n.title, n.content, n.created_at, IF(ISNULL(s.user_id), "false", "true") as status
             FROM notices n, notice_user ns LEFT JOIN notice_read_statuses s ON (s.user_id=ns.user_id and s.notice_id=ns.notice_id)
-            WHERE ns.user_id = ?
+            WHERE ns.user_id = 1
         ', [$user_id,$user_id]);
 
         for($i=0; $i<count($user_roles); $i++){
             array_merge($res, DB::select('
             SELECT n.id, n.title, n.content, n.created_at, n.notice_from, IF(ISNULL(s.user_id), "false", "true") as status
             FROM notices n, notice_user ns LEFT JOIN notice_read_statuses s ON (s.user_id=ns.user_id and s.notice_id=ns.notice_id)
-            WHERE ns.role_id = ?
+            WHERE ns.role_id = 1
         ', [$user_roles[$i]->id]));
         };
 
