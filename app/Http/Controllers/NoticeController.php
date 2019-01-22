@@ -23,7 +23,7 @@ class NoticeController extends Controller
         $user_id = Auth::user()->id;
         $user_roles = Auth::user()->roles;
         $res = DB::select('
-            SELECT n.id, n.title, n.content, n.created_at, IF(ISNULL(s.user_id), "false", "true") as status
+            SELECT n.id, n.title, n.content, n.created_at, n.notice_from, IF(ISNULL(s.user_id), "false", "true") as status
             FROM notices n, notice_user ns LEFT JOIN notice_read_statuses s ON (s.user_id=ns.user_id and s.notice_id=ns.notice_id)
             WHERE ns.user_id = ?
         ', [$user_id,$user_id]);
