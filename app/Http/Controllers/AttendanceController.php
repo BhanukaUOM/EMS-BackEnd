@@ -19,16 +19,16 @@ class AttendanceController extends Controller
             return response()->json("User do not have permission", 401);
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-                $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
             } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
                 $attendance = Attendance::orderby($request->get('sort'), $request->get('order'))->paginate(10);
             }
             else if($request->get('search'))
-                $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->paginate(10);
+                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->paginate(10);
             else{
                 $query = null;
-                if($request->get('student_id')){
-                    $query = Attendance::where("student_id", $request->get('student_id'));
+                if($request->get('user_id')){
+                    $query = Attendance::where("user_id", $request->get('user_id'));
                 } if($request->get('year')){
                     if($query==null)
                         $query = Attendance::where("year", $request->get('year'));
@@ -54,16 +54,16 @@ class AttendanceController extends Controller
             }
         } else {
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-                $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'));
+                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'));
             } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
                 $attendance = Attendance::orderby($request->get('sort'), $request->get('order'));
             }
             else if($request->get('search'))
-                $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%");
+                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%");
             else{
                 $query = null;
-                if($request->get('student_id')){
-                    $query = Attendance::where("student_id", $request->get('student_id'));
+                if($request->get('user_id')){
+                    $query = Attendance::where("user_id", $request->get('user_id'));
                 } if($request->get('year')){
                     if($query==null)
                         $query = Attendance::where("year", $request->get('year'));
@@ -101,7 +101,7 @@ class AttendanceController extends Controller
         if(parent::checkPermission('Add Attendance'))
             return response()->json("User do not have permission", 401);
         $request->validate([
-            'student_id' => 'required|integer',
+            'user_id' => 'required|integer',
             'year' => 'required|integer',
             'month' => 'required|integer',
             'day' => 'required|integer',
@@ -172,16 +172,16 @@ class AttendanceController extends Controller
             return parent::checkPermission('View Attendance');
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-                $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
             } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
                 $attendance = Attendance::orderby($request->get('sort'), $request->get('order'))->paginate(10);
             }
             else if($request->get('search'))
-                $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->paginate(10);
+                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->paginate(10);
             else{
                 $query = null;
-                if($request->get('student_id')){
-                    $query = Attendance::where("student_id", $request->get('student_id'));
+                if($request->get('user_id')){
+                    $query = Attendance::where("user_id", $request->get('user_id'));
                 } if($request->get('year')){
                     if($query==null)
                         $query = Attendance::where("year", $request->get('year'));
@@ -207,16 +207,16 @@ class AttendanceController extends Controller
             }
         } else {
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-                $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'));
+                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'));
             } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
                 $attendance = Attendance::orderby($request->get('sort'), $request->get('order'));
             }
             else if($request->get('search'))
-                $attendance = Attendance::where("student_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%");
+                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%");
             else{
                 $query = null;
-                if($request->get('student_id')){
-                    $query = Attendance::where("student_id", $request->get('student_id'));
+                if($request->get('user_id')){
+                    $query = Attendance::where("user_id", $request->get('user_id'));
                 } if($request->get('year')){
                     if($query==null)
                         $query = Attendance::where("year", $request->get('year'));
