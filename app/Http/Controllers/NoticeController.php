@@ -139,7 +139,7 @@ class NoticeController extends Controller
         if(parent::checkPermission('View Notice'))
             return response()->json("User do not have permission", 401);
         if($request->get('notice_id')) {
-            if(NoticeReadStatus::where(['user_id' => Auth::user()->id, 'notice_id' => $request->get('notice_id')])->count())
+            if(NoticeReadStatus::where(['user_id' => Auth::user()->id, 'notice_id' => $request->get('notice_id')])->count()>0)
                 return response()->json("Already readed", 401);
             $notice = NoticeReadStatus::create(['user_id' => Auth::user()->id, 'notice_id' => $request->get('notice_id')]);
             return response()->json($notice, 200);
