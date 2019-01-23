@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\User;
 use App\Notice;
+use App\NoticeReadStatus;
 
 class NoticeController extends Controller
 {
@@ -106,5 +107,16 @@ class NoticeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function read(Request $request)
+    {
+        if(parent::checkPermission('View Notice'))
+            return response()->json("User do not have permission", 401);
+        if($request->get('notice_id')) {
+            $notice = NoticeReadStatus::create(['user_id' => Auth::user()->id, 'notice_id' => $request->get('notice_id')]);
+            return response()->json($notice, 200);
+        }
+        return response()->json("Invalid Parameters", 401);
     }
 }

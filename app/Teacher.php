@@ -10,8 +10,14 @@ class Teacher extends Model
     {
         return $this->hasOne(User::class);
     }
+
     public function class()
     {
         return $this->hasOne(Classe::class);
+    }
+
+    public function timetable()
+    {
+        return $this->hasMany(TimeTable::class);
     }
 }
