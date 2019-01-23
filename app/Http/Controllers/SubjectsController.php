@@ -3,25 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Attendance;
-use App\Material;
-use Illuminate\Support\Facades\Auth;
+use App\Subject;
 
-
-class StudyMaterialsController extends Controller
+class SubjectsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
-        if(parent::checkPermission('View Materials'))
+        if(parent::checkPermission('View Subjects'))
             return response()->json("User do not have permission", 401);
 
-        if($request->get('subject_id'))
-            return response()->json(Material::where(['subject_id' => $request->get('subject_id')])->get(), 200);
+        $year = Date("Y");
+        if($request->get('year'))
+            $year = $request->get('year');
+        return response()->json(Subject::where(['yaer', $year]), 200);
         return response()->json("error no subject_id found", 401);
     }
 

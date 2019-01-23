@@ -75,5 +75,11 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
-    Route::resource('material', 'StudyMaterialsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+    Route::resource('materials', 'StudyMaterialsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('subjects', 'SubjectsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });

@@ -98,7 +98,11 @@ class NoticeController extends Controller
     {
         if(parent::checkPermission('View Notice'))
             return response()->json("User do not have permission", 401);
-        return response()->json(Notice::with('users')->findOrFail($id));
+        return response()->json(
+            DB::select("SELECT *
+                        FROM notices s, users u
+                        WHERE s.id = ? and s.notice_from = u.id", [$id])
+        );
     }
 
     /**
@@ -144,10 +148,12 @@ class NoticeController extends Controller
     {
         if(parent::checkPermission('Delete Notice'))
             return response()->json("User do not have permission", 401);
-        $notice = Notice::findOrFail($id);
-        $notice->delete();
+        $userNotice = NoticeUser::where("notice_id", $id);
+        $userNotice->delete();
         $userNotice = NoticeReadStatus::where("notice_id", $id);
         $userNotice->delete();
+        $notice = Notice::findOrFail($id);
+        $notice->delete();
         return response()->json(['data' => $notice], 200);
     }
 

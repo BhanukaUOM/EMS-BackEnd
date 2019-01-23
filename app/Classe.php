@@ -10,4 +10,9 @@ class Classe extends Model
     {
         return $this->hasOne(Teacher::class);
     }
+
+    public function subject()
+    {
+        return $this->belongsToMany(Subject::class);
+    }
 }
