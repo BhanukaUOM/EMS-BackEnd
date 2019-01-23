@@ -111,6 +111,7 @@ class NoticeController extends Controller
 
     public function read(Request $request)
     {
+        return 'a';
         if(parent::checkPermission('View Notice'))
             return response()->json("User do not have permission", 401);
         if($request->get('notice_id')) {
