@@ -19,11 +19,11 @@ class CreateAttendancesTable extends Migration
             $table->unsignedInteger('month');
             $table->unsignedInteger('day');
             $table->boolean('state');
-            $table->unsignedInteger('student_id');
+            $table->unsignedInteger('user_id');
             $table->unsignedInteger('class_id');
             $table->timestamps();
 
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('class_id')->references('id')->on('classes');
         });
     }
