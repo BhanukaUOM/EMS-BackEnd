@@ -61,7 +61,7 @@ Route::group([
     'middleware' => 'auth:api'
 ], function () {
     Route::post('notices/pause', 'NoticeController@pause');
-    Route::post('notices/read', 'NoticeController@read');
+    Route::get('notices/read', 'NoticeController@read');
     Route::resource('notices', 'NoticeController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });
 
