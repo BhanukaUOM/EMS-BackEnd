@@ -71,3 +71,9 @@ Route::group([
     Route::get('attendance/mobile', 'AttendanceController@allMobile');
     Route::resource('attendance', 'AttendanceController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('material', 'StudyMaterialsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});

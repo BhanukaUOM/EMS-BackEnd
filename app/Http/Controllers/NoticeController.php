@@ -61,7 +61,16 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(parent::checkPermission('Add Notice'))
+            return response()->json("User do not have permission", 401);
+        $request->validate([
+            'title' => 'required|integer',
+            'content' => 'required|integer'
+        ]);
+
+        $request['notice_from'] = Auth::user()->id;
+        $attendance = Attendance::create($request->all());
+        return json_encode($attendance);
     }
 
     /**
@@ -72,7 +81,9 @@ class NoticeController extends Controller
      */
     public function show($id)
     {
-        //
+        if(parent::checkPermission('View Notice'))
+            return response()->json("User do not have permission", 401);
+        return json_encode(Notice::with('user')->findOrFail($id));
     }
 
     /**
@@ -83,7 +94,7 @@ class NoticeController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -95,7 +106,17 @@ class NoticeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(parent::checkPermission('Edit Notice'))
+            return response()->json("User do not have permission", 401);
+
+        $notice = Notice::findOrFail($id);
+
+        if($request->title)
+            $notice->title = $request->title;
+        if($request->content)
+            $notice->content = $request->content;
+        $notice->save();
+        return response()->json(['data' => $notice], 201);
     }
 
     /**
@@ -106,7 +127,11 @@ class NoticeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(parent::checkPermission('Delete Notice'))
+            return response()->json("User do not have permission", 401);
+        $notice = Notice::findOrFail($id);
+        $notice->delete();
+        return response()->json(['data' => $notice], 200);
     }
 
     public function read(Request $request)
