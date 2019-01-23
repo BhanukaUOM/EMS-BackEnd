@@ -25,15 +25,14 @@ class NoticeController extends Controller
         $user_id = Auth::user()->id;
         $user_roles = Auth::user()->roles;
 
-        $res = [];
-        array_push($res, DB::select('
+         $res = DB::select('
             SELECT DISTINCT(n.id), n.title, n.content, n.created_at, n.notice_from, IF(ISNULL(s.user_id), "false", "true") as status
             FROM notices n Left Join notice_users ns on (n.id=ns.notice_id and ns.user_id=?) LEFT JOIN notice_read_statuses s ON (s.user_id=? and s.notice_id=ns.notice_id)
             WHERE ns.user_id=?
-        ', [$user_id ,$user_id ,$user_id]));
+        ', [$user_id ,$user_id ,$user_id]);
 
         for($i=0; $i<count($user_roles); $i++){
-            array_push($res, DB::select('
+            $res = array_merge($res, DB::select('
             SELECT DISTINCT(n.id), n.title, n.content, n.created_at, n.notice_from, IF(ISNULL(s.user_id), "false", "true") as status
             FROM notices n Left Join notice_users ns on (n.id=ns.notice_id and ns.role_id=?) LEFT JOIN notice_read_statuses s ON (s.user_id=? and s.notice_id=ns.notice_id)
             WHERE ns.role_id=?
@@ -99,7 +98,7 @@ class NoticeController extends Controller
     {
         if(parent::checkPermission('View Notice'))
             return response()->json("User do not have permission", 401);
-        return response()->json(Notice::with('user')->findOrFail($id));
+        return response()->json(Notice::with('users')->findOrFail($id));
     }
 
     /**
