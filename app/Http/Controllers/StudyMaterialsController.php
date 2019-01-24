@@ -7,6 +7,10 @@ use App\Attendance;
 use App\Material;
 use Illuminate\Support\Facades\Auth;
 
+use App\User;
+use App\Student;
+use App\subjectGroup;
+
 
 class StudyMaterialsController extends Controller
 {
@@ -20,8 +24,26 @@ class StudyMaterialsController extends Controller
         if(parent::checkPermission('View Materials'))
             return response()->json("User do not have permission", 401);
 
+        if(Auth::user()->hasRole('Student')){
+            $student_id = Auth::user()->id;
+        }
+        else if(Auth::user()->hasRole('Parent')){
+            if(!$request->get('student_id'))
+                return response()->json("error no student_id found", 401);
+            $student_id = $request->get('student_id');
+            if(User::find(Auth::user()->id)->whereHas('student', function($q) use ($student_id){
+                $q->where('id', $student_id);
+            })->count()==0)
+                return response()->json("no permission", 401);
+        }
+
+        $subject_id = $request->get('subject_id');
+        if(subjectGroup::where('id', Student::find($user_id)->subject_group_id)->whereHas('subject', function($q) use ($subject_id){
+            $q->where('id', $subject_id);
+        })->count()==0)
+            return response()->json("no permission", 401);
         if($request->get('subject_id'))
-            return response()->json(Material::where(['subject_id' => $request->get('subject_id')])->get(), 200);
+            return response()->json(Material::where(['subject_id' => $subject_id])->get(), 200);
         return response()->json("error no subject_id found", 401);
     }
 

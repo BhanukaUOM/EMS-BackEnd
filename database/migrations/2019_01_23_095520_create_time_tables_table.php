@@ -27,6 +27,13 @@ class CreateTimeTablesTable extends Migration
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('teacher_id')->references('id')->on('teachers');
         });
+
+        // DB::statement("
+        //     CREATE VIEW view_name AS
+        //     SELECT column1, column2, ...
+        //     FROM table_name
+        //     WHERE condition;
+        // ");
     }
 
     /**

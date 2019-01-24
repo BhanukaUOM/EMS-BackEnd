@@ -18,7 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedInteger('student_id');
             $table->integer('amount');
             $table->string('note')->nullable();
-            $table->dateTime('payment_at');
+            $table->dateTime('payment_at')->nullable();
             $table->string('type');
             $table->string('transaction_id')->nullable();
             $table->unsignedInteger('user_id')->nullable();

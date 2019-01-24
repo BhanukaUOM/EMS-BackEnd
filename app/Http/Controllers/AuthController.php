@@ -68,7 +68,12 @@ class AuthController extends Controller
                 'message' => 'Unauthorized'
             ], 401);
         $user = $request->user();
-        $res = User::with('roles')->find($user->id);
+        if($user->hasRole('Student'))
+            $res = User::with(['roles', 'student'])->find($user->id);
+        else if($user->hasRole('Parent'))
+            $res = User::with(['roles', 'parent', 'parent.student'])->find($user->id);
+        else
+            $res = User::with('roles')->find($user->id);
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
         if ($request->remember_me)

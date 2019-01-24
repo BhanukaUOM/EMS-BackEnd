@@ -18,12 +18,25 @@ class NoticeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if(parent::checkPermission('View Notice'))
             return response()->json("User do not have permission", 401);
-        $user_id = Auth::user()->id;
-        $user_roles = Auth::user()->roles;
+
+        if(Auth::user()->hasRole('Student')){
+            $user_id = Auth::user()->id;
+            $user_roles = Auth::user()->roles;
+        }
+        else if(Auth::user()->hasRole('Parent')){
+            if(!$request->get('student_id'))
+                return response()->json("error no student_id found", 401);
+            $user_id = $request->get('student_id');
+            if(User::find(Auth::user()->id)->whereHas('student', function($q) use ($user_id){
+                $q->where('id', $user_id);
+            })->count()==0)
+                return response()->json("no permission", 401);
+            $user_roles = User::find($user_id)->roles;
+        }
 
          $res = DB::select('
             SELECT DISTINCT(n.id), n.title, n.content, n.created_at, n.notice_from, IF(ISNULL(s.user_id), "false", "true") as status

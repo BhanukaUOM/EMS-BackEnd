@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class StudentSubject extends Migration
+class GuardianStudent extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class StudentSubject extends Migration
      */
     public function up()
     {
-        Schema::create('student_subject', function (Blueprint $table) {
+        Schema::create('guardian_student', function (Blueprint $table) {
+            $table->unsignedInteger('guardian_id');
             $table->unsignedInteger('student_id');
-            $table->unsignedInteger('subject_id');
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('guardian_id')->references('id')->on('guardians');
         });
     }
 

@@ -8,6 +8,6 @@ class Package extends Model
 {
     public function school()
     {
-        return $this->hasMany(School::class);
+        return $this->belongsTo(Student::class);
     }
 }

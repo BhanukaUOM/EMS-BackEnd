@@ -20,6 +20,10 @@ class Student extends Model
     {
         return $this->hasMany(Payment::class);
     }
+    public function package()
+    {
+        return $this->hasOne(Package::class, 'id', 'package_id');
+    }
 
     public function attendance()
     {
@@ -29,5 +33,10 @@ class Student extends Model
     public function timetable()
     {
         return $this->hasMany(TimeTable::class);
+    }
+
+    public function subjectGroup()
+    {
+        return $this->hasOne(SubjectGroup::class);
     }
 }

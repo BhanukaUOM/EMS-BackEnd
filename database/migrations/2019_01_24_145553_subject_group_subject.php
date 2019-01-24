@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ClassSubject extends Migration
+class SubjectGroupSubject extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class ClassSubject extends Migration
      */
     public function up()
     {
-        Schema::create('class_subject', function (Blueprint $table) {
-            $table->unsignedInteger('class_id');
+        Schema::create('subject_subject_groups', function (Blueprint $table) {
+            $table->unsignedInteger('subject_group_id');
             $table->unsignedInteger('subject_id');
             $table->timestamps();
 
-            $table->foreign('class_id')->references('id')->on('classes');
+            $table->foreign('subject_group_id')->references('id')->on('subject_groups');
             $table->foreign('subject_id')->references('id')->on('subjects');
         });
     }

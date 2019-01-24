@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SubjectGroup;
-use Illuminate\Support\Facades\Auth;
-use App\User;
 
-class SubjectsController extends Controller
+class TimeTableController extends Controller
 {
     public function index(Request $request)
     {
-        if(parent::checkPermission('View Subjects'))
+        if(parent::checkPermission('View TimeTables'))
             return response()->json("User do not have permission", 401);
 
         $year = Date("Y");
@@ -28,8 +25,8 @@ class SubjectsController extends Controller
         }
         if($request->get('year'))
             $year = $request->get('year');
-        return response()->json(SubjectGroup::with('subject')->where('year', $year)->get(), 200);
-        return response()->json("error no subject_id found", 401);
+        return response()->json(TimeTableGroup::with('timeTable')->where('year', $year)->get(), 200);
+        return response()->json("error no timeTable_id found", 401);
     }
 
     /**
@@ -39,7 +36,7 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
-        if(parent::checkPermission('Add Subjects'))
+        if(parent::checkPermission('Add TimeTables'))
             return response()->json("User do not have permission", 401);
         $request->validate([
             'user_id' => 'required|integer',
@@ -50,8 +47,8 @@ class SubjectsController extends Controller
             'class_id' => 'required|integer'
         ]);
 
-        $subjects = Subjects::create($request->all());
-        return json_encode($subjects);
+        $timeTables = TimeTables::create($request->all());
+        return json_encode($timeTables);
     }
 
     /**
@@ -62,9 +59,9 @@ class SubjectsController extends Controller
      */
     public function show($id)
     {
-        if(parent::checkPermission('View Subjects'))
+        if(parent::checkPermission('View TimeTables'))
             return response()->json("User do not have permission", 401);
-        return json_encode(Subjects::findOrFail($id));
+        return json_encode(TimeTables::findOrFail($id));
     }
 
     /**
@@ -76,12 +73,12 @@ class SubjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(parent::checkPermission('Edit Subjects'))
-            return parent::checkPermission('Edit Subjects');
+        if(parent::checkPermission('Edit TimeTables'))
+            return parent::checkPermission('Edit TimeTables');
 
-        $subjects = Subjects::findOrFail($id);
-        $subjects->fill($request->all())->save();
-        return response()->json(['data' => $subjects], 201);
+        $timeTables = TimeTables::findOrFail($id);
+        $timeTables->fill($request->all())->save();
+        return response()->json(['data' => $timeTables], 201);
     }
 
     /**
@@ -92,107 +89,107 @@ class SubjectsController extends Controller
      */
     public function destroy($id)
     {
-        if(parent::checkPermission('Delete Subjects'))
+        if(parent::checkPermission('Delete TimeTables'))
             return response()->json("User do not have permission", 401);
-        $subjects = Subjects::findOrFail($id);
-        $subjects->delete();
-        return response()->json(['data' => $subjects], 200);
+        $timeTables = TimeTables::findOrFail($id);
+        $timeTables->delete();
+        return response()->json(['data' => $timeTables], 200);
     }
 
     public function allMobile(Request $request)
     {
-        if(parent::checkPermission('View Subjects'))
-            return parent::checkPermission('View Subjects');
+        if(parent::checkPermission('View TimeTables'))
+            return parent::checkPermission('View TimeTables');
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-                $subjects = Subjects::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+                $timeTables = TimeTables::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
             } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
-                $subjects = Subjects::orderby($request->get('sort'), $request->get('order'))->paginate(10);
+                $timeTables = TimeTables::orderby($request->get('sort'), $request->get('order'))->paginate(10);
             }
             else if($request->get('search'))
-                $subjects = Subjects::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->paginate(10);
+                $timeTables = TimeTables::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->paginate(10);
             else{
-                $query = Subjects::where("user_id", Auth::user()->id);
+                $query = TimeTables::where("user_id", Auth::user()->id);
                 if($request->get('year')){
                     if($query==null)
-                        $query = Subjects::where("year", $request->get('year'));
+                        $query = TimeTables::where("year", $request->get('year'));
                     else
                         $query->orWhere("year", $request->get('year'));
                 } if($request->get('month')){
                     if($query==null)
-                        $query = Subjects::where("month", $request->get('month'));
+                        $query = TimeTables::where("month", $request->get('month'));
                     else
                         $query->orWhere("month", $request->get('month'));
                 } if($request->get('day')){
                     if($query==null)
-                        $query = Subjects::where("day", $request->get('day'));
+                        $query = TimeTables::where("day", $request->get('day'));
                     else
                         $query->orWhere("day", $request->get('day'));
                 } if($request->get('class_id')){
                     if($query==null)
-                        $query = Subjects::where("class_id", $request->get('class_id'));
+                        $query = TimeTables::where("class_id", $request->get('class_id'));
                     else
                         $query->orWhere("class_id", $request->get('class_id'));
                 }
-                $subjects = $query->paginate(10);
+                $timeTables = $query->paginate(10);
             }
         } else {
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-                $subjects = Subjects::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'));
+                $timeTables = TimeTables::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'));
             } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
-                $subjects = Subjects::orderby($request->get('sort'), $request->get('order'));
+                $timeTables = TimeTables::orderby($request->get('sort'), $request->get('order'));
             }
             else if($request->get('search'))
-                $subjects = Subjects::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%");
+                $timeTables = TimeTables::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%");
             else{
-                $query = Subjects::where("user_id", Auth::user()->id);
+                $query = TimeTables::where("user_id", Auth::user()->id);
                 if($request->get('user_id')){
-                    $query = Subjects::where("user_id", $request->get('user_id'));
+                    $query = TimeTables::where("user_id", $request->get('user_id'));
                 } if($request->get('year')){
                     if($query==null)
-                        $query = Subjects::where("year", $request->get('year'));
+                        $query = TimeTables::where("year", $request->get('year'));
                     else
                         $query->where("year", $request->get('year'));
                 } if($request->get('month')){
                     if($query==null)
-                        $query = Subjects::where("month", $request->get('month'));
+                        $query = TimeTables::where("month", $request->get('month'));
                     else
                         $query->where("month", $request->get('month'));
                 } if($request->get('day')){
                     if($query==null)
-                        $query = Subjects::where("day", $request->get('day'));
+                        $query = TimeTables::where("day", $request->get('day'));
                     else
                         $query->where("day", $request->get('day'));
                 } if($request->get('class_id')){
                     if($query==null)
-                        $query = Subjects::where("class_id", $request->get('class_id'));
+                        $query = TimeTables::where("class_id", $request->get('class_id'));
                     else
                         $query->where("class_id", $request->get('class_id'));
                 }
-                $subjects = $query->get();
+                $timeTables = $query->get();
             }
         }
 
         $res = [];
-        for($i=0; $i<count($subjects); $i++){
-            if($subjects[$i]->month<=9)
-                $subjects[$i]->month = '0'.$subjects[$i]->month;
-            if($subjects[$i]->day<=9)
-                $subjects[$i]->day = '0'.$subjects[$i]->day;
-            if($subjects[$i]->state==true){
+        for($i=0; $i<count($timeTables); $i++){
+            if($timeTables[$i]->month<=9)
+                $timeTables[$i]->month = '0'.$timeTables[$i]->month;
+            if($timeTables[$i]->day<=9)
+                $timeTables[$i]->day = '0'.$timeTables[$i]->day;
+            if($timeTables[$i]->state==true){
                 array_push($res,
                 [
-                    'date'=>$subjects[$i]->year . '-' . $subjects[$i]->month . '-' . $subjects[$i]->day,
+                    'date'=>$timeTables[$i]->year . '-' . $timeTables[$i]->month . '-' . $timeTables[$i]->day,
                     'status'=>'green'
                 ]
             );
             } else {
                 array_push($res,
                 [
-                    'date'=>$subjects[$i]->year . '-' . $subjects[$i]->month . '-' . $subjects[$i]->day,
+                    'date'=>$timeTables[$i]->year . '-' . $timeTables[$i]->month . '-' . $timeTables[$i]->day,
                     'status'=>'red'
                 ]);
-                //array_push($res, json_decode('{"'.$subjects[$i]->year . '-' . $subjects[$i]->month . '-' . $subjects[$i]->day . '" : { "customStyles": { "container": { "backgroundColor": "red"}, "text": { "color": "black", "fontWeight": "bold" } } } }'));
+                //array_push($res, json_decode('{"'.$timeTables[$i]->year . '-' . $timeTables[$i]->month . '-' . $timeTables[$i]->day . '" : { "customStyles": { "container": { "backgroundColor": "red"}, "text": { "color": "black", "fontWeight": "bold" } } } }'));
             }
         }
 
