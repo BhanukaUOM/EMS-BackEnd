@@ -94,3 +94,9 @@ Route::group([
     Route::resource('payments', 'PaymentController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });
 
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('timetable/mobile', 'TimeTableController@mobile');
+    Route::resource('timetable', 'TimeTableController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});

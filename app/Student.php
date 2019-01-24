@@ -39,4 +39,9 @@ class Student extends Model
     {
         return $this->hasOne(SubjectGroup::class);
     }
+
+    public function class()
+    {
+        return $this->hasOne(Classe::class, 'id', 'class_id');
+    }
 }
