@@ -26,7 +26,7 @@ class StudyMaterialsController extends Controller
 
         if(Auth::user()->hasRole('Student')){
             $user_id = Auth::user()->id;
-            $student_id = Student::where('user_id', Auth::user()->id)->id;
+            $student_id = Student::where('user_id', Auth::user()->id)->first()->id;
         }
         else if(Auth::user()->hasRole('Parent')){
             if(!$request->get('student_id'))
