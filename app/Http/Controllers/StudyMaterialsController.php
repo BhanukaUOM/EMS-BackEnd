@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Attendance;
 use App\Material;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,7 +54,7 @@ class StudyMaterialsController extends Controller
      */
     public function store(Request $request)
     {
-        if(parent::checkPermission('Add Attendance'))
+        if(parent::checkPermission('Add Materials'))
             return response()->json("User do not have permission", 401);
         $request->validate([
             'user_id' => 'required|integer',
@@ -66,8 +65,8 @@ class StudyMaterialsController extends Controller
             'class_id' => 'required|integer'
         ]);
 
-        $attendance = Attendance::create($request->all());
-        return json_encode($attendance);
+        $material = Material::create($request->all());
+        return json_encode($material);
     }
 
     /**
@@ -78,9 +77,9 @@ class StudyMaterialsController extends Controller
      */
     public function show($id)
     {
-        if(parent::checkPermission('View Attendance'))
+        if(parent::checkPermission('View Materials'))
             return response()->json("User do not have permission", 401);
-        return json_encode(Attendance::findOrFail($id));
+        return json_encode(Material::findOrFail($id));
     }
 
     /**
@@ -92,12 +91,12 @@ class StudyMaterialsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(parent::checkPermission('Edit Attendance'))
-            return parent::checkPermission('Edit Attendance');
+        if(parent::checkPermission('Edit Materials'))
+            return parent::checkPermission('Edit Materials');
 
-        $attendance = Attendance::findOrFail($id);
-        $attendance->fill($request->all())->save();
-        return response()->json(['data' => $attendance], 201);
+        $material = Material::findOrFail($id);
+        $material->fill($request->all())->save();
+        return response()->json(['data' => $material], 201);
     }
 
     /**
@@ -108,107 +107,107 @@ class StudyMaterialsController extends Controller
      */
     public function destroy($id)
     {
-        if(parent::checkPermission('Delete Attendance'))
+        if(parent::checkPermission('Delete Materials'))
             return response()->json("User do not have permission", 401);
-        $attendance = Attendance::findOrFail($id);
-        $attendance->delete();
-        return response()->json(['data' => $attendance], 200);
+        $material = Material::findOrFail($id);
+        $material->delete();
+        return response()->json(['data' => $material], 200);
     }
 
     public function allMobile(Request $request)
     {
-        if(parent::checkPermission('View Attendance'))
-            return parent::checkPermission('View Attendance');
+        if(parent::checkPermission('View Materials'))
+            return parent::checkPermission('View Materials');
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
+                $material = Material::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
             } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
-                $attendance = Attendance::orderby($request->get('sort'), $request->get('order'))->paginate(10);
+                $material = Material::orderby($request->get('sort'), $request->get('order'))->paginate(10);
             }
             else if($request->get('search'))
-                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->paginate(10);
+                $material = Material::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->paginate(10);
             else{
-                $query = Attendance::where("user_id", Auth::user()->id);
+                $query = Material::where("user_id", Auth::user()->id);
                 if($request->get('year')){
                     if($query==null)
-                        $query = Attendance::where("year", $request->get('year'));
+                        $query = Material::where("year", $request->get('year'));
                     else
                         $query->orWhere("year", $request->get('year'));
                 } if($request->get('month')){
                     if($query==null)
-                        $query = Attendance::where("month", $request->get('month'));
+                        $query = Material::where("month", $request->get('month'));
                     else
                         $query->orWhere("month", $request->get('month'));
                 } if($request->get('day')){
                     if($query==null)
-                        $query = Attendance::where("day", $request->get('day'));
+                        $query = Material::where("day", $request->get('day'));
                     else
                         $query->orWhere("day", $request->get('day'));
                 } if($request->get('class_id')){
                     if($query==null)
-                        $query = Attendance::where("class_id", $request->get('class_id'));
+                        $query = Material::where("class_id", $request->get('class_id'));
                     else
                         $query->orWhere("class_id", $request->get('class_id'));
                 }
-                $attendance = $query->paginate(10);
+                $material = $query->paginate(10);
             }
         } else {
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'));
+                $material = Material::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'));
             } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
-                $attendance = Attendance::orderby($request->get('sort'), $request->get('order'));
+                $material = Material::orderby($request->get('sort'), $request->get('order'));
             }
             else if($request->get('search'))
-                $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%");
+                $material = Material::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%");
             else{
-                $query = Attendance::where("user_id", Auth::user()->id);
+                $query = Material::where("user_id", Auth::user()->id);
                 if($request->get('user_id')){
-                    $query = Attendance::where("user_id", $request->get('user_id'));
+                    $query = Material::where("user_id", $request->get('user_id'));
                 } if($request->get('year')){
                     if($query==null)
-                        $query = Attendance::where("year", $request->get('year'));
+                        $query = Material::where("year", $request->get('year'));
                     else
                         $query->where("year", $request->get('year'));
                 } if($request->get('month')){
                     if($query==null)
-                        $query = Attendance::where("month", $request->get('month'));
+                        $query = Material::where("month", $request->get('month'));
                     else
                         $query->where("month", $request->get('month'));
                 } if($request->get('day')){
                     if($query==null)
-                        $query = Attendance::where("day", $request->get('day'));
+                        $query = Material::where("day", $request->get('day'));
                     else
                         $query->where("day", $request->get('day'));
                 } if($request->get('class_id')){
                     if($query==null)
-                        $query = Attendance::where("class_id", $request->get('class_id'));
+                        $query = Material::where("class_id", $request->get('class_id'));
                     else
                         $query->where("class_id", $request->get('class_id'));
                 }
-                $attendance = $query->get();
+                $material = $query->get();
             }
         }
 
         $res = [];
-        for($i=0; $i<count($attendance); $i++){
-            if($attendance[$i]->month<=9)
-                $attendance[$i]->month = '0'.$attendance[$i]->month;
-            if($attendance[$i]->day<=9)
-                $attendance[$i]->day = '0'.$attendance[$i]->day;
-            if($attendance[$i]->state==true){
+        for($i=0; $i<count($material); $i++){
+            if($material[$i]->month<=9)
+                $material[$i]->month = '0'.$material[$i]->month;
+            if($material[$i]->day<=9)
+                $material[$i]->day = '0'.$material[$i]->day;
+            if($material[$i]->state==true){
                 array_push($res,
                 [
-                    'date'=>$attendance[$i]->year . '-' . $attendance[$i]->month . '-' . $attendance[$i]->day,
+                    'date'=>$material[$i]->year . '-' . $material[$i]->month . '-' . $material[$i]->day,
                     'status'=>'green'
                 ]
             );
             } else {
                 array_push($res,
                 [
-                    'date'=>$attendance[$i]->year . '-' . $attendance[$i]->month . '-' . $attendance[$i]->day,
+                    'date'=>$material[$i]->year . '-' . $material[$i]->month . '-' . $material[$i]->day,
                     'status'=>'red'
                 ]);
-                //array_push($res, json_decode('{"'.$attendance[$i]->year . '-' . $attendance[$i]->month . '-' . $attendance[$i]->day . '" : { "customStyles": { "container": { "backgroundColor": "red"}, "text": { "color": "black", "fontWeight": "bold" } } } }'));
+                //array_push($res, json_decode('{"'.$material[$i]->year . '-' . $material[$i]->month . '-' . $material[$i]->day . '" : { "customStyles": { "container": { "backgroundColor": "red"}, "text": { "color": "black", "fontWeight": "bold" } } } }'));
             }
         }
 
