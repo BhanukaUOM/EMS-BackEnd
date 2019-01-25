@@ -25,7 +25,8 @@ class StudyMaterialsController extends Controller
             return response()->json("User do not have permission", 401);
 
         if(Auth::user()->hasRole('Student')){
-            $student_id = Auth::user()->id;
+            $user_id = Auth::user()->id;
+            $student_id = Student::where('user_id', Auth::user()->id)->id;
         }
         else if(Auth::user()->hasRole('Parent')){
             if(!$request->get('student_id'))
