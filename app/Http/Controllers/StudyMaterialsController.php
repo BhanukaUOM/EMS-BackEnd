@@ -38,7 +38,7 @@ class StudyMaterialsController extends Controller
         }
 
         $subject_id = $request->get('subject_id');
-        if(subjectGroup::where('id', Student::find($user_id)->subject_group_id)->whereHas('subject', function($q) use ($subject_id){
+        if(subjectGroup::where('id', Student::find($student_id)->subject_group_id)->whereHas('subject', function($q) use ($subject_id){
             $q->where('id', $subject_id);
         })->count()==0)
             return response()->json("no permission", 401);
