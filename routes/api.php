@@ -100,3 +100,11 @@ Route::group([
     Route::get('timetable/mobile', 'TimeTableController@mobile');
     Route::resource('timetable', 'TimeTableController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('results/mobile', 'ExamResultContoller@mobile');
+    Route::resource('results', 'ExamResultContoller', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
+
