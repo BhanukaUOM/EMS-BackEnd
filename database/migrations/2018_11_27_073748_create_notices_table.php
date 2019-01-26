@@ -15,7 +15,9 @@ class CreateNoticesTable extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
             $table->mediumText('content');
+            $table->integer('notice_from');
             $table->timestamps();
         });
     }

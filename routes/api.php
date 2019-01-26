@@ -60,6 +60,43 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
-    Route::resource('notices', 'NoticeController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
     Route::post('notices/pause', 'NoticeController@pause');
+    Route::get('notices/read', 'NoticeController@read');
+    Route::resource('notices', 'NoticeController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('attendance/mobile', 'AttendanceController@allMobile');
+    Route::resource('attendance', 'AttendanceController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('materials', 'StudyMaterialsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::resource('subjects', 'SubjectsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
+
+
+Route::post('payments/notify', 'PaymentController@notify');
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('payments/history', 'PaymentController@history');
+    Route::get('payments/pay', 'PaymentController@pay');
+    Route::resource('payments', 'PaymentController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('timetable/mobile', 'TimeTableController@mobile');
+    Route::resource('timetable', 'TimeTableController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });

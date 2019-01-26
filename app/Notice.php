@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Notice extends Model
 {
-    public function user_has_notice()
+    protected $fillable = [
+        'title', 'content', 'notice_from'
+    ];
+
+    public function users()
     {
-        return $this->hasOne(User_has_Notices::class);
+        return $this->belongsToMany(User::class);
     }
 
-    public function user()
-    {
-        return $this->hasMany(User::class);
+    public function notice_read_statuses(){
+        return $this->hasMany(NoticeReadStatus::class);
     }
 }

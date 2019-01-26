@@ -36,8 +36,33 @@ class User extends Authenticatable
         return $this->hasOne(Location::class);
     }
 
-    public function notice()
+    public function notices()
     {
-        return $this->hasMany(Notice::class);
+        return $this->belongsToMany(Notice::class);
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function school()
+    {
+        return $this->hasOne(School::class, 'id', 'school_id');
+    }
+
+    public function parent()
+    {
+        return $this->hasOne(Guardian::class);
+    }
+
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class);
+    }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

@@ -21,9 +21,8 @@ class UsersController extends Controller
 
     public function index(Request $request)
     {
-        if(!Auth::user()->role('Admin') && !Auth::user()->role('Teacher')){
-            response()->json("User do not have permission", 402);
-        }
+        if(parent::checkPermission('View Users'))
+            return response()->json("User do not have permission", 401);
         if($request->get('role')=='null' || $request->get('role')==''){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
                 $user = User::with('roles')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
@@ -57,6 +56,8 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        if(parent::checkPermission('Add Users'))
+            return response()->json("User do not have permission", 401);
         $request->validate([
             'name' => 'required|string|min:2',
             'email' => 'required|string|email|unique:users',
@@ -66,10 +67,23 @@ class UsersController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'activation_token' => str_random(60)
+            'activation_token' => str_random(60),
+            'address' => $request->email,
+            'about' => $request->email,
         ]);
-        foreach($request->role as $role)
-            $user->assignRole($role);
+        if($request->role)
+            foreach($request->role as $role)
+                $user->assignRole($role);
+        else{
+            return response()->json([
+                'error' => 'Role Not Found!'
+            ], 401);
+        }
+        $user->school_id = Auth::user()->school_id;
+        if($request->address)
+            $user->address = $request->address;
+        if($request->about)
+            $user->about = $request->about;
         $user->save();
         $avatar = Avatar::create(strtoupper($user->name))->getImageObject()->encode('png');
         Storage::put('avatars/'.$user->id.'/avatar.png', (string) $avatar);
@@ -87,6 +101,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
+        if(parent::checkPermission('View Users'))
+            return response()->json("User do not have permission", 401);
         return json_encode(User::with('roles')->findOrFail($id));
     }
 
@@ -99,6 +115,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(parent::checkPermission('Edit Users'))
+            return response()->json("User do not have permission", 401);
         $rules = [
             'name' => 'required|min:2',
             'email' =>'email'
@@ -117,7 +135,7 @@ class UsersController extends Controller
         }
 
         $user->name = $request->name;
-        if($request->email != $user->email){
+        if($request->email && $request->email != $user->email){
             $user->email = $request->email;
             $user->notify(new SignupActivate($user));
         }
@@ -141,12 +159,17 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        if(parent::checkPermission('Delete Users'))
+            return response()->json("User do not have permission", 401);
         $user = User::findOrFail($id);
         $user->delete();
         return response()->json(['data' => $user], 200);
     }
 
     public function pause(Request $request){
+
+        if(parent::checkPermission('Edit Users'))
+            return response()->json("User do not have permission", 401);
         $rules = [
             'id' => 'required'
         ];
