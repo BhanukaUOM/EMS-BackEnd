@@ -71,7 +71,7 @@ class AuthController extends Controller
         if($user->hasRole('Student'))
             $res = User::with(['roles', 'student'])->find($user->id);
         else if($user->hasRole('Parent'))
-            $res = User::with(['roles', 'parent', 'parent.student'])->find($user->id);
+            $res = User::with(['roles', 'parent', 'parent.student', 'parent.student.user'])->find($user->id);
         else
             $res = User::with('roles')->find($user->id);
         $tokenResult = $user->createToken('Personal Access Token');
