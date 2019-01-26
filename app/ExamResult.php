@@ -12,4 +12,9 @@ class ExamResult extends Model
     {
         return $this->hasOne(Subject::class, 'id', 'subject_id');
     }
+
+    public function class()
+    {
+        return $this->hasOne(Classe::class, 'id', 'class_id');
+    }
 }

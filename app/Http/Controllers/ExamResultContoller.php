@@ -28,17 +28,20 @@ class ExamResultContoller extends Controller
                 return response()->json("no permission", 401);
         }
 
-        $year = Date("Y");
-        if($request->get('year'))
-            $year = $request->get('year');
+        //$class_id = Date("Y");
+        if($request->get('class_id'))
+            $class_id = $request->get('class_id');
+        else
+            return response()->json("no class_id found", 401);
         if($request->get('term'))
-            return response()->json(ExamResult::whereHas('subject', function ($query) use ($year) {
-                $query->where('year','=',$year);
-            })->with('subject')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
+            return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
+                $query->where('id','=',$class_id);
+            })->with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
 
-        return response()->json(ExamResult::whereHas('subject', function ($query) use ($year) {
-            $query->where('year','=',$year);
-        })->with('subject')->where('student_id', $student_id)->get());
+            return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
+                $query->where('id','=',$class_id);
+            })->with('subject', 'class')->where(['student_id' => $student_id])->get());
+
 
     }
 }
