@@ -31,11 +31,14 @@ class ExamResultContoller extends Controller
         $year = Date("Y");
         if($request->get('year'))
             $year = $request->get('year');
+        if($request->get('term'))
+            return response()->json(ExamResult::whereHas('subject', function ($query) use ($year) {
+                $query->where('year','=',$year);
+            })->with('subject')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
 
         return response()->json(ExamResult::whereHas('subject', function ($query) use ($year) {
             $query->where('year','=',$year);
         })->with('subject')->where('student_id', $student_id)->get());
-        if($request->get('term'))
-            return response()->json(ExamResult::where(['student_id'=> $student_id, 'term'=>$request->get('term')])->get());
+
     }
 }

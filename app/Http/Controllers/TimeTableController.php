@@ -31,7 +31,7 @@ class TimeTableController extends Controller
         if($request->get('year'))
             $year = $request->get('year');
         return response()->json(TimeTableGroup::with('timeTable')->where('year', $year)->get(), 200);
-        return response()->json("error no timeTable_id found", 401);
+        //return response()->json("error no timeTable_id found", 401);
     }
 
     /**
