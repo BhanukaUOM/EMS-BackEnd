@@ -11,8 +11,9 @@ use App\Guardian;
 class ExamResultContoller extends Controller
 {
     public function mobile(Request $request){
-        if(!parent::checkPermission('View Results'))
+        if(!Auth::user()->hasPermissionTo('View Results')){
             return response()->json("User do not have permission", 401);
+        }
 
         if(Auth::user()->hasRole('Student')){
             $student_id = User::find(Auth::user()->id)->student->id;
@@ -30,7 +31,8 @@ class ExamResultContoller extends Controller
         $year = Date("Y");
         if($request->get('year'))
             $year = $request->get('year');
-        return response()->json(ExamResult::with('subject')->where(['student_id' => $student_id, 'subject.year'=>$year])->get());
+
+        return response()->json(ExamResult::with('subject')->where('student_id', $student_id)->get());
         if($request->get('term'))
             return response()->json(ExamResult::where(['student_id'=> $student_id, 'term'=>$request->get('term')])->get());
     }

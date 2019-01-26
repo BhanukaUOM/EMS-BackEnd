@@ -14,7 +14,7 @@ class Controller extends BaseController
 
     public function checkPermission($permission){
         if(!Auth::user()->hasPermissionTo($permission)){
-            return response()->json("User do not have permission", 401);
+            return true;
         }
         return false;
     }
