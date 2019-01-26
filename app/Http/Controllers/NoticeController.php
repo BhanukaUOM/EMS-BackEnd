@@ -10,6 +10,7 @@ use App\User;
 use App\Notice;
 use App\NoticeReadStatus;
 use App\NoticeUser;
+use App\Guardian;
 
 class NoticeController extends Controller
 {

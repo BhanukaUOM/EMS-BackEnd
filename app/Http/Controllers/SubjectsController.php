@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\SubjectGroup;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Guardian;
 
 class SubjectsController extends Controller
 {

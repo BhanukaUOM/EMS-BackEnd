@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\User;
 use App\Location;
+use App\Guardian;
 
 class LocationController extends Controller
 {

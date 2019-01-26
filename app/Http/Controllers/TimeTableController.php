@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\TimeTable;
 use App\User;
 use App\Student;
+use App\Guardian;
 
 class TimeTableController extends Controller
 {

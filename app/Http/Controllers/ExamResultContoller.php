@@ -11,7 +11,7 @@ use App\Guardian;
 class ExamResultContoller extends Controller
 {
     public function mobile(Request $request){
-        if(!parent::checkPermission('View TimeTable'))
+        if(!parent::checkPermission('View Results'))
             return response()->json("User do not have permission", 401);
 
         if(Auth::user()->hasRole('Student')){

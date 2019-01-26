@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Student;
 use App\SubjectGroup;
+use App\Guardian;
 
 
 class StudyMaterialsController extends Controller

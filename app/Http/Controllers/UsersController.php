@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 use App\Notifications\SignupActivate;
 use Avatar;
 use Storage;
+use App\Guardian;
 
 class UsersController extends Controller
 {

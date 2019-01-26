@@ -7,6 +7,7 @@ use App\Payment;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Student;
+use App\Guardian;
 
 class PaymentController extends Controller
 {
