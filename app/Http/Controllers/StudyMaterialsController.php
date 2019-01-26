@@ -31,7 +31,7 @@ class StudyMaterialsController extends Controller
             if(!$request->get('student_id'))
                 return response()->json("error no student_id found", 401);
             $student_id = $request->get('student_id');
-            if(User::find(Auth::user()->id)->whereHas('student', function($q) use ($student_id){
+            if(Guardian::find(User::find(Auth::user()->id)->parent->id)->whereHas('student', function($q) use ($student_id){
                 $q->where('id', $student_id);
             })->count()==0)
                 return response()->json("no permission", 401);
