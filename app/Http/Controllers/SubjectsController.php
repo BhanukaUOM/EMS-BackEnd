@@ -12,7 +12,7 @@ class SubjectsController extends Controller
 {
     public function index(Request $request)
     {
-        if(parent::checkPermission('View Subjects'))
+        if(!Auth::user()->hasPermissionTo('View Subjects'))
             return response()->json("User do not have permission", 401);
 
         $year = Date("Y");
@@ -40,7 +40,7 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
-        if(parent::checkPermission('Add Subjects'))
+        if(!Auth::user()->hasPermissionTo('Add Subjects'))
             return response()->json("User do not have permission", 401);
         $request->validate([
             'user_id' => 'required|integer',
@@ -63,7 +63,7 @@ class SubjectsController extends Controller
      */
     public function show($id)
     {
-        if(parent::checkPermission('View Subjects'))
+        if(!Auth::user()->hasPermissionTo('View Subjects'))
             return response()->json("User do not have permission", 401);
         return json_encode(Subjects::findOrFail($id));
     }
@@ -77,7 +77,7 @@ class SubjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(parent::checkPermission('Edit Subjects'))
+        if(!Auth::user()->hasPermissionTo('Edit Subjects'))
             return parent::checkPermission('Edit Subjects');
 
         $subjects = Subjects::findOrFail($id);
@@ -93,7 +93,7 @@ class SubjectsController extends Controller
      */
     public function destroy($id)
     {
-        if(parent::checkPermission('Delete Subjects'))
+        if(!Auth::user()->hasPermissionTo('Delete Subjects'))
             return response()->json("User do not have permission", 401);
         $subjects = Subjects::findOrFail($id);
         $subjects->delete();
@@ -102,7 +102,7 @@ class SubjectsController extends Controller
 
     public function allMobile(Request $request)
     {
-        if(parent::checkPermission('View Subjects'))
+        if(!Auth::user()->hasPermissionTo('View Subjects'))
             return parent::checkPermission('View Subjects');
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){

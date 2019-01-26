@@ -21,7 +21,7 @@ class StudyMaterialsController extends Controller
      */
     public function index(Request $request)
     {
-        if(parent::checkPermission('View Materials'))
+        if(!Auth::user()->hasPermissionTo('View Materials'))
             return response()->json("User do not have permission", 401);
 
         if(Auth::user()->hasRole('Student')){
@@ -55,7 +55,7 @@ class StudyMaterialsController extends Controller
      */
     public function store(Request $request)
     {
-        if(parent::checkPermission('Add Materials'))
+        if(!Auth::user()->hasPermissionTo('Add Materials'))
             return response()->json("User do not have permission", 401);
         $request->validate([
             'user_id' => 'required|integer',
@@ -78,7 +78,7 @@ class StudyMaterialsController extends Controller
      */
     public function show($id)
     {
-        if(parent::checkPermission('View Materials'))
+        if(!Auth::user()->hasPermissionTo('View Materials'))
             return response()->json("User do not have permission", 401);
         return json_encode(Material::findOrFail($id));
     }
@@ -92,7 +92,7 @@ class StudyMaterialsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(parent::checkPermission('Edit Materials'))
+        if(!Auth::user()->hasPermissionTo('Edit Materials'))
             return parent::checkPermission('Edit Materials');
 
         $material = Material::findOrFail($id);
@@ -108,7 +108,7 @@ class StudyMaterialsController extends Controller
      */
     public function destroy($id)
     {
-        if(parent::checkPermission('Delete Materials'))
+        if(!Auth::user()->hasPermissionTo('Delete Materials'))
             return response()->json("User do not have permission", 401);
         $material = Material::findOrFail($id);
         $material->delete();
@@ -117,7 +117,7 @@ class StudyMaterialsController extends Controller
 
     public function allMobile(Request $request)
     {
-        if(parent::checkPermission('View Materials'))
+        if(!Auth::user()->hasPermissionTo('View Materials'))
             return parent::checkPermission('View Materials');
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){

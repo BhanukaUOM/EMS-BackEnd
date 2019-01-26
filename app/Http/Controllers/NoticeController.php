@@ -21,7 +21,7 @@ class NoticeController extends Controller
      */
     public function index(Request $request)
     {
-        if(parent::checkPermission('View Notice'))
+        if(!Auth::user()->hasPermissionTo('View Notice'))
             return response()->json("User do not have permission", 401);
 
         if(Auth::user()->hasRole('Student')){
@@ -77,7 +77,7 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        if(parent::checkPermission('Add Notice'))
+        if(!Auth::user()->hasPermissionTo('Add Notice'))
             return response()->json("User do not have permission", 401);
         $request->validate([
             'title' => 'required|string',
@@ -110,7 +110,7 @@ class NoticeController extends Controller
      */
     public function show($id)
     {
-        if(parent::checkPermission('View Notice'))
+        if(!Auth::user()->hasPermissionTo('View Notice'))
             return response()->json("User do not have permission", 401);
         return response()->json(
             DB::select("SELECT *
@@ -139,7 +139,7 @@ class NoticeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(parent::checkPermission('Edit Notice'))
+        if(!Auth::user()->hasPermissionTo('Edit Notice'))
             return response()->json("User do not have permission", 401);
 
         $notice = Notice::findOrFail($id);
@@ -160,7 +160,7 @@ class NoticeController extends Controller
      */
     public function destroy($id)
     {
-        if(parent::checkPermission('Delete Notice'))
+        if(!Auth::user()->hasPermissionTo('Delete Notice'))
             return response()->json("User do not have permission", 401);
         $userNotice = NoticeUser::where("notice_id", $id);
         $userNotice->delete();
@@ -173,7 +173,7 @@ class NoticeController extends Controller
 
     public function read(Request $request)
     {
-        if(parent::checkPermission('View Notice'))
+        if(!Auth::user()->hasPermissionTo('View Notice'))
             return response()->json("User do not have permission", 401);
         if($request->get('notice_id')) {
             if(NoticeReadStatus::where(['user_id' => Auth::user()->id, 'notice_id' => $request->get('notice_id')])->count()>0)

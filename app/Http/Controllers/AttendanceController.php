@@ -15,7 +15,7 @@ class AttendanceController extends Controller
      */
     public function index(Request $request)
     {
-        if(parent::checkPermission('View Attendance'))
+        if(!Auth::user()->hasPermissionTo('View Attendance'))
             return response()->json("User do not have permission", 401);
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
@@ -98,7 +98,7 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        if(parent::checkPermission('Add Attendance'))
+        if(!Auth::user()->hasPermissionTo('Add Attendance'))
             return response()->json("User do not have permission", 401);
         $request->validate([
             'user_id' => 'required|integer',
@@ -129,7 +129,7 @@ class AttendanceController extends Controller
      */
     public function show($id)
     {
-        if(parent::checkPermission('View Attendance'))
+        if(!Auth::user()->hasPermissionTo('View Attendance'))
             return response()->json("User do not have permission", 401);
         return json_encode(Attendance::findOrFail($id));
     }
@@ -143,7 +143,7 @@ class AttendanceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(parent::checkPermission('Edit Attendance'))
+        if(!Auth::user()->hasPermissionTo('Edit Attendance'))
             return parent::checkPermission('Edit Attendance');
 
         $attendance = Attendance::findOrFail($id);
@@ -159,7 +159,7 @@ class AttendanceController extends Controller
      */
     public function destroy($id)
     {
-        if(parent::checkPermission('Delete Attendance'))
+        if(!Auth::user()->hasPermissionTo('Delete Attendance'))
             return response()->json("User do not have permission", 401);
         $attendance = Attendance::findOrFail($id);
         $attendance->delete();
@@ -168,7 +168,7 @@ class AttendanceController extends Controller
 
     public function allMobile(Request $request)
     {
-        if(parent::checkPermission('View Attendance'))
+        if(!Auth::user()->hasPermissionTo('View Attendance'))
             return parent::checkPermission('View Attendance');
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){

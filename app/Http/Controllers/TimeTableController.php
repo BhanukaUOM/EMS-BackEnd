@@ -13,7 +13,7 @@ class TimeTableController extends Controller
 {
     public function index(Request $request)
     {
-        if(parent::checkPermission('View TimeTable'))
+        if(!Auth::user()->hasPermissionTo('View TimeTable'))
             return response()->json("User do not have permission", 401);
 
         $year = Date("Y");
@@ -41,7 +41,7 @@ class TimeTableController extends Controller
      */
     public function store(Request $request)
     {
-        if(parent::checkPermission('Add TimeTable'))
+        if(!Auth::user()->hasPermissionTo('Add TimeTable'))
             return response()->json("User do not have permission", 401);
         $request->validate([
             'user_id' => 'required|integer',
@@ -64,7 +64,7 @@ class TimeTableController extends Controller
      */
     public function show($id)
     {
-        if(parent::checkPermission('View TimeTable'))
+        if(!Auth::user()->hasPermissionTo('View TimeTable'))
             return response()->json("User do not have permission", 401);
         return json_encode(TimeTables::findOrFail($id));
     }
@@ -78,7 +78,7 @@ class TimeTableController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(parent::checkPermission('Edit TimeTable'))
+        if(!Auth::user()->hasPermissionTo('Edit TimeTable'))
             return parent::checkPermission('Edit TimeTables');
 
         $timeTables = TimeTables::findOrFail($id);
@@ -94,7 +94,7 @@ class TimeTableController extends Controller
      */
     public function destroy($id)
     {
-        if(parent::checkPermission('Delete TimeTable'))
+        if(!Auth::user()->hasPermissionTo('Delete TimeTable'))
             return response()->json("User do not have permission", 401);
         $timeTables = TimeTables::findOrFail($id);
         $timeTables->delete();
@@ -103,7 +103,7 @@ class TimeTableController extends Controller
 
     public function mobile(Request $request)
     {
-        if(parent::checkPermission('View TimeTable'))
+        if(!Auth::user()->hasPermissionTo('View TimeTable'))
             return parent::checkPermission('View TimeTable');
         if(Auth::user()->hasRole('Student')){
             $student_id = Auth::user()->id;

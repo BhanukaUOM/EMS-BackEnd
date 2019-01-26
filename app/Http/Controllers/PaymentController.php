@@ -13,7 +13,7 @@ class PaymentController extends Controller
 {
     public function index(Request $request)
     {
-        if(parent::checkPermission('View Payments'))
+        if(!Auth::user()->hasPermissionTo('View Payments'))
             return response()->json("User do not have permission", 401);
         if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')) {
             $payment = Payment::with('permissions')->where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
@@ -35,7 +35,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        if(parent::checkPermission('Add Payments'))
+        if(!Auth::user()->hasPermissionTo('Add Payments'))
             return response()->json("User do not have permission", 401);
         $request->validate([
             'name' => 'required|string|min:2'
@@ -55,7 +55,7 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        if(parent::checkPermission('View Payments'))
+        if(!Auth::user()->hasPermissionTo('View Payments'))
             return response()->json("User do not have permission", 401);
         return json_encode(Payment::with('permissions')->findOrFail($id));
     }
@@ -69,7 +69,7 @@ class PaymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(parent::checkPermission('Edit Payments'))
+        if(!Auth::user()->hasPermissionTo('Edit Payments'))
             return response()->json("User do not have permission", 401);
         $rules = [
             'name' => 'required|min:2'
@@ -96,7 +96,7 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        if(parent::checkPermission('Delete Payments'))
+        if(!Auth::user()->hasPermissionTo('Delete Payments'))
             return response()->json("User do not have permission", 401);
         $payment = Payment::findOrFail($id);
         $payment->delete();
@@ -104,7 +104,7 @@ class PaymentController extends Controller
     }
 
     public function history(Request $request){
-        if(parent::checkPermission('View Payments'))
+        if(!Auth::user()->hasPermissionTo('View Payments'))
             return response()->json("User do not have permission", 401);
 
         if(Auth::user()->hasRole('Student')){
