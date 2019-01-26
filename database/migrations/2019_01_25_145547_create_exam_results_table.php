@@ -18,11 +18,13 @@ class CreateExamResultsTable extends Migration
             $table->unsignedInteger('student_id');
             $table->unsignedInteger('subject_id');
             $table->unsignedInteger('mark');
+            $table->unsignedInteger('class_id');
             $table->unsignedInteger('term');
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students');
             $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('class_id')->references('id')->on('classes');
         });
     }
 

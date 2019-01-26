@@ -29,18 +29,22 @@ class ExamResultContoller extends Controller
         }
 
         //$class_id = Date("Y");
-        if($request->get('class_id'))
+        if($request->get('class_id')){
             $class_id = $request->get('class_id');
-        else
-            return response()->json("no class_id found", 401);
-        if($request->get('term'))
-            return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
-                $query->where('id','=',$class_id);
-            })->with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
+            if($request->get('term'))
+                return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
+                    $query->where('id','=',$class_id);
+                })->with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
 
-            return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
-                $query->where('id','=',$class_id);
-            })->with('subject', 'class')->where(['student_id' => $student_id])->get());
+                return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
+                    $query->where('id','=',$class_id);
+                })->with('subject', 'class')->where(['student_id' => $student_id])->get());
+            } else {
+                if($request->get('term'))
+                    return response()->json(ExamResult::with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
+
+                return response()->json(ExamResult::with('subject', 'class')->where(['student_id' => $student_id])->get());
+            }
 
 
     }
