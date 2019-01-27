@@ -13,7 +13,12 @@ class Student extends Model
 
     public function parent()
     {
-        return $this->hasOne(Guardian::class);
+        return $this->hasOne(Guardian::class, 'id', 'parent_id');
+    }
+
+    public function location()
+    {
+        return $this->hasOne(Location::class);
     }
 
     public function payment()

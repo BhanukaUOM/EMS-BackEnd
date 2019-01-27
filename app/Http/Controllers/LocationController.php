@@ -13,7 +13,7 @@ class LocationController extends Controller
 {
 
     public function add(Request $request){
-        if(Auth::user()->hasPermissionTo("Student")){
+        if(Auth::user()->hasPermissionTo("Add Location")){
             $request->validate([
                 'timestamp' => 'required',
                 'latitude' => 'required',
@@ -27,7 +27,7 @@ class LocationController extends Controller
                 if(!$request->get('student_id'))
                     return response()->json("error no student_id found", 401);
                 $user_id = $request->get('student_id');
-                if(Guardian::find(User::find(Auth::user()->id)->parent->id)->whereHas('student', function($q) use ($student_id){
+                if(Guardian::find(User::find(Auth::user()->id)->parent->id)->whereHas('student', function($q) use ($user_id){
                     $q->where('id', $user_id);
                 })->count()==0)
                     return response()->json("no permission", 401);
@@ -63,7 +63,7 @@ class LocationController extends Controller
     }
 
     public function get($id){
-        if(Auth::user()->hasPermissionTo("Parent")){
+        if(Auth::user()->hasPermissionTo("View Location")){
             return response()->json(Location::where("user_id", $id)->first());
         } else {
             return response()->json(["error" => ['message' => "You don't have permission"]], 401);
@@ -71,7 +71,7 @@ class LocationController extends Controller
     }
 
     public function getCurrent(){
-        if(Auth::user()->hasPermissionTo("Student")){
+        if(Auth::user()->hasPermissionTo("View Location")){
             return response()->json(Location::where('user_id', Auth::user()->id)->first());
         } else {
             return response()->json(["error" => ['message' => "You don't have permission"]], 401);
@@ -79,16 +79,25 @@ class LocationController extends Controller
     }
 
     public function index(Request $request){
+        $user_id = Guardian::where('user_id', Auth::user()->id)->first()->id;
         if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
-            $user = User::with('location')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->role("Student")->paginate(10);
+            $user = User::with('location')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->role("Student")->whereHas('student.parent', function($q) use ($user_id){
+                $q->where('id', $user_id);
+            })->paginate(10);
         } else if($request->get('sort')!='null' && $request->get('sort')!=''){
-            $user = User::with('location')->orderby($request->get('sort'), $request->get('order'))->role("Student")->paginate(10);
+            $user = User::with('location')->orderby($request->get('sort'), $request->get('order'))->role("Student")->whereHas('student.parent', function($q) use ($user_id){
+                $q->where('id', $user_id);
+            })->paginate(10);
         }
 
         else if($request->get('search'))
-            $user = User::with('location')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->role("Student")->paginate(10);
+            $user = User::with('location')->where("name", "LIKE", "%{$request->get('search')}%")->orWhere("email", "LIKE", "%{$request->get('search')}%")->role("Student")->whereHas('student.parent', function($q) use ($user_id){
+                $q->where('id', $user_id);
+            })->paginate(10);
         else
-            $user = User::with('location')->role("Student")->paginate(10);
+            $user = User::with('location')->role("Student")->whereHas('student.parent', function($q) use ($user_id){
+                $q->where('id', $user_id);
+            })->paginate(10);
         return response()->json($user, 200);
     }
 }
