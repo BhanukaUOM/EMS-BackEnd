@@ -18,6 +18,7 @@ class CreateMaterialsTable extends Migration
             $table->string('file');
             $table->string('file_type');
             $table->dateTime('date');
+            $table->string('title')->nullable();
             $table->unsignedInteger('subject_id');
             $table->boolean('active')->default(true);
             $table->timestamps();
