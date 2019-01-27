@@ -128,7 +128,7 @@ class PaymentController extends Controller
     }
 
     public function pay(Request $request){
-        if(!parent::checkPermission('Make Payments'))
+        if(!Auth::user()->hasPermissionTo('Make Payments'))
             return response()->json("User do not have permission", 401);
 
         if(Auth::user()->hasRole('Student')){
@@ -143,7 +143,7 @@ class PaymentController extends Controller
             })->count()==0)
                 return response()->json("no permission", 401);
         }
-        $student = Student::with('package')->find($student_id);
+        $student = Student::with('package','user')->find($student_id);
 
         $payment = new Payment([
             'student_id' => $student_id,

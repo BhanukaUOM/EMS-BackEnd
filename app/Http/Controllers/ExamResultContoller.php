@@ -28,7 +28,7 @@ class ExamResultContoller extends Controller
                 return response()->json("no permission", 401);
         }
 
-        //$class_id = Date("Y");
+        $year = Date("Y");
         if($request->get('class_id')){
             $class_id = $request->get('class_id');
             if($request->get('term'))
@@ -43,7 +43,9 @@ class ExamResultContoller extends Controller
                 if($request->get('term'))
                     return response()->json(ExamResult::with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
 
-                return response()->json(ExamResult::with('subject', 'class')->where(['student_id' => $student_id])->get());
+                return response()->json(ExamResult::whereHas('subject', function ($query) use ($year) {
+                    $query->where('year','=',$year);
+                })->with('subject', 'class')->where(['student_id' => $student_id])->get());
             }
 
 

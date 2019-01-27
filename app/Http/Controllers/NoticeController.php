@@ -24,6 +24,50 @@ class NoticeController extends Controller
         if(!Auth::user()->hasPermissionTo('View Notice'))
             return response()->json("User do not have permission", 401);
 
+        // if(Auth::user()->hasRole('Student')){
+        //     $user_id = Auth::user()->id;
+        //     $user_roles = Auth::user()->roles;
+        // }
+        // else if(Auth::user()->hasRole('Parent')){
+        //     if(!$request->get('student_id'))
+        //         return response()->json("error no student_id found", 401);
+        //     $user_id = $request->get('student_id');
+        //     if(Guardian::find(User::find(Auth::user()->id)->parent->id)->whereHas('student', function($q) use ($user_id){
+        //         $q->where('id', $user_id);
+        //     })->count()==0)
+        //         return response()->json("no permission", 401);
+        //     $user_roles = User::find($user_id)->roles;
+        // }
+
+
+        $user_id = Auth::user()->id;
+        $user_roles = Auth::user()->roles;
+
+         $res = DB::select('
+            SELECT DISTINCT(n.id), n.title, n.content, n.created_at, n.notice_from, IF(ISNULL(s.user_id), "false", "true") as status
+            FROM notices n Left Join notice_users ns on (n.id=ns.notice_id and ns.user_id=?) LEFT JOIN notice_read_statuses s ON (s.user_id=? and s.notice_id=ns.notice_id)
+            WHERE ns.user_id=?
+        ', [$user_id ,$user_id ,$user_id]);
+
+        for($i=0; $i<count($user_roles); $i++){
+            $res = array_merge($res, DB::select('
+            SELECT DISTINCT(n.id), n.title, n.content, n.created_at, n.notice_from, IF(ISNULL(s.user_id), "false", "true") as status
+            FROM notices n Left Join notice_users ns on (n.id=ns.notice_id and ns.role_id=?) LEFT JOIN notice_read_statuses s ON (s.user_id=? and s.notice_id=ns.notice_id)
+            WHERE ns.role_id=?
+        ', [$user_roles[$i]->id, $user_id, $user_roles[$i]->id]));
+        };
+
+        //$res = Notice::join('notice_user', 'notices.id', '=', 'notice_user.notice_id')->join('users', 'users.id', '=', 'notice_user.user_id')->with('notice_read_statuses')->orWhere('notice_read_statuses.user_id', '=', 'notice_user.user_id')->orWhere('notice_read_statuses.notice_id', '=', 'notices.id')->select("notices.*")->where('users.id', 1)->get();
+        //return $user_roles;
+        return response()->json($res, 200);
+        //return response()->json(User::find($user)->notices(), 200);
+    }
+
+    public function unread(Request $request)
+    {
+        if(!Auth::user()->hasPermissionTo('View Notice'))
+            return response()->json("User do not have permission", 401);
+
         if(Auth::user()->hasRole('Student')){
             $user_id = Auth::user()->id;
             $user_roles = Auth::user()->roles;
