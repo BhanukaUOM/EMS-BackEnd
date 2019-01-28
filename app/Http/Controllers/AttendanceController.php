@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Attendance;
 use App\User;
 use App\Guardian;
+use App\Student;
+use App\Teacher;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
 
@@ -399,5 +401,12 @@ class AttendanceController extends Controller
         }
 
         return response()->json($res, 200);
+    }
+
+    public function student(Request $request){
+    //  if(!Auth::user()->hasPermissionTo('Add Attendance'))
+    //      return parent::checkPermission('Add Attendance');
+
+        return Student::where("class_id", User::find(Auth::user()->id)->teacher->class->id)->get();
     }
 }
