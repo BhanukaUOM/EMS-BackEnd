@@ -23,6 +23,7 @@ class CreateStudentsTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('nationality')->nullable();
             $table->string('religion')->nullable();
+            $table->dateTime('next_payment_at');
             $table->unsignedInteger('parent_id');
             $table->unsignedInteger('subject_group_id');
             $table->unsignedInteger('package_id');
