@@ -52,6 +52,8 @@ class ExamResultContoller extends Controller
             })->with('subject', 'class', 'student')->get());
 
             } else {
+                if($student_id)
+                    return response()->json(ExamResult::with('subject', 'class')->where(['student_id' => $student_id])->get());
                 if($request->get('term'))
                     if($student_id)
                         return response()->json(ExamResult::with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
