@@ -21,7 +21,7 @@ class AttendanceController extends Controller
     public function index(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View Attendance'))
-            return parent::checkPermission('View Attendance');
+        return response()->json([ "message" => 'User do not have permission'], 401);
 
         if(Auth::user()->hasRole('Student')){
             $student_id = User::find(Auth::user()->id)->student->id;
@@ -139,7 +139,7 @@ class AttendanceController extends Controller
     public function indexold(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View Attendance'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         if($request->get('page')){
             if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
                 $attendance = Attendance::where("user_id", "LIKE", "%{$request->get('search')}%")->orWhere("year", "LIKE", "%{$request->get('search')}%")->orWhere("month", "LIKE", "%{$request->get('search')}%")->orWhere("day", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
@@ -222,7 +222,7 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('Add Attendance'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $request->validate([
             'user_id' => 'required|integer',
             'year' => 'required|integer',
@@ -253,7 +253,7 @@ class AttendanceController extends Controller
     public function show($id)
     {
         if(!Auth::user()->hasPermissionTo('View Attendance'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         return json_encode(Attendance::findOrFail($id));
     }
 
@@ -283,7 +283,7 @@ class AttendanceController extends Controller
     public function destroy($id)
     {
         if(!Auth::user()->hasPermissionTo('Delete Attendance'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $attendance = Attendance::findOrFail($id);
         $attendance->delete();
         return response()->json(['data' => $attendance], 200);
@@ -292,7 +292,7 @@ class AttendanceController extends Controller
     public function allMobile(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View Attendance'))
-            return parent::checkPermission('View Attendance');
+        return response()->json([ "message" => 'User do not have permission'], 401);
 
         if(Auth::user()->hasRole('Student')){
             $student_id = User::find(Auth::user()->id)->student->id;
@@ -404,9 +404,9 @@ class AttendanceController extends Controller
     }
 
     public function student(Request $request){
-    //  if(!Auth::user()->hasPermissionTo('Add Attendance'))
-    //      return parent::checkPermission('Add Attendance');
+     if(!Auth::user()->hasRole('Teacher'))
+        return response()->json([ "message" => 'User do not have permission'], 401);
 
-        return Student::where("class_id", User::find(Auth::user()->id)->teacher->class->id)->get();
+    return Student::with('user', 'parent')->where("class_id", User::find(Auth::user()->id)->teacher->class->id)->get();
     }
 }

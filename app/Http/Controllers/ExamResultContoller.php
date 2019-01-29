@@ -12,7 +12,7 @@ class ExamResultContoller extends Controller
 {
     public function mobile(Request $request){
         if(!Auth::user()->hasPermissionTo('View Results')){
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         }
 
         if(Auth::user()->hasRole('Student')){

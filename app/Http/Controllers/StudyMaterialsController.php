@@ -22,7 +22,7 @@ class StudyMaterialsController extends Controller
     public function index(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View Materials'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
 
         if(Auth::user()->hasRole('Student')){
             $user_id = Auth::user()->id;
@@ -56,7 +56,7 @@ class StudyMaterialsController extends Controller
     public function store(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('Add Materials'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $request->validate([
             'user_id' => 'required|integer',
             'year' => 'required|integer',
@@ -79,7 +79,7 @@ class StudyMaterialsController extends Controller
     public function show($id)
     {
         if(!Auth::user()->hasPermissionTo('View Materials'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         return json_encode(Material::findOrFail($id));
     }
 
@@ -109,7 +109,7 @@ class StudyMaterialsController extends Controller
     public function destroy($id)
     {
         if(!Auth::user()->hasPermissionTo('Delete Materials'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $material = Material::findOrFail($id);
         $material->delete();
         return response()->json(['data' => $material], 200);

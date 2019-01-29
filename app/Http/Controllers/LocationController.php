@@ -11,7 +11,7 @@ use App\Guardian;
 
 class LocationController extends Controller
 {
-
+    //Save Student Location through Mobile App
     public function add(Request $request){
         if(Auth::user()->hasPermissionTo("Add Location")){
             $request->validate([
@@ -20,19 +20,7 @@ class LocationController extends Controller
                 'longitude' => 'required'
             ]);
 
-            if(Auth::user()->hasRole('Student')){
-                $user_id = Auth::user()->id;
-            }
-            else if(Auth::user()->hasRole('Parent')){
-                if(!$request->get('student_id'))
-                    return response()->json("error no student_id found", 401);
-                $user_id = $request->get('student_id');
-                if(Guardian::find(User::find(Auth::user()->id)->parent->id)->whereHas('student', function($q) use ($user_id){
-                    $q->where('id', $user_id);
-                })->count()==0)
-                    return response()->json("no permission", 401);
-                $user_roles = User::find($user_id)->roles;
-            }
+            $user_id = Auth::user()->id;
 
             if(Location::where('user_id', $user_id)->exists())
                 $location = Location::where('user_id', $user_id)->first();
@@ -78,6 +66,7 @@ class LocationController extends Controller
         }
     }
 
+    //Get Current Parents Student Location
     public function index(Request $request){
         $user_id = Guardian::where('user_id', Auth::user()->id)->first()->id;
         if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){

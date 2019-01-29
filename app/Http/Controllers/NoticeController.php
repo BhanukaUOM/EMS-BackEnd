@@ -22,7 +22,7 @@ class NoticeController extends Controller
     public function index(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View Notice'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
 
         // if(Auth::user()->hasRole('Student')){
         //     $user_id = Auth::user()->id;
@@ -66,7 +66,7 @@ class NoticeController extends Controller
     public function unread(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View Notice'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
 
         if(Auth::user()->hasRole('Student')){
             $user_id = Auth::user()->id;
@@ -122,7 +122,7 @@ class NoticeController extends Controller
     public function store(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('Add Notice'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $request->validate([
             'title' => 'required|string',
             'content' => 'required|string'
@@ -155,7 +155,7 @@ class NoticeController extends Controller
     public function show($id)
     {
         if(!Auth::user()->hasPermissionTo('View Notice'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         return response()->json(
             DB::select("SELECT *
                         FROM notices s, users u
@@ -184,7 +184,7 @@ class NoticeController extends Controller
     public function update(Request $request, $id)
     {
         if(!Auth::user()->hasPermissionTo('Edit Notice'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
 
         $notice = Notice::findOrFail($id);
 
@@ -205,7 +205,7 @@ class NoticeController extends Controller
     public function destroy($id)
     {
         if(!Auth::user()->hasPermissionTo('Delete Notice'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $userNotice = NoticeUser::where("notice_id", $id);
         $userNotice->delete();
         $userNotice = NoticeReadStatus::where("notice_id", $id);
@@ -218,7 +218,7 @@ class NoticeController extends Controller
     public function read(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View Notice'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         if($request->get('notice_id')) {
             if(NoticeReadStatus::where(['user_id' => Auth::user()->id, 'notice_id' => $request->get('notice_id')])->count()>0)
                 return response()->json("Already readed", 401);

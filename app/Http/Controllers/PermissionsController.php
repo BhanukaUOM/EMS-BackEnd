@@ -17,7 +17,7 @@ class PermissionsController extends Controller
     public function index(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View Permissions'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         if(($request->get('sort')!='null' && $request->get('sort')!='') && $request->get('search')){
             $permission = Permission::where("name", "LIKE", "%{$request->get('search')}%")->orderby($request->get('sort'), $request->get('order'))->paginate(10);
         } else if(($request->get('sort')!='null' && $request->get('sort')!='')){
@@ -39,7 +39,7 @@ class PermissionsController extends Controller
     public function store(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('Add Permissions'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $request->validate([
             'name' => 'required|string|min:2'
         ]);
@@ -55,7 +55,7 @@ class PermissionsController extends Controller
     public function show($id)
     {
         if(!Auth::user()->hasPermissionTo('View Permissions'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         return json_encode(Permission::findOrFail($id));
     }
 
@@ -69,7 +69,7 @@ class PermissionsController extends Controller
     public function update(Request $request, $id)
     {
         if(!Auth::user()->hasPermissionTo('Edit Permissions'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $rules = [
             'name' => 'required|min:2'
         ];
@@ -91,7 +91,7 @@ class PermissionsController extends Controller
     public function destroy($id)
     {
         if(!Auth::user()->hasPermissionTo('Delete Permissions'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $permission = Permission::findOrFail($id);
         $permission->delete();
         return response()->json(['data' => $permission], 200);
@@ -99,7 +99,7 @@ class PermissionsController extends Controller
 
     public function allPermissions(){
         if(!Auth::user()->hasPermissionTo('View Permissions'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         return response()->json(Permission::get(), 200);
     }
 }

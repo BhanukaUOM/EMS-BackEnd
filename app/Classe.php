@@ -8,7 +8,7 @@ class Classe extends Model
 {
     public function teacher()
     {
-        return $this->hasOne(Teacher::class);
+        return $this->hasOne(Teacher::class, 'id', 'teacher_id');
     }
 
     public function subject()

@@ -14,7 +14,7 @@ class TimeTableController extends Controller
     public function index(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View TimeTable'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
 
         $year = Date("Y");
         if(Auth::user()->hasRole('Student'))
@@ -42,7 +42,7 @@ class TimeTableController extends Controller
     public function store(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('Add TimeTable'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $request->validate([
             'user_id' => 'required|integer',
             'year' => 'required|integer',
@@ -65,7 +65,7 @@ class TimeTableController extends Controller
     public function show($id)
     {
         if(!Auth::user()->hasPermissionTo('View TimeTable'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         return json_encode(TimeTables::findOrFail($id));
     }
 
@@ -95,7 +95,7 @@ class TimeTableController extends Controller
     public function destroy($id)
     {
         if(!Auth::user()->hasPermissionTo('Delete TimeTable'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $timeTables = TimeTables::findOrFail($id);
         $timeTables->delete();
         return response()->json(['data' => $timeTables], 200);
@@ -105,7 +105,8 @@ class TimeTableController extends Controller
     {
         if(!Auth::user()->hasPermissionTo('View TimeTable'))
             return parent::checkPermission('View TimeTable');
-        if(Auth::user()->hasRole('Student')){
+        if(Auth::user()->hasRole('
+        ')){
             $student_id = Auth::user()->id;
         }
         else if(Auth::user()->hasRole('Parent')){

@@ -13,7 +13,7 @@ class SubjectsController extends Controller
     public function index(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('View Subjects'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
 
         $year = Date("Y");
         if(Auth::user()->hasRole('Student'))
@@ -41,7 +41,7 @@ class SubjectsController extends Controller
     public function store(Request $request)
     {
         if(!Auth::user()->hasPermissionTo('Add Subjects'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $request->validate([
             'user_id' => 'required|integer',
             'year' => 'required|integer',
@@ -64,7 +64,7 @@ class SubjectsController extends Controller
     public function show($id)
     {
         if(!Auth::user()->hasPermissionTo('View Subjects'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         return json_encode(Subjects::findOrFail($id));
     }
 
@@ -94,7 +94,7 @@ class SubjectsController extends Controller
     public function destroy($id)
     {
         if(!Auth::user()->hasPermissionTo('Delete Subjects'))
-            return response()->json("User do not have permission", 401);
+            return response()->json([ "message" => 'User do not have permission'], 401);
         $subjects = Subjects::findOrFail($id);
         $subjects->delete();
         return response()->json(['data' => $subjects], 200);

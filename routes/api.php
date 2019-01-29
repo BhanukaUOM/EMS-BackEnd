@@ -30,6 +30,7 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
+    Route::get('users/profile', 'UsersController@profile');
     Route::resource('users', 'UsersController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
     Route::post('users/pause', 'UsersController@pause');
 });
@@ -107,5 +108,12 @@ Route::group([
 ], function () {
     Route::get('results/mobile', 'ExamResultContoller@mobile');
     Route::resource('results', 'ExamResultContoller', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+});
+
+Route::group([
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('class/teacher', 'ClassController@teacher');
+    Route::resource('class', 'ClassController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });
 
