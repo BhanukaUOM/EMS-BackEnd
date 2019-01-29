@@ -117,7 +117,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(!Auth::user()->hasPermissionTo('Edit Users'))
+        if(!Auth::user()->hasPermissionTo('Edit Users') && !Auth::user()->id==$id)
             return response()->json([ "message" => 'User do not have permission'], 401);
         $rules = [
             'name' => 'required|min:2',
