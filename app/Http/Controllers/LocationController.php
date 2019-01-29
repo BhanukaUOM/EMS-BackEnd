@@ -29,7 +29,7 @@ class LocationController extends Controller
                 $location->user_id = Auth::user()->id;
             }
 
-            $location->timestamp = Carbon::createFromTimestamp($request->timestamp)->toDateTimeString();
+            $location->timestamp = Carbon::createFromTimestamp($request->timestamp/1000)->toDateTimeString();
             $location->latitude = $request->latitude;
             $location->longitude = $request->longitude;
             if($request->accuracy)
