@@ -20,4 +20,11 @@ class ClassController extends Controller
         if(Auth::user()->hasRole('Parent'))
             return response()->json(Student::find($request->get('student_id'))->class);
     }
+
+    public function index(Request $request){
+        if(!Auth::user()->hasPermissionTo('View Class')){
+            return response()->json([ "message" => 'User do not have permission'], 401);
+        }
+        return response()->json(Classe::with('teacher.user')->get());
+    }
 }

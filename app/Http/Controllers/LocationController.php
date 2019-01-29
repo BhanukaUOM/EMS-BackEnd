@@ -44,7 +44,7 @@ class LocationController extends Controller
                 $location->speed = $request->speed;
             $location->save();
 
-            return response()->json(['data' => $location]);
+            return response()->json(['status' => true]);
         } else {
             return response()->json(["error" => ['message' => "You don't have permission"]], 401);
         }
