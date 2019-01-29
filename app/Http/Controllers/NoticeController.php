@@ -135,13 +135,11 @@ class NoticeController extends Controller
 
         if($request->to){
             $data=null;
-            foreach($request->to as $to){
-                if($to['isRoleBased']){
-                    NoticeUser::create(['isRoleBased'=>true, 'notice_id'=>$notice->id, 'role_id'=>$to['role_id']]);
-                } else {
-                    NoticeUser::create(['isRoleBased'=>false, 'user_id'=>$to['user_id'], 'notice_id'=>$notice->id]);
-                }
-            }
+            //foreach($request->to as $to){
+                // if($request->isRoleBased){
+            NoticeUser::create(['isRoleBased'=>true, 'notice_id'=>$notice->id, 'role_id'=>$request->to]);
+                // }
+            //}
         }
         return response()->json($notice);
     }

@@ -407,6 +407,34 @@ class AttendanceController extends Controller
      if(!Auth::user()->hasRole('Teacher'))
         return response()->json([ "message" => 'User do not have permission'], 401);
 
-    return Student::with('user', 'parent')->where("class_id", User::find(Auth::user()->id)->teacher->class->id)->get();
+    $now = Carbon::now();
+    $student_id = $request->get('student_id');
+    return Student::whereHas('attendance', function($q) use ($now, $student_id){
+        $q->where(['year'=>$now->year, 'month'=>$now->month, 'day'=>$now->day+1]);
+    })->with('user', 'parent', 'attendance')->where("class_id", User::find(Auth::user()->id)->teacher->class->id)->get();
+    }
+
+    public function mark(Request $request){
+        if(!Auth::user()->hasRole('Teacher'))
+           return response()->json([ "message" => 'User do not have permission'], 401);
+
+        if(Student::find($request->get('student_id'))->class->teacher->user->id == Auth::user()->id){
+            if(Attendance::where(['student_id'=>$request->get('student_id'), 'year'=>$request->get('year'), 'month'=>$request->get('month'), 'day'=>$request->get('day')])->count()>0){
+                $attendance = Attendance::where(['student_id'=>$request->get('student_id'), 'year'=>$request->get('year'), 'month'=>$request->get('month'), 'day'=>$request->get('day')])->first();
+            } else {
+                $attendance = new Attendance();
+            }
+            if($request->get('status')=='true')
+                $val = true;
+            else if($request->get('status')=='false')
+                $val = false;
+            $attendance['student_id'] = $request->get('student_id');
+            $attendance['year'] = $request->get('year');
+            $attendance['month'] = $request->get('month')+1;
+            $attendance['day'] = $request->get('day');
+            $attendance['state'] = $val;
+            $attendance['class_id'] = Student::find($request->get('student_id'))->class->id;
+            $attendance->save();
+        }
     }
 }

@@ -69,6 +69,7 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
+    Route::get('attendance/mark', 'AttendanceController@mark');
     Route::get('attendance/student', 'AttendanceController@student');
     Route::get('attendance/mobile', 'AttendanceController@allMobile');
     Route::resource('attendance', 'AttendanceController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
