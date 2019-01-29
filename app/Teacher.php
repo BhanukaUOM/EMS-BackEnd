@@ -20,4 +20,9 @@ class Teacher extends Model
     {
         return $this->hasMany(TimeTable::class);
     }
+
+    public function subjectGroup()
+    {
+        return $this->hasOne(SubjectGroup::class, 'id', 'subject_group_id');
+    }
 }

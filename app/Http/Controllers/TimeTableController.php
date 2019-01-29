@@ -117,6 +117,8 @@ class TimeTableController extends Controller
                 $q->where('id', $student_id);
             })->count()==0)
                 return response()->json("no permission", 401);
+        } else if(Auth::user()->hasRole('Teacher')){
+            return response()->json(TimeTable::with('subject', 'class')->where('teacher_id', Auth::user()->teacher->id)->get(), 200);
         }
 
         $class_id = Student::find($student_id)->class->id;

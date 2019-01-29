@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SubjectGroup;
+use App\Student;
+use App\Teacher;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Guardian;
@@ -16,8 +18,11 @@ class SubjectsController extends Controller
             return response()->json([ "message" => 'User do not have permission'], 401);
 
         $year = Date("Y");
+        if($request->get('year'))
+            $year = $request->get('year');
+
         if(Auth::user()->hasRole('Student'))
-            $student = Auth::user()->id;
+            $student = Auth::user()->student->id;
         else if(Auth::user()->hasRole('Parent')){
             if(!$request->get('student_id'))
                 return response()->json("error no student_id found", 401);
@@ -26,10 +31,11 @@ class SubjectsController extends Controller
                 $q->where('id', $student);
             })->count()==0)
                 return response()->json("no permission", 401);
+        }  else if(Auth::user()->hasRole('Teacher')){
+            $teacher_id = User::find($request->get('teacher_id'))->teacher->id;
+            return response()->json(SubjectGroup::with('subject')->where(['id' => Teacher::find($teacher_id)->subjectGroup->id, 'year' => $year])->get(), 200);
         }
-        if($request->get('year'))
-            $year = $request->get('year');
-        return response()->json(SubjectGroup::with('subject')->where('year', $year)->get(), 200);
+        return response()->json(SubjectGroup::with('subject')->where(['id' => Student::find($student)->subjectGroup->id, 'year' => $year])->get(), 200);
         return response()->json("error no subject_id found", 401);
     }
 

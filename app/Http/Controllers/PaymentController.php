@@ -118,13 +118,24 @@ class PaymentController extends Controller
                 $q->where('id', $student_id);
             })->count()==0)
                 return response()->json("no permission", 401);
+        } else  if(Auth::user()->hasRole('Teacher')){
+            $teacher_id = Auth::user()->teacher->id;
+            if($request->get('year')){
+                $year = $request->get('year');
+                return response()->json(Payment::whereHas('student.class', function($q) use ($teacher_id){
+                    $q->where('teacher_id', $teacher_id);
+                })->whereBetween('payment_at', [date($year.'-01-01'), date($year.'-12-31')])->get(), 200);
+            }
+            return response()->json(Payment::whereHas('student.class', function($q) use ($teacher_id){
+                $q->where('teacher_id', $teacher_id);
+            })->get(), 200);
         }
 
         if($request->get('year')){
             $year = $request->get('year');
             return response()->json(Payment::where('student_id', $student_id)->whereBetween('payment_at', [date($year.'-01-01'), date($year.'-12-31')])->get(), 200);
         }
-            return response()->json(Payment::where(['student_id' => $student_id])->get(), 200);
+        return response()->json(Payment::where(['student_id' => $student_id])->get(), 200);
     }
 
     public function pay(Request $request){

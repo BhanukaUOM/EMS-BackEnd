@@ -15,6 +15,7 @@ class ExamResultContoller extends Controller
             return response()->json([ "message" => 'User do not have permission'], 401);
         }
 
+        $student_id = null;
         if(Auth::user()->hasRole('Student')){
             $student_id = User::find(Auth::user()->id)->student->id;
         }
@@ -31,18 +32,30 @@ class ExamResultContoller extends Controller
         $year = Date("Y");
         if($request->get('class_id')){
             $class_id = $request->get('class_id');
-            if($request->get('term'))
+            if($request->get('term')){
+                if($student_id)
+                    return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
+                        $query->where('id','=',$class_id);
+                    })->with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
+
                 return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
                     $query->where('id','=',$class_id);
-                })->with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
-
+                })->with('subject', 'class', 'student')->where(['term' => $request->get('term')])->get());
+            }
+            if($student_id)
                 return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
                     $query->where('id','=',$class_id);
                 })->with('subject', 'class')->where(['student_id' => $student_id])->get());
+
+            return response()->json(ExamResult::whereHas('class', function ($query) use ($class_id) {
+                $query->where('id','=',$class_id);
+            })->with('subject', 'class', 'student')->get());
+
             } else {
                 if($request->get('term'))
-                    return response()->json(ExamResult::with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
-
+                    if($student_id)
+                        return response()->json(ExamResult::with('subject', 'class')->where(['student_id' => $student_id, 'term' => $request->get('term')])->get());
+                    return response()->json(ExamResult::with('subject', 'class', 'student')->where(['term' => $request->get('term')])->get());
                 return response()->json(ExamResult::whereHas('subject', function ($query) use ($year) {
                     $query->where('year','=',$year);
                 })->with('subject', 'class')->where(['student_id' => $student_id])->get());

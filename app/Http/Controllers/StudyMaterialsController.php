@@ -24,6 +24,7 @@ class StudyMaterialsController extends Controller
         if(!Auth::user()->hasPermissionTo('View Materials'))
             return response()->json([ "message" => 'User do not have permission'], 401);
 
+        $student_id = null;
         if(Auth::user()->hasRole('Student')){
             $user_id = Auth::user()->id;
             $student_id = Student::where('user_id', Auth::user()->id)->first()->id;
@@ -39,10 +40,12 @@ class StudyMaterialsController extends Controller
         }
 
         $subject_id = $request->get('subject_id');
-        if(subjectGroup::where('id', Student::find($student_id)->subject_group_id)->whereHas('subject', function($q) use ($subject_id){
-            $q->where('id', $subject_id);
-        })->count()==0)
-            return response()->json("no permission", 401);
+        if($student_id){
+            if(subjectGroup::where('id', Student::find($student_id)->subject_group_id)->whereHas('subject', function($q) use ($subject_id){
+                $q->where('id', $subject_id);
+            })->count()==0)
+                return response()->json("no permission", 401);
+        }
         if($request->get('subject_id'))
             return response()->json(Material::where(['subject_id' => $subject_id])->get(), 200);
         return response()->json("error no subject_id found", 401);

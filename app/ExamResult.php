@@ -17,4 +17,9 @@ class ExamResult extends Model
     {
         return $this->hasOne(Classe::class, 'id', 'class_id');
     }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'id', 'student_id');
+    }
 }

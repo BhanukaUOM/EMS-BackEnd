@@ -42,7 +42,7 @@ class Student extends Model
 
     public function subjectGroup()
     {
-        return $this->hasOne(SubjectGroup::class);
+        return $this->hasOne(SubjectGroup::class, 'id', 'subject_group_id');
     }
 
     public function class()
