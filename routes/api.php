@@ -91,6 +91,7 @@ Route::post('payments/notify', 'PaymentController@notify');
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
+    Route::get('payments/student', 'PaymentController@student');
     Route::get('payments/history', 'PaymentController@history');
     Route::get('payments/pay', 'PaymentController@pay');
     Route::resource('payments', 'PaymentController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);

@@ -182,7 +182,18 @@ class PaymentController extends Controller
                     $payment['note'] = 'Chargedback';
                 $payment['transaction_id'] = $request->payment_id;
                 $payment->save();
+                // Payment::findOrFail($request->order_id)->user->next_payment_at += 4;
             }
         }
     }
+
+    public function student(Request $request){
+        if(!Auth::user()->hasRole('Teacher'))
+           return response()->json([ "message" => 'User do not have permission'], 401);
+
+       return Student::with('user', 'parent')->whereHas(
+           'payment', function($q){
+            $q->select('name')->distinct()->where('teacher_id', $teacher_id)->orderBy('note', 'desc') ;
+        })->leftJoin('payments', 'students.id', '=', 'payments.student_id')->where("class_id", User::find(Auth::user()->id)->teacher->class->id)->get();
+       }
 }
