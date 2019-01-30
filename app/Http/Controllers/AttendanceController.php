@@ -409,9 +409,7 @@ class AttendanceController extends Controller
 
     $now = Carbon::now();
     $student_id = $request->get('student_id');
-    return Student::whereHas('attendance', function($q) use ($now, $student_id){
-        $q->where(['year'=>$now->year, 'month'=>$now->month, 'day'=>$now->day+1]);
-    })->with('user', 'parent', 'attendance')->where("class_id", User::find(Auth::user()->id)->teacher->class->id)->get();
+    return Student::with('user', 'parent', 'attendance')->where("class_id", User::find(Auth::user()->id)->teacher->class->id)->get();
     }
 
     public function mark(Request $request){
