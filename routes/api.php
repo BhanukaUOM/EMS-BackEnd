@@ -115,6 +115,9 @@ Route::group([
 Route::group([
     'middleware' => 'auth:api'
 ], function () {
+    Route::get('class/classall', 'ClassController@classAll');
+    Route::get('class/teacherall', 'ClassController@teacherAll');
+    Route::get('class/student', 'ClassController@student');
     Route::get('class/teacher', 'ClassController@teacher');
     Route::resource('class', 'ClassController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });

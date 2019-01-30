@@ -106,7 +106,8 @@ class PaymentController extends Controller
     public function history(Request $request){
         if(!Auth::user()->hasPermissionTo('View Payments'))
             return response()->json([ "message" => 'User do not have permission'], 401);
-
+            if(Auth::user()->hasRole('Admin') || Auth::user()->hasRole('SuperAdmin'))
+                return Payment::with('student')->get();
         if(Auth::user()->hasRole('Student')){
             $student_id = Auth::user()->id;
         }

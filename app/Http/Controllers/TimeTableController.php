@@ -16,21 +16,7 @@ class TimeTableController extends Controller
         if(!Auth::user()->hasPermissionTo('View TimeTable'))
             return response()->json([ "message" => 'User do not have permission'], 401);
 
-        $year = Date("Y");
-        if(Auth::user()->hasRole('Student'))
-            $student = Auth::user()->id;
-        else if(Auth::user()->hasRole('Parent')){
-            if(!$request->get('student_id'))
-                return response()->json("error no student_id found", 401);
-            $student = $request->get('student_id');
-            if(User::find(Auth::user()->id)->whereHas('student', function($q) use ($student){
-                $q->where('id', $student);
-            })->count()==0)
-                return response()->json("no permission", 401);
-        }
-        if($request->get('year'))
-            $year = $request->get('year');
-        return response()->json(TimeTableGroup::with('timeTable')->where('year', $year)->get(), 200);
+        return response()->json(TimeTable::with('teacher.user', 'subject', 'class')->get(), 200);
         //return response()->json("error no timeTable_id found", 401);
     }
 
@@ -44,15 +30,15 @@ class TimeTableController extends Controller
         if(!Auth::user()->hasPermissionTo('Add TimeTable'))
             return response()->json([ "message" => 'User do not have permission'], 401);
         $request->validate([
-            'user_id' => 'required|integer',
-            'year' => 'required|integer',
-            'month' => 'required|integer',
-            'day' => 'required|integer',
-            'state' => 'required|boolean',
+            'week_day' => 'required|integer',
+            'start' => 'required',
+            'end' => 'required',
+            'teacher_id' => 'required',
+            'subject_id' => 'required',
             'class_id' => 'required|integer'
         ]);
 
-        $timeTables = TimeTables::create($request->all());
+        $timeTables = TimeTable::create($request->all());
         return json_encode($timeTables);
     }
 
@@ -66,7 +52,7 @@ class TimeTableController extends Controller
     {
         if(!Auth::user()->hasPermissionTo('View TimeTable'))
             return response()->json([ "message" => 'User do not have permission'], 401);
-        return json_encode(TimeTables::findOrFail($id));
+        return json_encode(TimeTable::findOrFail($id));
     }
 
     /**
@@ -79,9 +65,9 @@ class TimeTableController extends Controller
     public function update(Request $request, $id)
     {
         if(!Auth::user()->hasPermissionTo('Edit TimeTable'))
-            return parent::checkPermission('Edit TimeTables');
+            return response()->json([ "message" => 'User do not have permission'], 401);
 
-        $timeTables = TimeTables::findOrFail($id);
+        $timeTables = TimeTable::findOrFail($id);
         $timeTables->fill($request->all())->save();
         return response()->json(['data' => $timeTables], 201);
     }
@@ -96,7 +82,7 @@ class TimeTableController extends Controller
     {
         if(!Auth::user()->hasPermissionTo('Delete TimeTable'))
             return response()->json([ "message" => 'User do not have permission'], 401);
-        $timeTables = TimeTables::findOrFail($id);
+        $timeTables = TimeTable::findOrFail($id);
         $timeTables->delete();
         return response()->json(['data' => $timeTables], 200);
     }

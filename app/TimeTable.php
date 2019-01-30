@@ -13,6 +13,11 @@ class TimeTable extends Model
         return $this->hasOne(Classe::class, 'id', 'class_id');
     }
 
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'id', 'student_id');
+    }
+
     public function subject()
     {
         return $this->hasOne(Subject::class, 'id', 'subject_id');
