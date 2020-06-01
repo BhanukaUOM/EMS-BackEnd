@@ -1,0 +1,2801 @@
+{
+	"info": {
+		"_postman_id": "7d1219ee-10a3-4747-833d-87fd1397001c",
+		"name": "EMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"name1\",\n\t\"email\" : \"bm65556@gmail.com\",\n\t\"password\" : \"abc123\",\n\t\"password_confirmation\" : \"abc123\"\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/auth/signup",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Account",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/auth/signup/activate/rSbyKJsa2I2ZiDDz3rEEu3WjGaLSNAVtkBun3lZ6gmIvgvQpR7jwhjHa2XGq",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup",
+								"activate",
+								"rSbyKJsa2I2ZiDDz3rEEu3WjGaLSNAVtkBun3lZ6gmIvgvQpR7jwhjHa2XGq"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"student@ems.com\",\n\t\"password\" : \"abc123\",\n\t\"remember_me\" : true\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk1ODgxOGFhZTZiNWFmNzJhYjYyMzIzMDBhMzEwNDFlOTczMGQzYzkxMzE2OTI2Yjk2MzY0Yzc1MTU5YmI3YTI4MDJhMWFiMjIzYWU4YjkwIn0.eyJhdWQiOiIxIiwianRpIjoiOTU4ODE4YWFlNmI1YWY3MmFiNjIzMjMwMGEzMTA0MWU5NzMwZDNjOTEzMTY5MjZiOTYzNjRjNzUxNTliYjdhMjgwMmExYWIyMjNhZThiOTAiLCJpYXQiOjE1NDI4NzU5NjUsIm5iZiI6MTU0Mjg3NTk2NSwiZXhwIjoxNTc0NDExOTY0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.FxI4QwY8q3pQv3n-zv1kfABUnOgL-L1EaHfDxh9VYa6LWUx47XJ8Jn-87hzp9vjUbGKKvwz8Z-vQ24kPaFuGSJGCkMfgkgbVbjRr2Lls79mpCj1KreXZZKo_-0B4RGd9P2fMzbPGmr5yinZXPtsf3G3QORNxNRv7T2e47UEcllmM42kmTYsQVGHW77QMSEmiZWVRjR65BbQqDcMO5-E2bX68_d5kFQR9OGaAa6JC1QFMxMSnrNsuJOGr1x1BZgj_Z5g7QnuOauc_X9cKJ-xkxDBAQAVeDJfpA7h8fsmeWd4JkQMPba7kK436DZP4D_qMxnmmirvL42zLOgMVEBm3PNsMs9prvRWHOkyNQa0caK-YjY6WQJGYqWImdoa9DNf-JXgSko6Zo6cY-NthkYxsQXRxqsrscTaQWhsx0N0-RUdyVqNkC89bkmHzGgv9SQmFZg3bFMtHkHoXEuJl_jXTBtft_XYfG9cKfeVVHHv1y9yGphdTJ_t3p5DDIuDwZaSi-tNqjJHy8zR_Hc7QkwS6OP1Cm0KICSb0I5XiXtYKk64LWKHhgmJL3n03-fH8bfwyxHpwRR7Ubh87CHwdbAm-Dwnn6-4c-_8JkZ8A2KvOr-1xcJw8wRrUH1pu19A-KEyXG8qrvo60YQV9Ka5_c-6omFqH8j_6EVlWwtIcf4VV3jk",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/auth/logout",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Logged User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjVmNjA4ODJkNTA3YWU2NDcwYjA5NDY3ZTUwZGUxMTllMWZlY2VjMWEzM2NhZjRhYmIxNDJmMGQ4ZWZlYTM1NjhlNzM2NTM5OTBkNTkyMmNmIn0.eyJhdWQiOiIxIiwianRpIjoiNWY2MDg4MmQ1MDdhZTY0NzBiMDk0NjdlNTBkZTExOWUxZmVjZWMxYTMzY2FmNGFiYjE0MmYwZDhlZmVhMzU2OGU3MzY1Mzk5MGQ1OTIyY2YiLCJpYXQiOjE1NDc3NDA1NjIsIm5iZiI6MTU0Nzc0MDU2MiwiZXhwIjoxNTc5Mjc2NTYyLCJzdWIiOiI1MSIsInNjb3BlcyI6W119.QHyFSudY-FSXATRE6KyeWCj9_mmEFpG7ouXti80N_WWuR8jpLyygKlk02wWgAQzfhJRh3smFTez2raY_g6dDlvuRLRO7NfEkq4naGeQoxFiVgMCCDMBRjCd3hUJW00LYZx4ATjxCuf-URNXu9zpOuN4lQt23zswW7OhbVRydiJoKMA25dR8T7Un9SCBbay3xUxCvAJbmI3wRdfYK-Y-v6GIxLzHHje67TsTaf-8cMcWV30kPcOwLckUf0X60iOPEcS3MsKZPkT6bwEffWzopSLJ97LdGs9rzG3z2wB0M2VLQSv4n_RFjVfYzyXwCdvwEKeNKe91J5Mo8YJOzEmXs-AS__5GyVdYJ-Wj2iI8QNdSCry0I_lTBwCxlL7RMgaomDmOeg0zbD658u-iWSw7GueLkYJLgb5CM5nj-5GmpoMwDjQC-gi3paPcHsI84GvPWay0Wz1AGrjT2ER9XlYakCxmptYTp01fHJt1F4fcOq155eU6KUPGzKv3RQQrKoaMfEc4baTOXIH6sY2QDc-4yo1Sl0MYMY15QOUjFMa-bP7fQtS2KzHiAyZfCyhBOzDb66gq6MiXj9gXFzmmwcCzQLSWoz-mnBabl2oODIDvc5c2FbAFSLTV7hAYBJrxhRHA9dFP-ymC-BNa5CwFPAqjRwAj7_hovIxUtLSwvd0ptPqE",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/auth/user",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Password Reset",
+			"item": [
+				{
+					"name": "Password Reset Email Send",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": " application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"bm65556@gmail.com\"\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/password/create",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"password",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Password Reset Email by token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/password/find/dIrqE8PgucpGFRbnWBP0nKz0d8zEXOpAvxiBaUIqyf2XwYIQHZbj6nuridBe",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"password",
+								"find",
+								"dIrqE8PgucpGFRbnWBP0nKz0d8zEXOpAvxiBaUIqyf2XwYIQHZbj6nuridBe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Password Reset",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\" : \"bm65556@gmail.com\",\n\t\"password\" : \"abc123\",\n\t\"password_confirmation\" : \"abc123\",\n\t\"token\" : \"oUFVX7AYB7veCNgTXOYjjbLOfz0CdRaAUMXEBVYYwrGX9JW6b8AUntQA3B43\"\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/password/reset",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImE0NTExNmE4N2QwM2IyYzNlNmY0Y2I1MzZlZTE2YjY2YTdlYmYyNjNhN2NhNmNhMjc1NmNjNjQ1MTljZDc2N2E2N2E2OGI5ZDI1ODJhOTU1In0.eyJhdWQiOiIxIiwianRpIjoiYTQ1MTE2YTg3ZDAzYjJjM2U2ZjRjYjUzNmVlMTZiNjZhN2ViZjI2M2E3Y2E2Y2EyNzU2Y2M2NDUxOWNkNzY3YTY3YTY4YjlkMjU4MmE5NTUiLCJpYXQiOjE1NDMyOTU4NzMsIm5iZiI6MTU0MzI5NTg3MywiZXhwIjoxNTc0ODMxODczLCJzdWIiOiI1MiIsInNjb3BlcyI6W119.Oh8M3kAWc_D7s1wZsr8xWDDlUZeAAdEX5l_eFBLEgZ2GDIyVqTgLcopM8N8_vUrGKkQTBnhv1SwWJvod9Iz9VdcPlVfH1wAh8K9JG4S9cVgeMSQoSkxB7Ps0Nm77D6VVIkaP0reCC4UbaFzj7wHcYGz9J33FwzMpuOTXQCy4pvq3iDAnFXVvtJTJbIv5HOdIZoteK9czvCdjZBwpZoJxhFOEJUmgeweClH8jnDIxM6mmN8uQJW56EFJPacGUS_pcGRefoLHomvOpjjdlra6-ZCTPnAPnJgoXnRfsdGkVU_pEBeGcGU3mpVnssRf8O3D_z7MZNEBwyTwSpc20H0yn1porCh-nflKz1ZGNlDzhc4qzq71k7dhx1rEupB395EqDnAscanj7mRstZWclzRBV13I-xW32eQZe9zKvctLrOal7FevGi8_GSwkNGd1tAy-XSPNJjd8ywDzP2N79-ViasFRTSMWyffC7ciMR-TDM_Y4pMaPUuwMg_6z3Bb0UNyMrRuVu0IiRZF3ScqW_06ltthdwHudLpH-J8Pj2AkbJ3FGphNpSRKWqMZIIwdUpK06uWAFE86s-BQNsQXziioEiH05o-qHzmhAp4FP5cyOD0zvi20sxrebRarhjNnhGfXCiSSWDLFHNyTOhsNa_YvR5-U-KAXWG1tVyzXmsvHTafpo",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/users?search=a&page=1&sort=name&order=desc",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "a"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "name"
+								},
+								{
+									"key": "order",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pause",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImNlNDFhZThlNmEyZTlhMGIzOTk1OGNiNTkzMDNjZTIzOWFlYjM0NzJiODRhZDJlZmI4ZmMyMDFmMGZiZWI4NmI4NjUyOWRlOTg0OTY4MTEzIn0.eyJhdWQiOiIxIiwianRpIjoiY2U0MWFlOGU2YTJlOWEwYjM5OTU4Y2I1OTMwM2NlMjM5YWViMzQ3MmI4NGFkMmVmYjhmYzIwMWYwZmJlYjg2Yjg2NTI5ZGU5ODQ5NjgxMTMiLCJpYXQiOjE1NDI5Nzc2NDAsIm5iZiI6MTU0Mjk3NzY0MCwiZXhwIjoxNTc0NTEzNjQwLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.ebjQ9alGKDzMfckDrjgvnEeTBZpRnNBOxRoz-DFg-j9AcK6g8H0Bto5-cBbAb_VLyVhvWTWR4pMSzCXYPR7TbBjYYOpvCbeTZsIVmnzES22vISBG1EjlA_IzCgdZpk8Gz_xWlFUZdIjTkbDSs_4wF9LoJRUof_8kZsQbA-1C973mEuKPsPZE_HRcuGknxiKGVMAks_erf6PPV6tJrZloAcgAQlRubJgDIhftToyOOszKVcJyl3RJM6Ej33EuIQYm3jlF303YlsvzNZjy7eS9JUReKt4wGUBccFkq-0NhOH95lfnLhlq42TUDzbPYXV9XNrkZC3ggydMz_C2v-tTYRATd3BcPWU4nxBZKAJPEYGds4kP7I-7kBamy2cvssxdDkverZLVccIYXc1yp3BlW6NB267L2mU43Yvzy1OCGuClEgYqaD0ZTz6sQQN0iecAEsGGfhspkzsOdUmxdFRV4cDQFirsGmwiVolT9yd1urUfQgIcuCaVTsmdCtxBrpSVlC_zoVq5ry_i9HVpWIAGuJ8elczytZGzzlMaCTLZzcSmDI2s3cX6ZFn6dN57JDuLhR22k-bhGK3YL2OX-eREXtZtoyDRZhFfhqSULOakEuCipMRUI0qcpd17dL10cXiQU0aTx0TNqcg9G4RyfJrgqKk5s3jShdgpa88E7Dz5ixCs",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\" : \"1\"\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/users/pause",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"pause"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImNlNDFhZThlNmEyZTlhMGIzOTk1OGNiNTkzMDNjZTIzOWFlYjM0NzJiODRhZDJlZmI4ZmMyMDFmMGZiZWI4NmI4NjUyOWRlOTg0OTY4MTEzIn0.eyJhdWQiOiIxIiwianRpIjoiY2U0MWFlOGU2YTJlOWEwYjM5OTU4Y2I1OTMwM2NlMjM5YWViMzQ3MmI4NGFkMmVmYjhmYzIwMWYwZmJlYjg2Yjg2NTI5ZGU5ODQ5NjgxMTMiLCJpYXQiOjE1NDI5Nzc2NDAsIm5iZiI6MTU0Mjk3NzY0MCwiZXhwIjoxNTc0NTEzNjQwLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.ebjQ9alGKDzMfckDrjgvnEeTBZpRnNBOxRoz-DFg-j9AcK6g8H0Bto5-cBbAb_VLyVhvWTWR4pMSzCXYPR7TbBjYYOpvCbeTZsIVmnzES22vISBG1EjlA_IzCgdZpk8Gz_xWlFUZdIjTkbDSs_4wF9LoJRUof_8kZsQbA-1C973mEuKPsPZE_HRcuGknxiKGVMAks_erf6PPV6tJrZloAcgAQlRubJgDIhftToyOOszKVcJyl3RJM6Ej33EuIQYm3jlF303YlsvzNZjy7eS9JUReKt4wGUBccFkq-0NhOH95lfnLhlq42TUDzbPYXV9XNrkZC3ggydMz_C2v-tTYRATd3BcPWU4nxBZKAJPEYGds4kP7I-7kBamy2cvssxdDkverZLVccIYXc1yp3BlW6NB267L2mU43Yvzy1OCGuClEgYqaD0ZTz6sQQN0iecAEsGGfhspkzsOdUmxdFRV4cDQFirsGmwiVolT9yd1urUfQgIcuCaVTsmdCtxBrpSVlC_zoVq5ry_i9HVpWIAGuJ8elczytZGzzlMaCTLZzcSmDI2s3cX6ZFn6dN57JDuLhR22k-bhGK3YL2OX-eREXtZtoyDRZhFfhqSULOakEuCipMRUI0qcpd17dL10cXiQU0aTx0TNqcg9G4RyfJrgqKk5s3jShdgpa88E7Dz5ixCs",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/users/4",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImNlNDFhZThlNmEyZTlhMGIzOTk1OGNiNTkzMDNjZTIzOWFlYjM0NzJiODRhZDJlZmI4ZmMyMDFmMGZiZWI4NmI4NjUyOWRlOTg0OTY4MTEzIn0.eyJhdWQiOiIxIiwianRpIjoiY2U0MWFlOGU2YTJlOWEwYjM5OTU4Y2I1OTMwM2NlMjM5YWViMzQ3MmI4NGFkMmVmYjhmYzIwMWYwZmJlYjg2Yjg2NTI5ZGU5ODQ5NjgxMTMiLCJpYXQiOjE1NDI5Nzc2NDAsIm5iZiI6MTU0Mjk3NzY0MCwiZXhwIjoxNTc0NTEzNjQwLCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.ebjQ9alGKDzMfckDrjgvnEeTBZpRnNBOxRoz-DFg-j9AcK6g8H0Bto5-cBbAb_VLyVhvWTWR4pMSzCXYPR7TbBjYYOpvCbeTZsIVmnzES22vISBG1EjlA_IzCgdZpk8Gz_xWlFUZdIjTkbDSs_4wF9LoJRUof_8kZsQbA-1C973mEuKPsPZE_HRcuGknxiKGVMAks_erf6PPV6tJrZloAcgAQlRubJgDIhftToyOOszKVcJyl3RJM6Ej33EuIQYm3jlF303YlsvzNZjy7eS9JUReKt4wGUBccFkq-0NhOH95lfnLhlq42TUDzbPYXV9XNrkZC3ggydMz_C2v-tTYRATd3BcPWU4nxBZKAJPEYGds4kP7I-7kBamy2cvssxdDkverZLVccIYXc1yp3BlW6NB267L2mU43Yvzy1OCGuClEgYqaD0ZTz6sQQN0iecAEsGGfhspkzsOdUmxdFRV4cDQFirsGmwiVolT9yd1urUfQgIcuCaVTsmdCtxBrpSVlC_zoVq5ry_i9HVpWIAGuJ8elczytZGzzlMaCTLZzcSmDI2s3cX6ZFn6dN57JDuLhR22k-bhGK3YL2OX-eREXtZtoyDRZhFfhqSULOakEuCipMRUI0qcpd17dL10cXiQU0aTx0TNqcg9G4RyfJrgqKk5s3jShdgpa88E7Dz5ixCs",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"test\"\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/users/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View User Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/users/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImJiOGE0Y2M1NTQxYWI3MjBjNDE0Y2NiYjY3YjNkNmNkNTc5NTY0NjZiYzBlZjFmOWEyZjMwNTAzZmNjNjA1OGI2Yjg1YWU0ODU4ZGU1YTRhIn0.eyJhdWQiOiIzIiwianRpIjoiYmI4YTRjYzU1NDFhYjcyMGM0MTRjY2JiNjdiM2Q2Y2Q1Nzk1NjQ2NmJjMGVmMWY5YTJmMzA1MDNmY2M2MDU4YjZiODVhZTQ4NThkZTVhNGEiLCJpYXQiOjE1NDc5MjI1MjgsIm5iZiI6MTU0NzkyMjUyOCwiZXhwIjoxNTc5NDU4NTI4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.q2w7uGUDwttFesuo3V8BOSHnq96eegxX4JJaYMX8YUz9DqJvLPg4ErhXZW5VKoRGRNetK6e0E9zYQbpldLWaL8eZJb9vpENUQDgUAqEElgip1pPsYTA_XP--vtmP9G8U8Cmx_VeKOkVwuaF-MOlJ-pSgrjeGSyluuciFnTZdEn38aTQ0i7J_08Sh4pa2_VEHGbC99nrw_z99dhhxFx1d1uSd5kd_ZFLjz6oU4BeB0Jaffb_cbgWDy_fIjCvSqSwY_EKsuzkXaxB4UWTAJJiC0DlqEoT3f_QixEjjcBNygiZmQbim2uvVG3lPTERZ3jOYbrxvC_t5wMfF6gN2Vs9yCDROPwWok8SE16QiymBEUliIrTY9IFV7KVMS0WeRzxiJLQdHR7Yau0WvNmskUVsvCbjpn-iOvKtESJldmMrX1N1LXxpV6SX3B3rsNkP_Ye0J2Jxx7w1J42OmRz4B9UEClbdO7l-vntYART-hXxCCWx4BVCyLSuhK0u2JFHO6lp6Qi0e1skIF1Saptd31h44F818mSK9WsOtKito4ayCkl1DK-notrs7O06S9pXhbIOLc82ELQYT4TNCxaGk5gDJzwRdnXZcghBbcrCRGXF_hg0VQzyEyagKPn3X3vBrJZQCgGJaZYajjN6oO9md43ek9bjDHQ5fp6aU-tP2gmZ7QIwM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"name1\",\n\t\"email\" : \"bm65556@gmail.commm\",\n\t\"password\" : \"abc123\",\n\t\"password_confirmation\" : \"abc123\",\n\t\"address\" : \"123, Kohuwala\",\n\t\"about\" : \"about me\",\n\t\"role\" : [\"Admin\"]\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/users",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "Get All Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjJkOWYwMGUzZmFiZWY1ZWVkYWU4NDQ2ZjdkYjVjMDNmZmNkYzE3MGEzMjQxOGJjOTE4ZTRkZGE4ZjJlMmIxYzM0OTY3NDRhMWMxYjFlN2FjIn0.eyJhdWQiOiIxIiwianRpIjoiMmQ5ZjAwZTNmYWJlZjVlZWRhZTg0NDZmN2RiNWMwM2ZmY2RjMTcwYTMyNDE4YmM5MThlNGRkYThmMmUyYjFjMzQ5Njc0NGExYzFiMWU3YWMiLCJpYXQiOjE1NDMwNTYyMDgsIm5iZiI6MTU0MzA1NjIwOCwiZXhwIjoxNTc0NTkyMjA4LCJzdWIiOiI1MiIsInNjb3BlcyI6W119.jBxto_rSsp9Lgv0_t1hcSZ7W3XMq-l2a_geSjHW9u5O7HKLc9v1tJP0CFZwPhEfqPi_fUX-qDsXQs7BXgCSShyR1W00CWdvFGy3-Zh0exLlKAru6QkLXj2K2dmITLftvc7JfbPDqQMWEZ8HHFUiko5d0QJryiLtPuonB3iWKrHbbKWlGUWAmw-2y6e9mKK7Ze5L33PzZ5m66FkUZ4Wup_X7CetA7rbH2NG0GIvAWP9zUur0Ggcy9cvXmolGv5tssc9jop4pjchhd7N8gDfBZ4RaLW1he_OvU4624gBmunhI9HamAkVacCJt-cbQjwBQ9sSLLL432WJ54q7EXUrjdM3htermISP7ILOYxMS11qEpeHuABIiv3kJf9szExa99ZQVJxNw0Aki1rHew53eTtPVizeC0PSFtXnrBx7avaK08yyyny7G-VF-gDuRbyiVF1ECKh-174YjF882HkU7BWBA_l7HKvNMDiiJdi9R8rRZeqlmGp_VeKd3vzdqiWVWTi7P3OTgFdyT5KzbBQbjk9ObehnvfDS0nYovZMBQMwqqs8N_gPzrhuT6tx9QD80F_7BdP166uykNDt_3Blqs8twvN35tN0u8pHFaCTZTH6g5_6AD3INVDpmz0lQTpWfOq2eu4YW_GAQWXmboS691mJ_8IdyAJ4NU_4cL_K6tfb1bk",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/roles?search=keyword&page=2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"roles"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "keyword"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Role",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjJkOWYwMGUzZmFiZWY1ZWVkYWU4NDQ2ZjdkYjVjMDNmZmNkYzE3MGEzMjQxOGJjOTE4ZTRkZGE4ZjJlMmIxYzM0OTY3NDRhMWMxYjFlN2FjIn0.eyJhdWQiOiIxIiwianRpIjoiMmQ5ZjAwZTNmYWJlZjVlZWRhZTg0NDZmN2RiNWMwM2ZmY2RjMTcwYTMyNDE4YmM5MThlNGRkYThmMmUyYjFjMzQ5Njc0NGExYzFiMWU3YWMiLCJpYXQiOjE1NDMwNTYyMDgsIm5iZiI6MTU0MzA1NjIwOCwiZXhwIjoxNTc0NTkyMjA4LCJzdWIiOiI1MiIsInNjb3BlcyI6W119.jBxto_rSsp9Lgv0_t1hcSZ7W3XMq-l2a_geSjHW9u5O7HKLc9v1tJP0CFZwPhEfqPi_fUX-qDsXQs7BXgCSShyR1W00CWdvFGy3-Zh0exLlKAru6QkLXj2K2dmITLftvc7JfbPDqQMWEZ8HHFUiko5d0QJryiLtPuonB3iWKrHbbKWlGUWAmw-2y6e9mKK7Ze5L33PzZ5m66FkUZ4Wup_X7CetA7rbH2NG0GIvAWP9zUur0Ggcy9cvXmolGv5tssc9jop4pjchhd7N8gDfBZ4RaLW1he_OvU4624gBmunhI9HamAkVacCJt-cbQjwBQ9sSLLL432WJ54q7EXUrjdM3htermISP7ILOYxMS11qEpeHuABIiv3kJf9szExa99ZQVJxNw0Aki1rHew53eTtPVizeC0PSFtXnrBx7avaK08yyyny7G-VF-gDuRbyiVF1ECKh-174YjF882HkU7BWBA_l7HKvNMDiiJdi9R8rRZeqlmGp_VeKd3vzdqiWVWTi7P3OTgFdyT5KzbBQbjk9ObehnvfDS0nYovZMBQMwqqs8N_gPzrhuT6tx9QD80F_7BdP166uykNDt_3Blqs8twvN35tN0u8pHFaCTZTH6g5_6AD3INVDpmz0lQTpWfOq2eu4YW_GAQWXmboS691mJ_8IdyAJ4NU_4cL_K6tfb1bk",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/roles/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"roles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Role",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjJkOWYwMGUzZmFiZWY1ZWVkYWU4NDQ2ZjdkYjVjMDNmZmNkYzE3MGEzMjQxOGJjOTE4ZTRkZGE4ZjJlMmIxYzM0OTY3NDRhMWMxYjFlN2FjIn0.eyJhdWQiOiIxIiwianRpIjoiMmQ5ZjAwZTNmYWJlZjVlZWRhZTg0NDZmN2RiNWMwM2ZmY2RjMTcwYTMyNDE4YmM5MThlNGRkYThmMmUyYjFjMzQ5Njc0NGExYzFiMWU3YWMiLCJpYXQiOjE1NDMwNTYyMDgsIm5iZiI6MTU0MzA1NjIwOCwiZXhwIjoxNTc0NTkyMjA4LCJzdWIiOiI1MiIsInNjb3BlcyI6W119.jBxto_rSsp9Lgv0_t1hcSZ7W3XMq-l2a_geSjHW9u5O7HKLc9v1tJP0CFZwPhEfqPi_fUX-qDsXQs7BXgCSShyR1W00CWdvFGy3-Zh0exLlKAru6QkLXj2K2dmITLftvc7JfbPDqQMWEZ8HHFUiko5d0QJryiLtPuonB3iWKrHbbKWlGUWAmw-2y6e9mKK7Ze5L33PzZ5m66FkUZ4Wup_X7CetA7rbH2NG0GIvAWP9zUur0Ggcy9cvXmolGv5tssc9jop4pjchhd7N8gDfBZ4RaLW1he_OvU4624gBmunhI9HamAkVacCJt-cbQjwBQ9sSLLL432WJ54q7EXUrjdM3htermISP7ILOYxMS11qEpeHuABIiv3kJf9szExa99ZQVJxNw0Aki1rHew53eTtPVizeC0PSFtXnrBx7avaK08yyyny7G-VF-gDuRbyiVF1ECKh-174YjF882HkU7BWBA_l7HKvNMDiiJdi9R8rRZeqlmGp_VeKd3vzdqiWVWTi7P3OTgFdyT5KzbBQbjk9ObehnvfDS0nYovZMBQMwqqs8N_gPzrhuT6tx9QD80F_7BdP166uykNDt_3Blqs8twvN35tN0u8pHFaCTZTH6g5_6AD3INVDpmz0lQTpWfOq2eu4YW_GAQWXmboS691mJ_8IdyAJ4NU_4cL_K6tfb1bk",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"test\"\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/roles/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"roles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Role Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjJkOWYwMGUzZmFiZWY1ZWVkYWU4NDQ2ZjdkYjVjMDNmZmNkYzE3MGEzMjQxOGJjOTE4ZTRkZGE4ZjJlMmIxYzM0OTY3NDRhMWMxYjFlN2FjIn0.eyJhdWQiOiIxIiwianRpIjoiMmQ5ZjAwZTNmYWJlZjVlZWRhZTg0NDZmN2RiNWMwM2ZmY2RjMTcwYTMyNDE4YmM5MThlNGRkYThmMmUyYjFjMzQ5Njc0NGExYzFiMWU3YWMiLCJpYXQiOjE1NDMwNTYyMDgsIm5iZiI6MTU0MzA1NjIwOCwiZXhwIjoxNTc0NTkyMjA4LCJzdWIiOiI1MiIsInNjb3BlcyI6W119.jBxto_rSsp9Lgv0_t1hcSZ7W3XMq-l2a_geSjHW9u5O7HKLc9v1tJP0CFZwPhEfqPi_fUX-qDsXQs7BXgCSShyR1W00CWdvFGy3-Zh0exLlKAru6QkLXj2K2dmITLftvc7JfbPDqQMWEZ8HHFUiko5d0QJryiLtPuonB3iWKrHbbKWlGUWAmw-2y6e9mKK7Ze5L33PzZ5m66FkUZ4Wup_X7CetA7rbH2NG0GIvAWP9zUur0Ggcy9cvXmolGv5tssc9jop4pjchhd7N8gDfBZ4RaLW1he_OvU4624gBmunhI9HamAkVacCJt-cbQjwBQ9sSLLL432WJ54q7EXUrjdM3htermISP7ILOYxMS11qEpeHuABIiv3kJf9szExa99ZQVJxNw0Aki1rHew53eTtPVizeC0PSFtXnrBx7avaK08yyyny7G-VF-gDuRbyiVF1ECKh-174YjF882HkU7BWBA_l7HKvNMDiiJdi9R8rRZeqlmGp_VeKd3vzdqiWVWTi7P3OTgFdyT5KzbBQbjk9ObehnvfDS0nYovZMBQMwqqs8N_gPzrhuT6tx9QD80F_7BdP166uykNDt_3Blqs8twvN35tN0u8pHFaCTZTH6g5_6AD3INVDpmz0lQTpWfOq2eu4YW_GAQWXmboS691mJ_8IdyAJ4NU_4cL_K6tfb1bk",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/roles/2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"roles",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImJiOGE0Y2M1NTQxYWI3MjBjNDE0Y2NiYjY3YjNkNmNkNTc5NTY0NjZiYzBlZjFmOWEyZjMwNTAzZmNjNjA1OGI2Yjg1YWU0ODU4ZGU1YTRhIn0.eyJhdWQiOiIzIiwianRpIjoiYmI4YTRjYzU1NDFhYjcyMGM0MTRjY2JiNjdiM2Q2Y2Q1Nzk1NjQ2NmJjMGVmMWY5YTJmMzA1MDNmY2M2MDU4YjZiODVhZTQ4NThkZTVhNGEiLCJpYXQiOjE1NDc5MjI1MjgsIm5iZiI6MTU0NzkyMjUyOCwiZXhwIjoxNTc5NDU4NTI4LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.q2w7uGUDwttFesuo3V8BOSHnq96eegxX4JJaYMX8YUz9DqJvLPg4ErhXZW5VKoRGRNetK6e0E9zYQbpldLWaL8eZJb9vpENUQDgUAqEElgip1pPsYTA_XP--vtmP9G8U8Cmx_VeKOkVwuaF-MOlJ-pSgrjeGSyluuciFnTZdEn38aTQ0i7J_08Sh4pa2_VEHGbC99nrw_z99dhhxFx1d1uSd5kd_ZFLjz6oU4BeB0Jaffb_cbgWDy_fIjCvSqSwY_EKsuzkXaxB4UWTAJJiC0DlqEoT3f_QixEjjcBNygiZmQbim2uvVG3lPTERZ3jOYbrxvC_t5wMfF6gN2Vs9yCDROPwWok8SE16QiymBEUliIrTY9IFV7KVMS0WeRzxiJLQdHR7Yau0WvNmskUVsvCbjpn-iOvKtESJldmMrX1N1LXxpV6SX3B3rsNkP_Ye0J2Jxx7w1J42OmRz4B9UEClbdO7l-vntYART-hXxCCWx4BVCyLSuhK0u2JFHO6lp6Qi0e1skIF1Saptd31h44F818mSK9WsOtKito4ayCkl1DK-notrs7O06S9pXhbIOLc82ELQYT4TNCxaGk5gDJzwRdnXZcghBbcrCRGXF_hg0VQzyEyagKPn3X3vBrJZQCgGJaZYajjN6oO9md43ek9bjDHQ5fp6aU-tP2gmZ7QIwM",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Admin\"\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/roles",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2534cd90-519d-45f5-92ea-cbaf3825df06",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "df1e3b86-1df1-496b-b4be-e6ef971bdda9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "Add Location",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjUyMmQ3MThlYjdlY2MyZWNjMmY1MzBiNDE5OGQwNzFhNmNkMzk3MjgyOWI1Y2IxM2RlMzMyNmFiZmFjMzUzNzMxNmI5ZjIzNTNiMDM3Y2FjIn0.eyJhdWQiOiIzIiwianRpIjoiNTIyZDcxOGViN2VjYzJlY2MyZjUzMGI0MTk4ZDA3MWE2Y2QzOTcyODI5YjVjYjEzZGUzMzI2YWJmYWMzNTM3MzE2YjlmMjM1M2IwMzdjYWMiLCJpYXQiOjE1NDg3NzEyNTUsIm5iZiI6MTU0ODc3MTI1NSwiZXhwIjoxNTgwMzA3MjU1LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.VHjF4Jwm0DBqhE1jRvG22_fzNK6O4IMcveTyEH6nP2nDMy2LTQyt5vq9ONlfn04QTI77Nu73-zpJH9vNaXAf0gjMBuCExV3Dn7VUm7tHogRTugHZuhvjsJryCMpKHkcNLQcmt0NDWJU-W1A-aWqNETsZiGHKhpDDbAXIYO21w4yiT8Anz2iVo9yu_QIAmE5sXcyJ0ejfPDH8-Hh5U6Z3r2OmIMWlUEuduVzoBvTS9qZTOa4YJA3eZsNuPn0g0GPtHBda8_4MgWwk5Miyq9w-PPJP8YXE2Fp1pOM3TIds7RTD_lsUDxBZC8r63CmVd5Ojcz4O-U272KlU7N_yXarCSQ7it88SSznS2XjmpOtz7xla7hsx8hTcdRlX_MNbYOnfFlnbcfufTxRzCAK31GWgAZQdTNi0lcTwD133j_YfL6zlz3Ap55CJ1rS4zPGoiy33pHsBWErsas3K8IrVtQ18-wPXZQRcz2yoCM_q7No6DQc-fg9Hn-k37f8WPBxhYR2huHDKOceqi8d2Gvln9iax5goOgxQTh4-JYCe2jNngJrdFnYJI1dVTRpMNISXAISAmLka7nmMRCcFcPglIfGDf-fc1LB9aTOcLDS19xmMmdUkLrVlESQWSeE2ujpiBvaHqEWkB6QQhpowcYTAHqRPIXYdZ-FSDGTUT-CoDhJvyqDc",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"latitude\": 38.785834,\r\n    \"longitude\": -122.406417,\r\n    \"timestamp\": 1548780668000\r\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/location",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Location by Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjA3NzU1ZTYyMWY2YWMyZmU2ZGQxMTBlNWUyNzdhOTg2NDEwMGY4ZTEzYjkyYjlkNzgwZTM4ZGJmMjNkZTMwYWNhYmNiZDgyZDNkNThmZTg0In0.eyJhdWQiOiIxIiwianRpIjoiMDc3NTVlNjIxZjZhYzJmZTZkZDExMGU1ZTI3N2E5ODY0MTAwZjhlMTNiOTJiOWQ3ODBlMzhkYmYyM2RlMzBhY2FiY2JkODJkM2Q1OGZlODQiLCJpYXQiOjE1NDMxNjU3MjEsIm5iZiI6MTU0MzE2NTcyMSwiZXhwIjoxNTc0NzAxNzIxLCJzdWIiOiI1MiIsInNjb3BlcyI6W119.Xr6qzkKE51IoT-xlizFND7J6vbFA01gTTqbk9L99AetGmtwtmolPZj9n537rUlZtC58VXKU2dQ9mGCs4sL5nfZt5pAgvMHy8x4htM5RGoGoPRtX3fHg-hTvpBg917lLrVZ-pPVyV3FrATkbPFOLIrDSqTFPnWRS6fTI94BQxqg98EbefxcHC2MxBJNussKh_-uSv9Mh21oZaNW0neB_1zY_H74JbtLL7PJhxmT5bZPtcNuzsWDkvOhYGOzY0fKe0QLW-sld3Tpff456P7sNxnMvuncWBsNiuLpTt1B8ZMgiAGdog9OQeQgkT6Wlpq6N6zHX5OakC7GtnL1nRNKg47g-t9TQDtg8PCFxqojQBQZMPc88qgHqNVPQy_N_dLu4imxKN7guQlS1dITDqU-PD69-tJPSwpz6vpGZVRPr-6weAyvAV3G7XQnIL0yApBCCgujDh18VOBFtYasXf6kvyBJ0WRtOIoU1AewO_EeRxeaObVCCk-Psp-bE0e8NMKfdYLgniFtVI7sJ3MxNlwV8BVlMRewvHzKlxOFxCmNlS9FQKepbjZ0lWJ_r6jAayVT18Ugy6RUeCfwAZ4QFCI6gR-3d3IE24Xv9-_s8xf-UaD-zoAub6J3P_62Eu3UDh95jvov9_IhGVrCe_EiNtSGjdECaqOEu5W7Ehoksw04Ld8JY",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/location/52",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"location",
+								"52"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Location of Current User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjA3NzU1ZTYyMWY2YWMyZmU2ZGQxMTBlNWUyNzdhOTg2NDEwMGY4ZTEzYjkyYjlkNzgwZTM4ZGJmMjNkZTMwYWNhYmNiZDgyZDNkNThmZTg0In0.eyJhdWQiOiIxIiwianRpIjoiMDc3NTVlNjIxZjZhYzJmZTZkZDExMGU1ZTI3N2E5ODY0MTAwZjhlMTNiOTJiOWQ3ODBlMzhkYmYyM2RlMzBhY2FiY2JkODJkM2Q1OGZlODQiLCJpYXQiOjE1NDMxNjU3MjEsIm5iZiI6MTU0MzE2NTcyMSwiZXhwIjoxNTc0NzAxNzIxLCJzdWIiOiI1MiIsInNjb3BlcyI6W119.Xr6qzkKE51IoT-xlizFND7J6vbFA01gTTqbk9L99AetGmtwtmolPZj9n537rUlZtC58VXKU2dQ9mGCs4sL5nfZt5pAgvMHy8x4htM5RGoGoPRtX3fHg-hTvpBg917lLrVZ-pPVyV3FrATkbPFOLIrDSqTFPnWRS6fTI94BQxqg98EbefxcHC2MxBJNussKh_-uSv9Mh21oZaNW0neB_1zY_H74JbtLL7PJhxmT5bZPtcNuzsWDkvOhYGOzY0fKe0QLW-sld3Tpff456P7sNxnMvuncWBsNiuLpTt1B8ZMgiAGdog9OQeQgkT6Wlpq6N6zHX5OakC7GtnL1nRNKg47g-t9TQDtg8PCFxqojQBQZMPc88qgHqNVPQy_N_dLu4imxKN7guQlS1dITDqU-PD69-tJPSwpz6vpGZVRPr-6weAyvAV3G7XQnIL0yApBCCgujDh18VOBFtYasXf6kvyBJ0WRtOIoU1AewO_EeRxeaObVCCk-Psp-bE0e8NMKfdYLgniFtVI7sJ3MxNlwV8BVlMRewvHzKlxOFxCmNlS9FQKepbjZ0lWJ_r6jAayVT18Ugy6RUeCfwAZ4QFCI6gR-3d3IE24Xv9-_s8xf-UaD-zoAub6J3P_62Eu3UDh95jvov9_IhGVrCe_EiNtSGjdECaqOEu5W7Ehoksw04Ld8JY"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/location",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"location"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all locations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjFiZjU3MjJjYTdlNTlhZjU4NzNjMmFlNjI2YjhlNjdjYTZlN2NkNzI3ODA3ZTM1MWZlMTdkMWFkNzBjMTZkMTcwODQ0ODY4NjE4NGU2YWIxIn0.eyJhdWQiOiIzIiwianRpIjoiMWJmNTcyMmNhN2U1OWFmNTg3M2MyYWU2MjZiOGU2N2NhNmU3Y2Q3Mjc4MDdlMzUxZmUxN2QxYWQ3MGMxNmQxNzA4NDQ4Njg2MTg0ZTZhYjEiLCJpYXQiOjE1NDg1ODA2MTYsIm5iZiI6MTU0ODU4MDYxNiwiZXhwIjoxNTgwMTE2NjE2LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.eVNUo-ncNxd5_rNXIXW8ggDG6J7YreiZWNGvIJC-o17c5QnRAfuK1ioU_ZMYltr3KfaMmojiwt16gq0hDsy1r0JMa69_YZ20l3UaSkRfy5acteI0tdh16iUEL-zuSNV4t5-AO8r9VI4XwhMlQ1slP68xWemafHuanXJkKgwBXBUSKYcft2z08qnhGP3OCjouoFoK-HSBnTUfB-_rzf1ZJCf8b5Tc3_8J3P1SuxS2P68VH23Ps52WN5SseXTFt-c-PM8SgqbkAe5J0RpT4SYE7MVjeDfHOQ5utOnZADBvUUY-z0kXxY6CXReHlnrv_EMJIF-1cpketlcMR0lqPAHeF4iZq4Usd6oI1VMxisgia5hA97TY03fCJWOGMLmV-NywmwYB_b3jMQeXo55nQpcd8vDV_n_53rQ9a1Py3cB2pDzDacyZwL1J0iq64DNED7nB0q1N5vIbQR6mussV16cwLKzih4DCO09-lSzqUEBSUZd_LMW5SjAEKYHa5-rNS31nHrFg9a6PpJwPAmbPHFpDjttEZsHWwYl6XLE0X4Em3oWhcYindx6G-61l65gEBJ39f6fwg33flJLOOs6PLDABb054g5FyZ3rrRc6VC7WrTruyu62b5dA-KG45nNRKamM6BLCd5Rfdjb_uzTMMDGRA2jHsGuOY0Dq92GctlYxbstA",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/api/locations?search=bhanuka&page=1&sort=name&order=desc",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"locations"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "bhanuka"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "sort",
+									"value": "name"
+								},
+								{
+									"key": "order",
+									"value": "desc"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notices",
+			"item": [
+				{
+					"name": "Get All Notices xx",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjJkOWYwMGUzZmFiZWY1ZWVkYWU4NDQ2ZjdkYjVjMDNmZmNkYzE3MGEzMjQxOGJjOTE4ZTRkZGE4ZjJlMmIxYzM0OTY3NDRhMWMxYjFlN2FjIn0.eyJhdWQiOiIxIiwianRpIjoiMmQ5ZjAwZTNmYWJlZjVlZWRhZTg0NDZmN2RiNWMwM2ZmY2RjMTcwYTMyNDE4YmM5MThlNGRkYThmMmUyYjFjMzQ5Njc0NGExYzFiMWU3YWMiLCJpYXQiOjE1NDMwNTYyMDgsIm5iZiI6MTU0MzA1NjIwOCwiZXhwIjoxNTc0NTkyMjA4LCJzdWIiOiI1MiIsInNjb3BlcyI6W119.jBxto_rSsp9Lgv0_t1hcSZ7W3XMq-l2a_geSjHW9u5O7HKLc9v1tJP0CFZwPhEfqPi_fUX-qDsXQs7BXgCSShyR1W00CWdvFGy3-Zh0exLlKAru6QkLXj2K2dmITLftvc7JfbPDqQMWEZ8HHFUiko5d0QJryiLtPuonB3iWKrHbbKWlGUWAmw-2y6e9mKK7Ze5L33PzZ5m66FkUZ4Wup_X7CetA7rbH2NG0GIvAWP9zUur0Ggcy9cvXmolGv5tssc9jop4pjchhd7N8gDfBZ4RaLW1he_OvU4624gBmunhI9HamAkVacCJt-cbQjwBQ9sSLLL432WJ54q7EXUrjdM3htermISP7ILOYxMS11qEpeHuABIiv3kJf9szExa99ZQVJxNw0Aki1rHew53eTtPVizeC0PSFtXnrBx7avaK08yyyny7G-VF-gDuRbyiVF1ECKh-174YjF882HkU7BWBA_l7HKvNMDiiJdi9R8rRZeqlmGp_VeKd3vzdqiWVWTi7P3OTgFdyT5KzbBQbjk9ObehnvfDS0nYovZMBQMwqqs8N_gPzrhuT6tx9QD80F_7BdP166uykNDt_3Blqs8twvN35tN0u8pHFaCTZTH6g5_6AD3INVDpmz0lQTpWfOq2eu4YW_GAQWXmboS691mJ_8IdyAJ4NU_4cL_K6tfb1bk"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/notices?search=keyword&page=2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"notices"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "keyword"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Notice",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjEyODJiOTYzYTBhNDZmYWUzODIwMjM2OWE0ZGQ0YTQxYjMwNTVjMjQ3NmI5OWYwMDU5NTU3YThhZTY0YzNkYmVmYTk3NTkzZGUyNDMzZTA1In0.eyJhdWQiOiIzIiwianRpIjoiMTI4MmI5NjNhMGE0NmZhZTM4MjAyMzY5YTRkZDRhNDFiMzA1NWMyNDc2Yjk5ZjAwNTk1NTdhOGFlNjRjM2RiZWZhOTc1OTNkZTI0MzNlMDUiLCJpYXQiOjE1NDgyNTgwNzUsIm5iZiI6MTU0ODI1ODA3NSwiZXhwIjoxNTc5Nzk0MDc1LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.ItfJdTHVbGlMLRnC3MjZddyTL3UOKPHO3HxJ2wz2WQi2S_hObe1zpn-UI9VGx9u_lsCZ1JGK7wFQCixF5fbfC4zO_dKom6uos8nt8HcE60KNKdMIpSjWbXkp1BRUVWkHlj0_wdsUBAwlpkWrzDWvhfs_wzHn_FH5WMLpNlFMdSe0rrNed9XRln6Fwer22T6F40PJkPMiUOlkBv4gC3tsK_nrwCXpmx3VQF35dXuyM5gYMVLT6gAahW7zey9MWHQNjMemC7iY50g3AaZ5MMUoVcdpGUNHFyph2Nv0G-F4jM0T-sMhyPPyzsVubNI20S7e-n7IGaSfcyfMp4sDtfMw_bYiPitafnj131m9gvINDF7ZXmogZI1l_2ptP9VFMqIyAaayLn0bZV9PQESCKZ1HIz-juSImXITTyqlPX8dAIWCa-zDZ90lClKJxaRcQc8YNfhz6T7mKpEWDtiuKUKa87jLpLy6ONmRoItuPwcQQyum8UTA_JXYp7JACRQdhCmcqZ5-57Aco77vFWmStatFAWgt6aekAPJbIqovSwT26FzdDaUbbKmCenSNqRU5-QhcFh3Egm0Qbix-hPPDrLa9Fc9Ao5mIgpJKMPXBB3BxcT9hOJFv_lLNIOy70goasFQ89x-hs59FnkEoB2wa2Q2xcCW2YmD-FGUOMRZCgSnlSAYQ",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/notices/13",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"notices",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Notice",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQyYmEyZjM0ZjU0MGQ5YzM3ZTM2MjBlN2FlMDc1ZmFhYmEwY2FlZDRhNDVjYzZmNDhmZjY5YmUxYTVkNjIxNWY4N2EzNjhkYTA5N2JmYWI3In0.eyJhdWQiOiIzIiwianRpIjoiZDJiYTJmMzRmNTQwZDljMzdlMzYyMGU3YWUwNzVmYWFiYTBjYWVkNGE0NWNjNmY0OGZmNjliZTFhNWQ2MjE1Zjg3YTM2OGRhMDk3YmZhYjciLCJpYXQiOjE1NDgyNTY1NDcsIm5iZiI6MTU0ODI1NjU0NywiZXhwIjoxNTc5NzkyNTQ3LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.LjDSHUwlJMlLpVSoB9H9BppUM6gOTL_s_LiHH98qOAScQ7WaAID3XIaOAPFOBUBJNCafWVbp7tkQouONbYrFUnwXdsKpLROch-N6FJxH_ZnLJ_KjON-uUNMznXbYnpNN3QkWwGl3ZZ72K0vbsMLRcO5p5t0qH2LvtF2ZdrD3XAT7VR2mgFjqzpze0vtS-7OUKGcq7FvUkpB4W2Y7xoTuXykqki3jT-m9g0od0ZNpHi-k7w9hK2KCwqhcdgiYKLaHBcDBTRh1cjQPc_y-cHqsoFs4cudmV-mV3il-nEjheO6f4UlYJwWBzGsXWMp0BekL5E75JfTJXbsrThO82GxDmlLioGVSz4EVFq1MX9PQGUJn4cstxvbeAGh2ULQotaNYUNfw0j9MZbFjDeu_8FyDvdBxzvK5AD4McpanH1hJBORmsybCyxlaW1OoBOYREVZo7Z1HMYdcGh3chz0NA0r1dFku0J7biqMCLriekc5CUrVdbj73o_u-qekIhKhLu8OqdKCuiEB6hAYEOdzxJ3P6JW5TOgGRJDRqy1588qKE6Of4XzonkNFYfEjtcM2LoT0FVZ3sUmgZLkIc2u646Q84Igi1Ea9poFVBMs-eTayYEdaEvzlHvdc8_Z0W24H9d_iLwrcmyVNZ7bNnnfmSM2RITtT1Vr7HLUnT8ThtpsN9l0A"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\" : \"test\"\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/notices/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"notices",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Notice Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImQyYmEyZjM0ZjU0MGQ5YzM3ZTM2MjBlN2FlMDc1ZmFhYmEwY2FlZDRhNDVjYzZmNDhmZjY5YmUxYTVkNjIxNWY4N2EzNjhkYTA5N2JmYWI3In0.eyJhdWQiOiIzIiwianRpIjoiZDJiYTJmMzRmNTQwZDljMzdlMzYyMGU3YWUwNzVmYWFiYTBjYWVkNGE0NWNjNmY0OGZmNjliZTFhNWQ2MjE1Zjg3YTM2OGRhMDk3YmZhYjciLCJpYXQiOjE1NDgyNTY1NDcsIm5iZiI6MTU0ODI1NjU0NywiZXhwIjoxNTc5NzkyNTQ3LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.LjDSHUwlJMlLpVSoB9H9BppUM6gOTL_s_LiHH98qOAScQ7WaAID3XIaOAPFOBUBJNCafWVbp7tkQouONbYrFUnwXdsKpLROch-N6FJxH_ZnLJ_KjON-uUNMznXbYnpNN3QkWwGl3ZZ72K0vbsMLRcO5p5t0qH2LvtF2ZdrD3XAT7VR2mgFjqzpze0vtS-7OUKGcq7FvUkpB4W2Y7xoTuXykqki3jT-m9g0od0ZNpHi-k7w9hK2KCwqhcdgiYKLaHBcDBTRh1cjQPc_y-cHqsoFs4cudmV-mV3il-nEjheO6f4UlYJwWBzGsXWMp0BekL5E75JfTJXbsrThO82GxDmlLioGVSz4EVFq1MX9PQGUJn4cstxvbeAGh2ULQotaNYUNfw0j9MZbFjDeu_8FyDvdBxzvK5AD4McpanH1hJBORmsybCyxlaW1OoBOYREVZo7Z1HMYdcGh3chz0NA0r1dFku0J7biqMCLriekc5CUrVdbj73o_u-qekIhKhLu8OqdKCuiEB6hAYEOdzxJ3P6JW5TOgGRJDRqy1588qKE6Of4XzonkNFYfEjtcM2LoT0FVZ3sUmgZLkIc2u646Q84Igi1Ea9poFVBMs-eTayYEdaEvzlHvdc8_Z0W24H9d_iLwrcmyVNZ7bNnnfmSM2RITtT1Vr7HLUnT8ThtpsN9l0A"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/notices/13",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"notices",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Notice",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjE5NDczYTIwZDI1ZmEyNmZjMjZiNGZkMDM1NjI4NzgwMGYwYjBlNWRkNjE0NzMwYjJhMmJhNTdjOTRhMjgwNzcxYmJmODU0MjVkMTYyY2MzIn0.eyJhdWQiOiIzIiwianRpIjoiMTk0NzNhMjBkMjVmYTI2ZmMyNmI0ZmQwMzU2Mjg3ODAwZjBiMGU1ZGQ2MTQ3MzBiMmEyYmE1N2M5NGEyODA3NzFiYmY4NTQyNWQxNjJjYzMiLCJpYXQiOjE1NDgyNDkyNTMsIm5iZiI6MTU0ODI0OTI1MywiZXhwIjoxNTc5Nzg1MjUzLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.sp5VhRvioX75RsY5lJowBPWLfktO29AJsZHoeyTQWevB7UvKhNpvcojaQUR_oCH0S_m3zlL5VXxWAaePylNcMiIkVfVCthLiXlUYHZlM4QEyTkh6s1UPnAkJO9cST0yFB0sYRVOSIRM6tKYAZPrKPE9hN6GqB8YsjL-UENRs2M-HS7tblNaWbtl4MJuJlxFMEDKYSLlf7RWHcNMfTkmM0OsM--JIWTZbpjU-DwW_4zO28B2qL2oShSmXQqLa4Q_Yv20Unvcr0ZRP9PWYdVj36Rqfg7iCTqo7bs4LCoTjCu9bs5f_cwqX5z2Cai6Z2PF5lSSVV69rQSj2bL2_lUMl8xaxP0rsniNEbXyQ4txiTF9z9FIHb1fT5NtQbjD8eKPwdJMh4eyhQEDo4f6PFfc6JFgz6NBqpsMNNXBUkS6Ex2pXPZAKIy_q2goGxcC63FrAIo8anCqGRmDnfzxFI4pleEo23r2mLkn-5zMqxxzENNxnhiiU-dArPoZEd9iM_MJlA4bOHf8uoEtHH8ZIq3uim-vZ_IMA2RdV3zfVr6eSomGf3Bb_MJCnBfADmPMX73DPBmk43xpRmFFoIpDTFlfzvZNBLYm35G5_glYYSLX94mxluS8U3B8Czeh8YrUGM9oosEwKbpGT1QPnGPDTWi-a6aWc61o1QhZ8Y6HVBBxv0nY"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\" : \"jfghjfd gfd gmdfmgdf\",\n\t\"content\" : \"ddjg dfg fdg fdg df g d f gd f gdfgdfgdfgd\",\n\t\"to\" : [\n\t\t{\n\t\t\t\"isRoleBased\" : true,\n\t\t\t\"role_id\" : 1\n\t\t},\n\t\t{\n\t\t\t\"isRoleBased\" : false,\n\t\t\t\"user_id\" : 1\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/notices",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"notices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Current User Notices",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": " XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjAzYmExZmFkM2JjMjkyMzA1Y2VlZjQ2NTM5N2FmMWZlYmU3YzU5ODQxNzYxOWIwOTU1YzI3Y2Q4NTdlODQ0NDYxMDlhZjMzYWVjYmVmNWE0In0.eyJhdWQiOiIzIiwianRpIjoiMDNiYTFmYWQzYmMyOTIzMDVjZWVmNDY1Mzk3YWYxZmViZTdjNTk4NDE3NjE5YjA5NTVjMjdjZDg1N2U4NDQ0NjEwOWFmMzNhZWNiZWY1YTQiLCJpYXQiOjE1NDg1MDI1NjcsIm5iZiI6MTU0ODUwMjU2NywiZXhwIjoxNTgwMDM4NTY3LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.HYe31YyAdlwxzwLGAJXUmA2w1Gphb9lMkoS2T8lUSxGBDSTZXkwp_VB485pjrqCf6QyFlee8OiaIe3u6w9NBrg2bAfQ8hNX_gQFTE44u76MZkbgEg7SxNcO5U_cIMz5s5-z2SBWwyRsXlQRgzkadYILhhky8WroTJ61lFW7WKIwvZ8NxlTl8Zcip-b_A89Tb1CcE-R2_WSArWvmbUuYJVqwdxp6qq8IrTqytdJsFiYxSeurDQOYHgHCKZotHdpclKrf1yBlgaweaMtifdnZ8P0vJeKxb5KdyLktUYJ7QyqKClpgMTInaGYQNG6DH8D4UFVGB_1Lyp6lIxw1oz4j40i-IpfQFBbo5EmI12VzER22XsNg0M_8cVgW-Nx4qK5Hki4vXyDpm0Zc5NfTW32SwAUBFhER_mTFtNyVZ5hB4qBuzYDcl2BC_1c_-5NKdwuzwH6VKikJCoLb2VGAvPEIqg5tL_YwkPVGNiSDLPym1wsDYba4pZ-waGttH4oOvdJGP9BV2KEkfxDfgKDC7CHD1-iSapP-wv4KqDEyUmJUCKBiWqOD2XbbeiqkrBkyaWiSVXaiinwdgOtV7V5qJXXI8xEOLtJXFMK1nL9aQETJlgsI7gFirWO3DQHFebmZij0H5l4tZDNYk8PYFMD7O33-3lkcVwR5rEdrUnqgWkJgxmRM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/notices?student_id=1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"notices"
+							],
+							"query": [
+								{
+									"key": "student_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Current User Notices read Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": " XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjQwYmEzMzgxZGQxZjZmMjQ3NWRkYmEzNTZlYWU5MWU3ZWQzZTg2MzE0ZDZmZDNlYjE4MGNmNjlmZjM3ZTNlNTA5NzBjZWE1NTkwZTIzNzY4In0.eyJhdWQiOiIzIiwianRpIjoiNDBiYTMzODFkZDFmNmYyNDc1ZGRiYTM1NmVhZTkxZTdlZDNlODYzMTRkNmZkM2ViMTgwY2Y2OWZmMzdlM2U1MDk3MGNlYTU1OTBlMjM3NjgiLCJpYXQiOjE1NDgyNTAxNTQsIm5iZiI6MTU0ODI1MDE1NCwiZXhwIjoxNTc5Nzg2MTU0LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.Ulv65QOsdVPmuARepNLPErYolQfuzjCNHoGmjcYebxacJKT0nCenefwU0vyGNlAIau7wRu_O0hvG27pqPF5hTVt1WXh4Sshpd5DUVLr_ft90j7s13PJ9lwiSfjMtgWSvtiq1dQNA4u3v-I-A4dGw5N0URPQdbjb54CEwYRDXx6q5eW-E1nA1ghpLdnXdqB4gfjM3T0r26K3Pc0pAjtViJkJP9wZCjC2veSH3UvLlIF9WUl0imWR3FrsMGOKWGpc3FA7sbMOTT0HIIE4sEXb4cqN4GrjmnmuFTFpe4VnexvHq-5cbY18aXvqBp0jFZ-4-aKozrWa4VaWyBLi78G2z_iX3yaeE_X-4wAcDwwo7vYjsyDgPajqnhVjyLwhfOzQpbX0Nj6sDyzyWhPkQT43xc31RhYVSB-qkIu2uhX5BNrG2fkqLO0GQUUD-6Mc-UvhoH09TvfIBwtiJJLe_37Zh03pBUxmrW9vlNXi4oTrpuFZw1SSjr6theuumEEfxtvnENWtxveF0gc9Wdwhg2quyRvtFB_7tZAq1iwlSletuzR8owR67JM9EHjTfIUqH7yGAG2HFVTYDrgfMMd0kZrrJFHK5yVsLLpjmuSpWA4zDK6XG-7ooo0QF1r2L-m9ZZvSApNyzlBWvmqUMuNMko8L2TMrrwAOjuA3-rtWeOiUSD4E"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/notices/read?notice_id=1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"notices",
+								"read"
+							],
+							"query": [
+								{
+									"key": "notice_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2534cd90-519d-45f5-92ea-cbaf3825df06",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "df1e3b86-1df1-496b-b4be-e6ef971bdda9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Attendance",
+			"item": [
+				{
+					"name": "Get All Attendance",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjFiZjU3MjJjYTdlNTlhZjU4NzNjMmFlNjI2YjhlNjdjYTZlN2NkNzI3ODA3ZTM1MWZlMTdkMWFkNzBjMTZkMTcwODQ0ODY4NjE4NGU2YWIxIn0.eyJhdWQiOiIzIiwianRpIjoiMWJmNTcyMmNhN2U1OWFmNTg3M2MyYWU2MjZiOGU2N2NhNmU3Y2Q3Mjc4MDdlMzUxZmUxN2QxYWQ3MGMxNmQxNzA4NDQ4Njg2MTg0ZTZhYjEiLCJpYXQiOjE1NDg1ODA2MTYsIm5iZiI6MTU0ODU4MDYxNiwiZXhwIjoxNTgwMTE2NjE2LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.eVNUo-ncNxd5_rNXIXW8ggDG6J7YreiZWNGvIJC-o17c5QnRAfuK1ioU_ZMYltr3KfaMmojiwt16gq0hDsy1r0JMa69_YZ20l3UaSkRfy5acteI0tdh16iUEL-zuSNV4t5-AO8r9VI4XwhMlQ1slP68xWemafHuanXJkKgwBXBUSKYcft2z08qnhGP3OCjouoFoK-HSBnTUfB-_rzf1ZJCf8b5Tc3_8J3P1SuxS2P68VH23Ps52WN5SseXTFt-c-PM8SgqbkAe5J0RpT4SYE7MVjeDfHOQ5utOnZADBvUUY-z0kXxY6CXReHlnrv_EMJIF-1cpketlcMR0lqPAHeF4iZq4Usd6oI1VMxisgia5hA97TY03fCJWOGMLmV-NywmwYB_b3jMQeXo55nQpcd8vDV_n_53rQ9a1Py3cB2pDzDacyZwL1J0iq64DNED7nB0q1N5vIbQR6mussV16cwLKzih4DCO09-lSzqUEBSUZd_LMW5SjAEKYHa5-rNS31nHrFg9a6PpJwPAmbPHFpDjttEZsHWwYl6XLE0X4Em3oWhcYindx6G-61l65gEBJ39f6fwg33flJLOOs6PLDABb054g5FyZ3rrRc6VC7WrTruyu62b5dA-KG45nNRKamM6BLCd5Rfdjb_uzTMMDGRA2jHsGuOY0Dq92GctlYxbstA"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/api/attendance?student_id=1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"attendance"
+							],
+							"query": [
+								{
+									"key": "student_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Attendance Teacher",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjljMDU0NDE4ZmFhM2ZjYzcxMmY0YTMwYmU3ZDBhZTE5ZjVhOWQ5NjlkOWFhYmU2OGZmOTI5MzRmZjQ4MzdkMTE1NWViZDRkOGNhNTU1NTZjIn0.eyJhdWQiOiIzIiwianRpIjoiOWMwNTQ0MThmYWEzZmNjNzEyZjRhMzBiZTdkMGFlMTlmNWE5ZDk2OWQ5YWFiZTY4ZmY5MjkzNGZmNDgzN2QxMTU1ZWJkNGQ4Y2E1NTU1NmMiLCJpYXQiOjE1NDg2NzU4NzMsIm5iZiI6MTU0ODY3NTg3MywiZXhwIjoxNTgwMjExODczLCJzdWIiOiI3Iiwic2NvcGVzIjpbXX0.NNjpvsCAVRSmFZT0PHgfmBCAo290FmhdmAfQGZm5moLzxIvM_rQOIAilO0DBYOH9A18ppE2at21VbkkgtAsb1pGIbZL_hrb10u9SIa3dWTnLE3HfjhDnyKgbuCSRWVOh75CZl6M8m_30M7-5FN85nl1azkR2AqLXGPfGboDIJGPuR7Cof03dsxCdaxmD5zk41a9tOY2UxpOMvGKppc8ddztoCZyZFrpXMRmNBKk7C23dckSW5nLmRG1JIc22tcBzg1tWChWmSQ5O1LUSBfT6h82RAIavUR62VzQHxfiiVYLkJdxW4JynZlaDXx82X1gih5QqbALn5PfNTC_qwjdsqquzjMF7WZocXLDVR3fLQAXNGqKnnG5v5wFq8M2EpDznNNQ6hD5OrN8qCeC39AASum0gvhv7T51yBUFo49UMAaQ0a4q_zF8-HDVYXv9lVuksHXHEdEk_URt8M1ylppNUoPxTeM6nC3CaZ6dxi1bdBLyp-mxid0k3mm3snuBSSA6WjwrT7pVm1siuu0L8QJUp1HEK0llCFHScFwo-KqY_aIdvPajwAHJia6nPQcQCoEahz0JX7L-Im1dPg5yI-bqC5wUYfK5fL2elekBj9AYjk_loqYuzXsTlo3ve73lH4MM5gg3BvX-vSCueU4whZl_UMlZ1Bu9ymHfT3MdAw6Ain9E"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8000/api/attendance/student",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"attendance",
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Attendance for Mobile App",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImMxOTUwNGExYjZmYzE1MTQzNmE3ZWE3MTM0YzZiNTRkMjM2YjdlN2ViZmRjOWJmYzMyMGZjZWY1Yzg2Y2FiOWUyYTJiZWZiOWY1Y2ExN2E1In0.eyJhdWQiOiIzIiwianRpIjoiYzE5NTA0YTFiNmZjMTUxNDM2YTdlYTcxMzRjNmI1NGQyMzZiN2U3ZWJmZGM5YmZjMzIwZmNlZjVjODZjYWI5ZTJhMmJlZmI5ZjVjYTE3YTUiLCJpYXQiOjE1NDg1MjI5ODMsIm5iZiI6MTU0ODUyMjk4MywiZXhwIjoxNTgwMDU4OTgzLCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.v_Ufd8gdYLyW4sylYarkVkFS4ZcnTcn8u_DXTEQDx57kon2j3i2As1xLOY1UQAnCpfPqpV4SaI8-IwezOmQPZQZfglsvKsQ-Bl_zw0VXVQM_PdSHazS1VYDC07t3CFQcjAYOtI8bGYbLW9PE7Ahd-AZqfXfjDD8wy8QPqBFTN-4vxIF_wph-poiFyxiCI_GaoC0ozhXlBExM5---CFhmDBr8CJNOTM7HIQ6xdb372gfBO-knrktL2E3cPkqdSVaD1Tjj76ZPcZ1Uf-N8nRHO_oVBryhErI_L2yNZVS2dfKbWdiL27l1_pux5VwUQ2vA8jVHJG9a7CvuX3nC4yhfdivQetTfhf_Ud6P_GPtTFSnRkOx9zv54Udl2_ISOPWNkRSJdjBbV0fccQc17Z66t_wyU3EyK-1mMMfV5eFNX2k13iCyO_7Bin_Vn9jJnyRfP82I3Qzu4Rrw76ivvqPtjspl4vq5W8Vw36odZ77m0cu3gxB1vqAaE06KKsarnyLXUh-qCJABoFwe7tG6zBMG6DP9ptzFHpTLpBUYhxRxCE4JRGkZCEQ9s1PgbHHRXV2kEwB9-_qSoHxAvdntXDWfH5icqDnfJUUOkQtImZbWDHYegcIFCH8GKNQibKqaluYpyyAOufK9onoX5r94DyeUxC6qDdWz9KPOw3GHiNFCTtoSI"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/mobile?year=2018&month=12&student_id=1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"mobile"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2018"
+								},
+								{
+									"key": "month",
+									"value": "12"
+								},
+								{
+									"key": "student_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Attendance",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Attendance",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"year\" : 2019\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Attendance by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mark new Attendance",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\" : 6,\n    \"year\" : 2018,\n    \"month\" : 1,\n    \"day\" : 21,\n    \"state\" : 1,\n    \"class_id\" : 1\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2534cd90-519d-45f5-92ea-cbaf3825df06",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "df1e3b86-1df1-496b-b4be-e6ef971bdda9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Study Materials",
+			"item": [
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk0Yjk0M2Q3NmI1ZDFjMjY5NTA2NDVlYTI4ZWZkZTI0NzM0MDI4M2MyY2E5NWQzZDlkYjk2ZTcxMDc3YzhmNTcyMGJkNTQ4ODg5ZDZlZDIxIn0.eyJhdWQiOiIzIiwianRpIjoiOTRiOTQzZDc2YjVkMWMyNjk1MDY0NWVhMjhlZmRlMjQ3MzQwMjgzYzJjYTk1ZDNkOWRiOTZlNzEwNzdjOGY1NzIwYmQ1NDg4ODlkNmVkMjEiLCJpYXQiOjE1NDg0MDA0OTcsIm5iZiI6MTU0ODQwMDQ5NywiZXhwIjoxNTc5OTM2NDk3LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.xgNC9zr1OBBRTXYCr0NgMZS2BRfNGjPkrFVVLY5KMyOZjWCkKC88zqV18aWv-aoYARAVl46MRuENSFVS18F3zukOHEvq2OyW_M8mENWl_EKiRfJg7E-J1LNSnvPSk9QkiFk-aM23Oki_Ph8SiyuCJ531Ghq6OhjL-YfxkZnPfuHeyyOh_1UBdnskNkjtAV9DgQcTD32nEXecYCsZmPsNu8PSAjHOkcapaT4pzMiaUub0aSFjspnfFFygD0GPx4pPqkDIVxDLhYMbbVvogdUSzf7u_B-3NFbbLaSRi0BNJfqPC6Z_E_N7yB9E-JsLqYnPYkOUi38-DkYfVP5NHyuapPKHm-_SKCqN9OLH8QriNzC91F9igu8oDG_1k6sm4En0qwN-3UG4_ZkCcCASUxrMGwlIdGH7R6wAD2R9KjNy6n2Ex0jZT_WJ7t6NIW1ol1CFjW5CXNmiSXZLqQWr1FGjY4fF3t3WyIyJ0xlRpdxfzcMKZ2xkT17Bd1sODbKfCvpAlJdtHRn8hXMxzIvWSBZplxOqG932bh6rL7QxXs87qYlE_8PS2nd16byqoeDN02YGCkhTZ244UoKszr9vcel81Fq-2lgpkKO6FnonyX6xcbhHM5HF4FtfUgjAHsrC47wjeiMLM2mEXv6pAKlNksbTeNRysX2_g4_ctZaw_oUqlxA"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/materials?subject_id=2&student_id=1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"materials"
+							],
+							"query": [
+								{
+									"key": "subject_id",
+									"value": "2"
+								},
+								{
+									"key": "student_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/materials/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"materials",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"year\" : 2019\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/materials/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"materials",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/materials/2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"materials",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\" : 6,\n    \"year\" : 2018,\n    \"month\" : 1,\n    \"day\" : 21,\n    \"state\" : 1,\n    \"class_id\" : 1\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/materials",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"materials"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2534cd90-519d-45f5-92ea-cbaf3825df06",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "df1e3b86-1df1-496b-b4be-e6ef971bdda9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Subjects",
+			"item": [
+				{
+					"name": "Get Current Students Subject",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImNjZmE3NGM2NDY3NTI3NmU5NTAxZGVmYmE4ODQyNjIyYzAwNjVjNmZmZTYyMWVlMjQ1ODcxODcxNGI3M2E2MzIxYWVjNmYyMjc2Y2Y5NmUwIn0.eyJhdWQiOiIzIiwianRpIjoiY2NmYTc0YzY0Njc1Mjc2ZTk1MDFkZWZiYTg4NDI2MjJjMDA2NWM2ZmZlNjIxZWUyNDU4NzE4NzE0YjczYTYzMjFhZWM2ZjIyNzZjZjk2ZTAiLCJpYXQiOjE1NDg1Mjg5ODgsIm5iZiI6MTU0ODUyODk4OCwiZXhwIjoxNTgwMDY0OTg4LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.hyGiUKvQTSEPGa5Fv-1dDxCjzzrmiyf-OLs7Tmy_QpUckLj6Su3wTk4KKyR65zxhbGGrYJJIec04bhcezhClpO7TzWwbVVcv_XazmPwaTluqaVGLCzTYeXyecKVfpqapQ6CH-5u99XZO6dtm3XT048sjW6b_yezTfvlUT-bC9h0d9E7Dvjr0ySjXcNfb9Bdzufi-fO_ELA--aFrO9xMDWZZiJxNz8wcKEN9fjaZ7yNvVGnUpyTtOJzWWOkuLeL1kKOeg9_M1ePQmMjQkKKwoUQMWQCnGQ98qCgbunZQ11s8cI1PWWQ3CPzdw2lKKGQmCdo5_pQ72rfBE18zLomTiCGu7feS5cyn-6aeYyDAbQmuoNhR7xQiV3Dm-DgGNq_2KnKicYEgKGZpNzmlyJx46wW5z8sG938t_EsU9IoN9xjbDGYK6wMtObSNt__9Eo9QXWCuW5jIgN5NIPd7OfY1XYRP2vNJjiA84qWFLfj14tRl7dRbXNk-qrnBzgbY6ptW6H7GiXoICEBmxFqoL6ikh_Oawvk_mlYnfcMUxS-u_lHdpDj24l9c23VuBaMR_KZEsYtPA0aj7E52JJvt8T719H4C2hLTrcFMZKXRIn-rqhqZ6ekHT1NlhaDNqYksZ-Nc05FzEOyfT3aOdd0fOS6VuNpL4DMQPVxFr-kjyYQZaEc8"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/subjects?year=2019&student_id=2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"subjects"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2019"
+								},
+								{
+									"key": "student_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"year\" : 2019\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\" : 6,\n    \"year\" : 2018,\n    \"month\" : 1,\n    \"day\" : 21,\n    \"state\" : 1,\n    \"class_id\" : 1\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/materials",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"materials"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2534cd90-519d-45f5-92ea-cbaf3825df06",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "df1e3b86-1df1-496b-b4be-e6ef971bdda9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "payhere",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "merchant_id",
+									"value": "1211380",
+									"type": "text"
+								},
+								{
+									"key": "return_url",
+									"value": "https://ems.aladinabs.com/pay",
+									"type": "text"
+								},
+								{
+									"key": "cancel_url",
+									"value": "https://ems.aladinabs.com/paycancel",
+									"type": "text"
+								},
+								{
+									"key": "notify_url",
+									"value": "https://ems.aladinabs.com/paynotify",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "abc",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "xyz",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "bm65556@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "0771234567",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "92, njndsjdnjsn",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "colombo",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "LK",
+									"type": "text"
+								},
+								{
+									"key": "order_id",
+									"value": "0001",
+									"type": "text"
+								},
+								{
+									"key": "items",
+									"value": "Monthly Fees",
+									"type": "text"
+								},
+								{
+									"key": "currency",
+									"value": "LKR",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "100",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://sandbox.payhere.lk/pay/checkout",
+							"protocol": "https",
+							"host": [
+								"sandbox",
+								"payhere",
+								"lk"
+							],
+							"path": [
+								"pay",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Students History",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjcxMDhhY2ZlM2MzZGVhYjZkOWY3NGE5M2ViYjJjMzBjYTkxZDBjNzI2MTVkODk5NmQ1ZjVlMTgzMGY1MjgwNjIxMzQ0ZDA5OGM5MzhlMWMxIn0.eyJhdWQiOiIzIiwianRpIjoiNzEwOGFjZmUzYzNkZWFiNmQ5Zjc0YTkzZWJiMmMzMGNhOTFkMGM3MjYxNWQ4OTk2ZDVmNWUxODMwZjUyODA2MjEzNDRkMDk4YzkzOGUxYzEiLCJpYXQiOjE1NDg0ODc5NDgsIm5iZiI6MTU0ODQ4Nzk0OCwiZXhwIjoxNTgwMDIzOTQ4LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.jrwY4ZTbyZ7f7KpDs2LJSMRhBw6H4LB9ZVhXG7GKRa7KB7-vOXTTIVVrjDIgryUHvgMXHnkfWGZXe1XpR8IijVsye1-B_ml1jQ99rkDIUKK2vKbsUawwhegAlt0DKoOAY5Zt2vLeyJYq3zMqho9_Wl53x1Nl5TJCtiUvI6WD2XEE7-sh3FNy1x65Ep5ripVASMUp7SeAGpxKRbC9RWo6HncyZ7FWrSr0-KGpXSo2QkQ2VdRKbzkS3_DmP8SAT1dFBYft6YfWZAH0s2MPEukuSyir7ZxYMxl5DJhzO0YrnN2zYjKz46AsiMKQlYos0eBxTbBHwxqrQZgGsi9mv2cT5tCBW3fNtxnyLK7Ua3jmG4Yb-d-4lBBCXlF1Gb2pbx9X0-QekNVRJ0Rm59aRyjR6OSzwkc9psifvqWr3WNPGrP57ODCEHg-9cl21LscT2nol8lXV_R4Zm07S7eOlLvL5Yy5DTThGCQ7ljSVdPsao83TOncb0qlvca47w8FvIRVnToVcxq88h3lqoPTuQv9VTXoQw985voWFKLC-tH16Y0CfiKwp-QYiNgVLMl0ECnFDDgfVykfElesO6hzKlCRbD_HYGyRXnDJfEhtloIF1FgrLibzTa_o4sMjbZ-kS4aivn5p7FCAUvEpnOc_KpsMxIbEmLVYDtXO6Ak00bbLjoJLE"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/payments/history?year=2019&student_id=1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"payments",
+								"history"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2019"
+								},
+								{
+									"key": "student_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current Students package",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImE3NDViZjIzNTkzYWE3MzBlNTkyODZmYWI3OTI5ODJhMjYyZmVkMDEwMDkzZTdhNGRhN2Y1NGMwZjgyYzQ2MDhiZDZmYWNhMzQ0OTZjZTMyIn0.eyJhdWQiOiIzIiwianRpIjoiYTc0NWJmMjM1OTNhYTczMGU1OTI4NmZhYjc5Mjk4MmEyNjJmZWQwMTAwOTNlN2E0ZGE3ZjU0YzBmODJjNDYwOGJkNmZhY2EzNDQ5NmNlMzIiLCJpYXQiOjE1NDgzNTQ5MzIsIm5iZiI6MTU0ODM1NDkzMiwiZXhwIjoxNTc5ODkwOTMyLCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.rLclGIT2ctDji4G3bqHPqMq2-XGlaKK_OsUEiJyp5xxIfFvcZY4joiCB2Oc9eAUk1fFSVhElebWBVXUnhOtblUiFuISe20Rnx24eGnFz21XiK725gU5TYN1v8xPgojGqk9kVK2RQJAnbbuvd-FjcxthLQxAZpFrOR5IfAm5GITwKSFkpSCE_C-xgEm3sz8M0PVaSh3GOCirPDa8ov67DSl21B5b1Q_gop0LUtytFA9nVP6QGf4S_u7Hhfc_Jff2KromcSWGXu-SamwT1UC6AyyEPyD1JOw9roc9P4Z2e8W-hm-VDzge2kpTfl1JaQZae6Z2XJLZASLNZMOU6G5vYBUn8BFBinDWIpePwnqKlGV_MW_O-1_kEth_raxnx14PfbH5uLI2UHepkqegjb9Mo1eh2qENZBNxVeyw_B4MxSA8-b06I0iRVHINotsfLoxIsSyEer6photoWc_Fo-FBDIEA9o5knYyRuM9CLLcRTTwOhjjiI87hKzPtn8xX-buF5u7D40gNCyYZCCKis1Q_lzJvMoZB-JvoGakpEyA1xS7GOr63iMzdTio04TtkCa8JWmm0Y8ciscwoDmAxHzGXG-uN1QkR0dUUT90-lwvweBTREcI-rOwyDK7LEQELIRLW262gyE-O5n_GAjNKu-qsyk2U8gefTFQ05mlg8gYdgv0s"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/payments/pay?year=2019&student_id=1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"payments",
+								"pay"
+							],
+							"query": [
+								{
+									"key": "year",
+									"value": "2019"
+								},
+								{
+									"key": "student_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"year\" : 2019\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\" : 6,\n    \"year\" : 2018,\n    \"month\" : 1,\n    \"day\" : 21,\n    \"state\" : 1,\n    \"class_id\" : 1\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/materials",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"materials"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2534cd90-519d-45f5-92ea-cbaf3825df06",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "df1e3b86-1df1-496b-b4be-e6ef971bdda9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "TimeTable",
+			"item": [
+				{
+					"name": "Get Current Students TimeTable",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ijk1NjczZGFiZWI4ZWRkZTQyNzI3ZjdmZmFmODQ4MWFmZWIyNmI5MjA0ODkyZTE0ZTVmZTg0YmFhYmQ4ZTM3NjgyNjhlNzIzZTQxNzZmN2NhIn0.eyJhdWQiOiIzIiwianRpIjoiOTU2NzNkYWJlYjhlZGRlNDI3MjdmN2ZmYWY4NDgxYWZlYjI2YjkyMDQ4OTJlMTRlNWZlODRiYWFiZDhlMzc2ODI2OGU3MjNlNDE3NmY3Y2EiLCJpYXQiOjE1NDgzNDQzNTUsIm5iZiI6MTU0ODM0NDM1NSwiZXhwIjoxNTc5ODgwMzU1LCJzdWIiOiI1Iiwic2NvcGVzIjpbXX0.abKmBK8ZGM7P4WSfKmSGW5y-xiIucNBtIOuLPyscZ60db5rwqXLRtwKamPUpY8Kum9cwjvaNhgmipWbRi-65pgbEOF4OG1XIe62UKoXMVQtIckncHbbzGfJJ0IREirMI08iAGepoJA8W9sHdnpPgWnnqFnQHptKxK_UihFh7bxHwWu5LNNnnI94oT-3qAS1hnCNvDgOLRC8Rf3mhaWQUIsaJveRTmepJjF5jqWNm5m0elE8CHyEbGes4KDQ-9ilEtGuV-BxpTabyg8RIyIT1Tddnesra2oiGtPerUvOwf-ZVMtZGDS3wZ2wOqjZeg9A2pvdNx7jQkc3tOkZI3SaTrtEB0Mgyr41PvckM1_3qF88qOwe4LWrgTsKZ6cnt-7J7m6pPDreewRNM2CZy3yu089zwVfvVmmU5ehvpU-hzp2N9qdzPQrNumvGEznKFDSPI1FjVLSPMaVUGcRfb1eKq2FQu6E4ofcu8IpXXiQz_LZ8Z9bc3x-Dr2V5FEVyQAUD7ccPSS8wmZaWx4TSEHbfBefT1RLFzxzTqoy0Q1jMxby5U3J7ITQaGD8zAP0L9kmtysvCO1lsCTWBA40I1NpNcPDNtx9kz_wZ-l-WLyCEhC3_akSvf83Mr_elDpwXkrtg52Nb6myGgo4jMF7FlC7p_K4wyjT2SQYpVTk9ozlzX0rg"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/timetable/mobile?student_id=1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"timetable",
+								"mobile"
+							],
+							"query": [
+								{
+									"key": "student_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImYzMzU2OTRkODUwOTcyODgzNmVhZjlmMDUwNGFlYjRiN2VkN2I1MDNkZTZjMmZjMDkzYjczYmFlMDU0YTJjNmU1MmQ0NWM4YzY5ODdlNGQ1In0.eyJhdWQiOiIzIiwianRpIjoiZjMzNTY5NGQ4NTA5NzI4ODM2ZWFmOWYwNTA0YWViNGI3ZWQ3YjUwM2RlNmMyZmMwOTNiNzNiYWUwNTRhMmM2ZTUyZDQ1YzhjNjk4N2U0ZDUiLCJpYXQiOjE1NDgwOTM0NzMsIm5iZiI6MTU0ODA5MzQ3MywiZXhwIjoxNTc5NjI5NDczLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.rRTbRTrjHKfdE-AkA14vuWIQmEPHagGbCLR_JqgjMAEgWdKIKS2g6otH55q2aFkaVjGmgFxksZi4OTseqWBI7v1f-9slA4hGRRkD6jg7-MfbXBhrsnfxw37POCVCyyrA6cKJLtdDXjm_C5maAzpwonKqK58am_G4_PaNlAsSN57boUDifz8wtIXHbD0J7U3MqFFow0dvzpFfXeddz6a1nOOL4Tla6jfrlY0TpH24LhUlyHrjsM7NBF2z6KxnT6H8jRe6MXG_WK8eWtKmDf0sHbxuFDKvC9EVwPVKzQJq_KGOev2WRdjq_G6RSvsDC--0fAR4RHf84fwdGsF6R0EHFJoa8KJqeUmvL-6Rw9h5ZQGiyLsCDhlpuSfDn4CLVhRNkVw2VLmfEIJO866puMSsiB35cK11x6p3_zfXPS-nMQoBUZHWMtGs2TdpKyDRASMbLOQdCGOIuIKk0DxPOYbwsafwrCR_rVM0wzYJNKrCmZTTDazliLT0xXFpf4e0w_yV9TmnMIsZRvhcvWuowslI47KEOEMdYAPi_wVuHy0E1qCvXf35-rajkbOzMkB1Y4yWUzb6wtWsQdCxbNo0v1eHZSe-wQD-eO6BgKFYOAiGtp-RiNEN5KSVjvL7bbL917Js-YJPG52GWXn4xCSC5G-e_5o4oGJispQKNaRkreyfDMQ"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"year\" : 2019\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/1",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/attendance/2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"attendance",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImFlZDcxNzYzMWQzMmY5NGVkZjUxNTFjZTYwYmRlNjQ1MTY3MmQzYzMzYjE1MTU5ZTM4MTVjYjE0MTY0NTYyNTQ3ZDNhYzhiNmRiZWJhNTM5In0.eyJhdWQiOiIzIiwianRpIjoiYWVkNzE3NjMxZDMyZjk0ZWRmNTE1MWNlNjBiZGU2NDUxNjcyZDNjMzNiMTUxNTllMzgxNWNiMTQxNjQ1NjI1NDdkM2FjOGI2ZGJlYmE1MzkiLCJpYXQiOjE1NDgwNzg0OTgsIm5iZiI6MTU0ODA3ODQ5OCwiZXhwIjoxNTc5NjE0NDk4LCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.n7QYwxFQyNK9wloOb5bqRPbaoUz0jjMkZE3uyt7DaZr9tGATydCM4j7Z3SPlIcmU3Skczns6U9NAP0usX5z95jZD2FPjlmXqG8vX7f0hudx9NMwnFxi_ye1T9Kg3PrHNWt-diXyq1IcSJ9GvJ_elUJfQen6vl6PkINJTpG9GuQM6MaG0jo29F1G9P_zOhWx8PFHOGN0HbUtkT-T3-XrYgfqSuNcgTz5rqBHk72YqBLSFZigGosSdKG2g6IwPikKiXmiZdIesd9dyI5-ugcnjV1E2rrQEgI3fAI8WVeFnQWnaszVdw4qc7jrhF2l115C7UhDh4iPc9s67iYCLjQgoog2co4lFHhTMsXpFYFiN9UFiOHHdXz2jqoq49v6ecThDoqv-IhvkFbfJWNDHu_Ixnv6IJoLhS7XXycBAsaQ1yCk33c6wlJY0Cet-gTuoVHgxPyoVMosOvgpGB-KDj3ENKFgd69o78annWeTthtPsBk-gAzbVPnf65SOoryvShId3cFGedMuks1bWLute8ZrpoU3PNaumU62FGDVPbJ9k1cX08uhqe59_R4jpmpidI1VNMoM4lmjYriAP1B_T0AoIy1Cw_zkHDuf7g9d_zERxme3WPZUvHlz88CKrEfEB8626dbl0UGeT9t2WUIjNIjxdtsMCUClFDVz_hG6gSNIiXU8"
+							},
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"type": "text",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\" : 6,\n    \"year\" : 2018,\n    \"month\" : 1,\n    \"day\" : 21,\n    \"state\" : 1,\n    \"class_id\" : 1\n}"
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/materials",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"materials"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2534cd90-519d-45f5-92ea-cbaf3825df06",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "df1e3b86-1df1-496b-b4be-e6ef971bdda9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ExamResult",
+			"item": [
+				{
+					"name": "get mobile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImNjZmE3NGM2NDY3NTI3NmU5NTAxZGVmYmE4ODQyNjIyYzAwNjVjNmZmZTYyMWVlMjQ1ODcxODcxNGI3M2E2MzIxYWVjNmYyMjc2Y2Y5NmUwIn0.eyJhdWQiOiIzIiwianRpIjoiY2NmYTc0YzY0Njc1Mjc2ZTk1MDFkZWZiYTg4NDI2MjJjMDA2NWM2ZmZlNjIxZWUyNDU4NzE4NzE0YjczYTYzMjFhZWM2ZjIyNzZjZjk2ZTAiLCJpYXQiOjE1NDg1Mjg5ODgsIm5iZiI6MTU0ODUyODk4OCwiZXhwIjoxNTgwMDY0OTg4LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.hyGiUKvQTSEPGa5Fv-1dDxCjzzrmiyf-OLs7Tmy_QpUckLj6Su3wTk4KKyR65zxhbGGrYJJIec04bhcezhClpO7TzWwbVVcv_XazmPwaTluqaVGLCzTYeXyecKVfpqapQ6CH-5u99XZO6dtm3XT048sjW6b_yezTfvlUT-bC9h0d9E7Dvjr0ySjXcNfb9Bdzufi-fO_ELA--aFrO9xMDWZZiJxNz8wcKEN9fjaZ7yNvVGnUpyTtOJzWWOkuLeL1kKOeg9_M1ePQmMjQkKKwoUQMWQCnGQ98qCgbunZQ11s8cI1PWWQ3CPzdw2lKKGQmCdo5_pQ72rfBE18zLomTiCGu7feS5cyn-6aeYyDAbQmuoNhR7xQiV3Dm-DgGNq_2KnKicYEgKGZpNzmlyJx46wW5z8sG938t_EsU9IoN9xjbDGYK6wMtObSNt__9Eo9QXWCuW5jIgN5NIPd7OfY1XYRP2vNJjiA84qWFLfj14tRl7dRbXNk-qrnBzgbY6ptW6H7GiXoICEBmxFqoL6ikh_Oawvk_mlYnfcMUxS-u_lHdpDj24l9c23VuBaMR_KZEsYtPA0aj7E52JJvt8T719H4C2hLTrcFMZKXRIn-rqhqZ6ekHT1NlhaDNqYksZ-Nc05FzEOyfT3aOdd0fOS6VuNpL4DMQPVxFr-kjyYQZaEc8",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://ems.aladinlabs.com/api/results/mobile?student_id=1&class_id=2&term=2",
+							"protocol": "https",
+							"host": [
+								"ems",
+								"aladinlabs",
+								"com"
+							],
+							"path": [
+								"api",
+								"results",
+								"mobile"
+							],
+							"query": [
+								{
+									"key": "student_id",
+									"value": "1"
+								},
+								{
+									"key": "class_id",
+									"value": "2"
+								},
+								{
+									"key": "term",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
