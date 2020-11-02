@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2019 at 08:55 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Nov 02, 2020 at 02:08 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,27 +30,28 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `attendances` (
   `id` int(10) UNSIGNED NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED DEFAULT NULL,
   `year` int(10) UNSIGNED NOT NULL,
   `month` int(10) UNSIGNED NOT NULL,
   `day` int(10) UNSIGNED NOT NULL,
   `state` tinyint(1) NOT NULL,
   `class_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `student_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `attendances`
 --
 
-INSERT INTO `attendances` (`id`, `user_id`, `year`, `month`, `day`, `state`, `class_id`, `created_at`, `updated_at`) VALUES
-(1, 6, 2018, 1, 22, 0, 1, '2019-01-01 18:30:00', '2019-01-21 10:36:23'),
-(3, 6, 2018, 1, 21, 1, 1, '2019-01-21 09:32:36', '2019-01-21 09:32:36'),
-(4, 6, 2018, 12, 10, 1, 1, '2019-01-21 18:30:00', '2018-11-23 09:42:36'),
-(5, 6, 2018, 12, 21, 0, 1, '2019-01-21 18:30:00', '2018-11-23 09:42:36'),
-(6, 6, 2018, 12, 7, 1, 1, '2019-01-21 18:30:00', '2018-11-23 09:42:36'),
-(7, 6, 2019, 1, 22, 1, 1, NULL, NULL);
+INSERT INTO `attendances` (`id`, `user_id`, `year`, `month`, `day`, `state`, `class_id`, `created_at`, `updated_at`, `student_id`) VALUES
+(1, 6, 2018, 1, 22, 0, 1, '2019-01-01 18:30:00', '2019-01-21 10:36:23', NULL),
+(3, 6, 2018, 1, 21, 1, 1, '2019-01-21 09:32:36', '2019-01-21 09:32:36', NULL),
+(4, 6, 2018, 12, 10, 1, 1, '2019-01-21 18:30:00', '2018-11-23 09:42:36', NULL),
+(5, 6, 2018, 12, 21, 0, 1, '2019-01-21 18:30:00', '2018-11-23 09:42:36', NULL),
+(6, 6, 2018, 12, 7, 1, 1, '2019-01-21 18:30:00', '2018-11-23 09:42:36', NULL),
+(7, 6, 2019, 1, 22, 1, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -306,6 +307,7 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\User', 4),
 (2, 'App\\User', 1),
 (3, 'App\\User', 3),
+(4, 'App\\User', 7),
 (5, 'App\\User', 6),
 (6, 'App\\User', 5);
 
@@ -364,7 +366,9 @@ CREATE TABLE `notice_read_statuses` (
 INSERT INTO `notice_read_statuses` (`id`, `notice_id`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, '2018-11-27 18:30:00', '2018-11-23 09:42:36'),
 (2, 1, 2, '2018-11-27 18:30:00', '2018-11-23 09:42:36'),
-(3, 1, 6, '2019-01-23 08:01:21', '2019-01-23 08:01:21');
+(3, 1, 6, '2019-01-23 08:01:21', '2019-01-23 08:01:21'),
+(4, 1, 3, '2020-11-02 13:01:31', '2020-11-02 13:01:31'),
+(5, 1, 7, '2020-11-02 13:08:29', '2020-11-02 13:08:29');
 
 -- --------------------------------------------------------
 
@@ -465,7 +469,9 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('2d160d8818e6f6146e96b38beddc096b5fe7bda8f57cbb8f40dcd3b6b7832e94f014e5886c1bff97', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 00:56:45', '2019-01-23 00:56:45', '2019-04-24 06:26:45'),
 ('2d6d1022652f590f0908081f4c0257c7475b9ad7a66b7e4cc0fd242411c1a165810296d97103b526', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-22 13:17:23', '2019-01-22 13:17:23', '2019-04-23 18:47:23'),
 ('2d8013b86da7b0d3cd12068cb8f6d670e2761a59bd87371e30bddb88e9bd4d06168e197436a219ad', 3, 3, 'Personal Access Token', '[]', 0, '2019-01-19 14:10:31', '2019-01-19 14:10:31', '2020-01-19 19:40:31'),
+('3242e0c55987ec48bad1d0bbd33724c34c825acf5d1e920c8880e7b469023947474ff0d83ee8a0aa', 7, 3, 'Personal Access Token', '[]', 0, '2020-11-02 13:04:16', '2020-11-02 13:04:16', '2021-11-02 13:04:16'),
 ('34368408bdc69765b95e673933ceb335ba78e280006806f5415e14d2838d59f7f247ac346039312c', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 01:57:34', '2019-01-23 01:57:34', '2019-04-24 07:27:34'),
+('363922cd15e3be25f7c49e52005c0f65766f6ffa67133ee11c2b161db3d37726dc0609b7763e7354', 7, 3, 'Personal Access Token', '[]', 0, '2020-11-02 13:04:33', '2020-11-02 13:04:33', '2021-11-02 13:04:33'),
 ('368149a51260e462f3249b2d762fc6105b73696dfef96dc82edf3a19ebf371e3dc9b9f2087859c58', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 02:34:06', '2019-01-23 02:34:06', '2019-04-24 08:04:06'),
 ('3791af01e9f8037c45baba8b55ed075028602ece461b4858cf16cb49d90e39cf17894101b2651b30', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 01:02:36', '2019-01-23 01:02:36', '2019-04-24 06:32:36'),
 ('3b1255c1092bd3768625e4b99e297bc58a4fdaaeb3c235cfee13322f7e64b37b39cc8b8d2c1972f3', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-22 13:24:02', '2019-01-22 13:24:02', '2019-04-23 18:54:02'),
@@ -484,6 +490,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('520e2dc31aabbe4e4f156ecd9dc225f9cb91e2db5845f127f9b63cf90b32c299f5624ff4bf6d8bd5', 3, 3, 'Personal Access Token', '[]', 0, '2019-01-21 11:44:45', '2019-01-21 11:44:45', '2019-04-22 17:14:45'),
 ('53b777b94105c9c7c3aa21b29dac7fdf63116366fede8af1436403cfaed5e8d12fed8d7a92dd34e8', 3, 3, 'Personal Access Token', '[]', 0, '2019-01-19 14:08:32', '2019-01-19 14:08:32', '2020-01-19 19:38:32'),
 ('58d52b4c4969d35adabe9e61e4767905dab15fe586827fb5dc0d55bf71415e84c4dc4879619f5c1c', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 01:33:01', '2019-01-23 01:33:01', '2019-04-24 07:03:01'),
+('5b1ffbef2ed5a35607bd361bd0e747e6d569a5ef18de6bbfd914df6f00e4b07fac7d48b5a7c5999e', 3, 3, 'Personal Access Token', '[]', 0, '2020-11-02 13:00:05', '2020-11-02 13:00:05', '2021-11-02 13:00:05'),
 ('5b6a05d51ae59a35f5ddf3f7729ca54d5394db141322e5380a36e3779bf57a4a12bf02ecea323dd4', 1, 3, 'Personal Access Token', '[]', 0, '2019-01-21 14:01:21', '2019-01-21 14:01:21', '2020-01-21 19:31:21'),
 ('5d8898a28beb0849ca72275ca1273a03dd5a80282c529edfc59070f614caff795acc235b77b26ea3', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-22 12:56:24', '2019-01-22 12:56:24', '2019-04-23 18:26:24'),
 ('5da4f0abaa151f8a721f51824eaa706c4ac27f6543e0e4b57d2d616f9de5647089146b800f9ed8da', 3, 3, 'Personal Access Token', '[]', 0, '2019-01-20 12:32:17', '2019-01-20 12:32:17', '2020-01-20 18:02:17'),
@@ -492,6 +499,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('6056d73d405e5098d2886a57e556e5cf3db2b86689d9ea6cea6d43725ca82963433f67a69301c609', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 02:30:30', '2019-01-23 02:30:30', '2019-04-24 08:00:30'),
 ('61094b06387f75b5c54cd1aa27a8f3484fd167190d7a313cfa4726ef9bfbf16cbf764d84f1535eb6', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 01:25:45', '2019-01-23 01:25:45', '2019-04-24 06:55:45'),
 ('67ba1509048a4683c7e5504315aec6e243a5b440c63e41413bfa725918d7aeaead944027bf07460f', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 02:52:48', '2019-01-23 02:52:48', '2019-04-24 08:22:48'),
+('6933ea96d6aaaf867360281ca6eff99b9ffbadd359edf2a98b0cb289705a41f39e3cf4f6e1466836', 6, 3, 'Personal Access Token', '[]', 0, '2020-11-02 12:58:41', '2020-11-02 12:58:41', '2021-11-02 12:58:41'),
 ('69e9078445a63355e5cafed6760f65570ff61859e02694e56d5d8bfed206ba18ffd78f2f6636aef2', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-22 12:08:14', '2019-01-22 12:08:14', '2019-04-23 17:38:14'),
 ('6ad32365d2555bf560a7a45f40ebd4adc823abff33b52487a97fbfc196077912db9af62701fff318', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-22 13:36:01', '2019-01-22 13:36:01', '2019-04-23 19:06:01'),
 ('6e049902f1077c8e61ad2d309941a3a3581373087b925dc844038c1f988775e98bba36a05886a31a', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 03:10:06', '2019-01-23 03:10:06', '2019-04-24 08:40:06'),
@@ -506,6 +514,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('7b55acf6c85afa5afcd911be5ceb738b30fde2dd33f440ecdb5e86d810ecd958b2fed46b27a86315', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-22 13:10:23', '2019-01-22 13:10:23', '2019-04-23 18:40:23'),
 ('7b57238d44f237fa629f3e569d4ef9ce37bde2c923015173eb2304eef79babf3fe36ca939ee011fe', 1, 3, 'Personal Access Token', '[]', 0, '2019-01-23 07:43:15', '2019-01-23 07:43:15', '2020-01-23 13:13:15'),
 ('7c5569fbdc0c74778898eb7a3751181aed0129c566426f5cdde9cbf4253cfa9bb2c1350b6e4f45f4', 3, 3, 'Personal Access Token', '[]', 0, '2019-01-19 14:06:49', '2019-01-19 14:06:49', '2020-01-19 19:36:49'),
+('8094377dae636ae1d5bd035a10c7851df864003225be8f9fe68e3fd002452cf119ad5f1f8f87a0e5', 7, 3, 'Personal Access Token', '[]', 0, '2020-11-02 13:05:52', '2020-11-02 13:05:52', '2021-11-02 13:05:52'),
 ('855e399ce87f87135e3d1001fb3ad3f63964038284db10fd5247f54f26feeafee81b18d4db71ed90', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-22 12:09:20', '2019-01-22 12:09:20', '2019-04-23 17:39:20'),
 ('87522c825edc19854c29dae14c5fed805717eb8047314033613e24ab83d44c03486760b7723bd17b', 3, 3, 'Personal Access Token', '[]', 0, '2019-01-22 12:07:53', '2019-01-22 12:07:53', '2019-04-23 17:37:53'),
 ('8b8d6a3073dc7beb043b885eb4069f85ce8a91a7819a7f4f4d5f523993ed0d8f207e89cb65d567b9', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 00:59:21', '2019-01-23 00:59:21', '2019-04-24 06:29:21'),
@@ -532,6 +541,7 @@ INSERT INTO `oauth_access_tokens` (`id`, `user_id`, `client_id`, `name`, `scopes
 ('a75a1b9c05c2487c91c1e78fa96a589343c3cb9f87e263f36a4eb1e6def20c0e2ea8510b2956b309', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 03:10:39', '2019-01-23 03:10:39', '2019-04-24 08:40:39'),
 ('aa5179779c50dd69e714ec363412accd1350c52ad4f8b7d5467f3a92d04623fab7d45baaaf02332e', 3, 3, 'Personal Access Token', '[]', 0, '2019-01-21 13:56:37', '2019-01-21 13:56:37', '2019-04-22 19:26:38'),
 ('aa5f2969dad84e0e07d4b6091b7759a6341cc9a35b22ff8ba0a85e3ab4c12c29a9568e4bf962ddbd', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 02:39:58', '2019-01-23 02:39:58', '2019-04-24 08:09:58'),
+('ae2c9b16f4a1ba178e4f69c7ce20f640e26536992ee6a89dc4a059bbc9c1ea39fb9f570d06d0316e', 3, 3, 'Personal Access Token', '[]', 0, '2020-11-02 13:05:10', '2020-11-02 13:05:10', '2021-11-02 13:05:10'),
 ('ae2cb8cc9257b4edeadca813bfc6a6ddf42237135290e0185e00dda6f37c10b8e1707ff3bfa229c8', 3, 3, 'Personal Access Token', '[]', 0, '2019-01-24 07:29:28', '2019-01-24 07:29:28', '2019-04-25 12:59:31'),
 ('aed717631d32f94edf5151ce60bde6451672d3c33b15159e3815cb14164562547d3ac8b6dbeba539', 3, 3, 'Personal Access Token', '[]', 0, '2019-01-21 08:18:18', '2019-01-21 08:18:18', '2019-04-22 13:48:18'),
 ('af3850f6fad1ed4aa2833e946e34c298c197c6331265c544bdcef6f9694205aa875fd94ec0b9f33d', 6, 3, 'Personal Access Token', '[]', 0, '2019-01-23 01:24:11', '2019-01-23 01:24:11', '2019-04-24 06:54:11'),
@@ -1598,7 +1608,7 @@ ALTER TABLE `notices`
 -- AUTO_INCREMENT for table `notice_read_statuses`
 --
 ALTER TABLE `notice_read_statuses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
