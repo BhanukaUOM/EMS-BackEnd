@@ -14,7 +14,7 @@
 1. Prerequisite:
 
       * [Composer](https://getcomposer.org/download/)
-      * [Xampp 7.1.x](https://www.apachefriends.org/download.html)
+      * [Xampp 7.2.x](https://www.apachefriends.org/download.html)
 
 2. Create DB:
 
