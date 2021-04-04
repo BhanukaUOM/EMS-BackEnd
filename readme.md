@@ -14,7 +14,7 @@
 1. Prerequisite:
 
       * [Composer](https://getcomposer.org/download/)
-      * [Xampp](https://www.apachefriends.org/download.html)
+      * [Xampp 7.1.x](https://www.apachefriends.org/download.html)
 
 2. Create DB:
 
@@ -25,7 +25,7 @@
 3. Install Dependancies
 
     ```
-    $ composer install
+    $ composer install --ignore-platform-reqs
     ```
 
 4. Migrate Database
