@@ -16,31 +16,42 @@
       * [Composer](https://getcomposer.org/download/)
       * [Xampp 7.2.x](https://www.apachefriends.org/download.html)
 
-2. Create DB:
+2. Create `.env` File.
+    
+    ```
+    cp .env.example .env
+    ```
+3. Generate APP_KEY
+
+    ```
+    php artisan key:generate 
+    ```
+
+4. Create DB:
 
     ```
     Create Database 'ems'
     ```
 
-3. Install Dependancies
+5. Install Dependancies
 
     ```
     $ composer install --ignore-platform-reqs
     ```
 
-4. Migrate Database
+6. Migrate Database
 
     ```
     $ php artisan migrate
     ```
 
-5. Configure Passport
+7. Configure Passport
 
     ```
     $ php artisan passport:install
     ```
    
-6. Run Locally
+8. Run Locally
 
     ```
     $ php artisan serve
